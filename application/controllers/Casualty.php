@@ -21,7 +21,7 @@ class Casualty extends CI_Controller {
 		$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
 
 		$data = array(
-			'casualty_data' => $casualty_data,
+			'casualty_data' => $casualty_data[0],
 			'regiment_data' => $regiment_data,
 			'service_numbers' => $service_numbers,
 			'commemorations' => $commemorations

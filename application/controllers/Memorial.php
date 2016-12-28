@@ -12,7 +12,7 @@ class Memorial extends CI_Controller {
 		$this->load->view('casualty_list_view', array('casualty_data' => $casualty_data, 'item_name'=>'Dover War Memorial', 'item_id'=>2, 'item_type'=>'memorial'));
 
 		$casualty_data = $this->memorial_model->getCasualtiesFromMemorial(1);
-		$this->load->view('casualty_list_view', array('casualty_data' => $casualty_data, 'item_name'=>'Book of Rememberance', 'item_id'=>1, 'item_type'=>'memorial'));
+		$this->load->view('casualty_list_view', array('casualty_data' => $casualty_data, 'item_name'=>'Book of Remembrance', 'item_id'=>1, 'item_type'=>'memorial'));
 
 		$this->load->view('footer');
 	}

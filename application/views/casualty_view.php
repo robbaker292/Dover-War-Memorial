@@ -5,11 +5,17 @@ include APPPATH . 'third_party/Parsedown.php';
 $Parsedown = new Parsedown();
 
 ?>
-<h1><?php echo $casualty_data[0]->given_name." ".$casualty_data[0]->family_name ?></h1>
+<h1><?php echo $casualty_data->given_name." ".$casualty_data->family_name ?></h1>
 
 <table>
 <?php
-	foreach ($casualty_data[0] as $key => $value) {
+
+	echo $Parsedown->text($casualty_data->narrative);
+?>
+<br><br>
+<div id="data">
+<?php
+	foreach ($casualty_data as $key => $value) {
 		if($key == "flag") {
 			continue;
 		}
@@ -21,7 +27,7 @@ $Parsedown = new Parsedown();
 		if ($key == "narrative") {
 			echo $Parsedown->text($value);
 		} else if ($key == "country") {
-			echo $value."&nbsp;<img src=\"".asset_url().$casualty_data[0]->flag."\" alt=\"".$value."\">";
+			echo $value."&nbsp;<img src=\"".asset_url().$casualty_data->flag."\" alt=\"".$value."\">";
 		} else {
 			echo $value;
 		}		
@@ -58,3 +64,4 @@ $Parsedown = new Parsedown();
 
 ?>
 </table>
+</div>
