@@ -8,6 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
+<h1><?php echo $casualty_data[0]->given_name." ".$casualty_data[0]->family_name ?></h1>
+
 <table>
 <?php
 	foreach ($casualty_data[0] as $key => $value) {

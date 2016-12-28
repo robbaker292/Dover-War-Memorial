@@ -69,29 +69,4 @@ class Casualty_model extends CI_Model {
                 return $query->result();
         }
 
-        /**
-        *       Lists the casualties from a given war
-        */
-        public function getCasualtiesFromWar($warId) {
-                $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, w.name FROM casualty c
-                        LEFT JOIN war w ON c.war = w.id
-                        WHERE w.id = ?
-                ";
-                $query = $this->db->query($sql, array($warId));
-                return $query->result();
-        }
-
-        /**
-        *       Lists the casualties from a memorial
-        */
-        public function getCasualtiesFromMemorial($memorialId) {
-                $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
-                        LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
-                        LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE c.id = ?
-                ";
-                $query = $this->db->query($sql, array($memorialId));
-                return $query->result();
-        }
-
 }
