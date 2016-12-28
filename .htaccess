@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteBase    /Dover-War-Memorial/
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ /Dover-War-Memorial/index.php/$1 [L]

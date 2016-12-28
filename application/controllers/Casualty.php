@@ -17,6 +17,8 @@ class Casualty extends CI_Controller {
 		$regiment_data = $this->casualty_model->getRegimentService($id);
 		$service_numbers = $this->casualty_model->getServiceNumbers($id);
 		$commemorations = $this->casualty_model->getCommemorations($id);
+		
+		$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
 
 		$data = array(
 			'casualty_data' => $casualty_data,
@@ -25,7 +27,11 @@ class Casualty extends CI_Controller {
 			'commemorations' => $commemorations
 		);
 
+		$this->load->view('header');
 		$this->load->view('casualty_view', $data);
+		$this->load->view('footer');
+
+		//redirect("Casualty/view/{$id}/{$str_slug}");
 	}
 
 }

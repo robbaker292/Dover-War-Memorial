@@ -1,23 +1,30 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-</head>
-<body>
 
+include APPPATH . 'third_party/Parsedown.php';
+$Parsedown = new Parsedown();
+
+?>
 <h1><?php echo $casualty_data[0]->given_name." ".$casualty_data[0]->family_name ?></h1>
 
 <table>
 <?php
 	foreach ($casualty_data[0] as $key => $value) {
+		if($key == "flag") {
+			continue;
+		}
+
 		echo "<tr>";
 		echo "<td>";
 		echo $key;
 		echo "</td><td>";
-		echo $value;
+		if ($key == "narrative") {
+			echo $Parsedown->text($value);
+		} else if ($key == "country") {
+			echo $value."&nbsp;<img src=\"".asset_url().$casualty_data[0]->flag."\" alt=\"".$value."\">";
+		} else {
+			echo $value;
+		}		
 		echo "</td>";
 		echo "</tr>";
 	}
@@ -51,5 +58,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 </table>
-</body>
-</html>
