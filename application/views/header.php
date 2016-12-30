@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <ul>
 	        <li><a href="<?php echo base_url(); ?>">Home</a></li>
 	        <li><a href="<?php echo base_url(); ?>siteUpdate">Latest News</a></li>
-	        <li><a href="/">Casualty Index</a></li>
+	        <li><a href="<?php echo base_url(); ?>memorial/listMain">Casualty Index</a></li>
 	        <li><a href="/">Information Index</a></li>
 	        <li><a href="/">Search</a></li>
 	        <li><a href="/">About &amp; Contact</a></li>
