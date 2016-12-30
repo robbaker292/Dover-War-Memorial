@@ -19,7 +19,7 @@ class SiteUpdate extends CI_Controller {
 			'updateFromYear' => $updateFromYear
 		);
 
-		$this->load->view('header');
+		$this->load->view('header', array("title" => $year." Site Updates - Dover War Memorial Project"));
 		$this->load->view('updates_view', $data);
 		$this->load->view('footer');
 

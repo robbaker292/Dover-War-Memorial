@@ -27,7 +27,7 @@ class Casualty extends CI_Controller {
 			'commemorations' => $commemorations
 		);
 
-		$this->load->view('header');
+		$this->load->view('header', array("title" => $casualty_data[0]->given_name." ".$casualty_data[0]->family_name." - Dover War Memorial Project"));
 		$this->load->view('casualty_view', $data);
 		$this->load->view('footer');
 

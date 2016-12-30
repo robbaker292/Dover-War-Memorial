@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/navbar.js"></script>
 
-	<title>Dover War Memorial Project</title>
+	<title><?php echo $title; ?></title>
 </head>
 <body>
 	<header>
@@ -35,10 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<nav id="nav-main">
 	    <ul>
 	        <li><a href="<?php echo base_url(); ?>">Home</a></li>
-	        <li><a href="">Latest News</a></li>
+	        <li><a href="<?php echo base_url(); ?>siteUpdate">Latest News</a></li>
 	        <li><a href="/">Casualty Index</a></li>
-	        <li><a href="">Information Index</a></li>
+	        <li><a href="/">Information Index</a></li>
 	        <li><a href="/">Search</a></li>
-	        <li><a href="">About &amp; Contact</a></li>
+	        <li><a href="/">About &amp; Contact</a></li>
 	    </ul>
 	</nav>
