@@ -1,0 +1,30 @@
+/* =Nav
+-------------------------------------------------------------- */
+nav a {
+	text-decoration: none;
+}
+
+nav {
+  margin-bottom: 30px; }
+
+nav#nav-main {
+  background-color: #571B7E;
+  padding: 10px 0; }
+  nav#nav-main ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center; }
+  nav#nav-main li {
+    display: inline-block;
+    border-right: solid 1px #F3E5AB;
+    padding: 0 5px; }
+    nav#nav-main li:last-child {
+      border-right: none; }
+  nav#nav-main a {
+    display: block;
+    color: #F3E5AB;
+    padding: 10px 15px; }
+    nav#nav-main a:hover {
+      background-color: #A74AC7;
+      color: #F3E5AB; }

@@ -1,0 +1,24 @@
+td {
+	margin: 2px;
+}
+
+footer, h1, header h2 {
+	text-align: center;
+}
+
+h1, .dwmp {
+	font-family: "Lucida Calligraphy", cursive;
+}
+
+header p, header td {
+	font-style: italic;
+}
+
+#patrons {
+	text-align: center;
+}
+
+#patrons h4 {
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+}

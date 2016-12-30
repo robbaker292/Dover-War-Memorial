@@ -5,7 +5,7 @@ include APPPATH . 'third_party/Parsedown.php';
 $Parsedown = new Parsedown();
 
 ?>
-<h1><?php echo $casualty_data->given_name." ".$casualty_data->family_name ?></h1>
+<h2><?php echo $casualty_data->given_name." ".$casualty_data->family_name ?></h2>
 
 <table>
 <?php
