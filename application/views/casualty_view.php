@@ -2,18 +2,21 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include APPPATH . 'third_party/Parsedown.php';
-$Parsedown = new Parsedown();
+include APPPATH . 'third_party/ParsedownExtra.php';
+$Parsedown = new ParsedownExtra();
 
 ?>
 <h2><?php echo $casualty_data->given_name." ".$casualty_data->family_name ?></h2>
 
-<table>
+<div id="narrative">
 <?php
 
-	echo $Parsedown->text($casualty_data->narrative);
+	echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $casualty_data->narrative));
 ?>
+</div>
 <br><br>
 <div id="data">
+<table>
 <?php
 	foreach ($casualty_data as $key => $value) {
 		if($key == "flag") {

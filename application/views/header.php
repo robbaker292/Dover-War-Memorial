@@ -10,7 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/main.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/floaters.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/navbar.css">
 
     <script src="<?php echo asset_url(); ?>css/jquery-3.1.1.min.css"></script>

@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include APPPATH . 'third_party/Parsedown.php';
-$Parsedown = new Parsedown();
+include APPPATH . 'third_party/ParsedownExtra.php';
+$Parsedown = new ParsedownExtra();
 
 //var_dump($updates);
 ?>

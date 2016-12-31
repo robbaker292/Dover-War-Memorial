@@ -25,7 +25,7 @@ class Memorial_model extends CI_Model {
                 $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
                         LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
                         LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE cl.id = ?
+                        WHERE cl.id = ? ORDER BY c.family_name, c.given_name ASC
                 ";
                 $query = $this->db->query($sql, array($memorialId));
                 return $query->result();

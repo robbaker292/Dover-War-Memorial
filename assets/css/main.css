@@ -1,3 +1,8 @@
+body {
+	margin-left: 1.5em;
+	margin-right: 1.5em;
+}
+
 td {
 	margin: 2px;
 }
@@ -6,7 +11,7 @@ footer, h1, header h2 {
 	text-align: center;
 }
 
-h1, .dwmp {
+h1, .dwmp, h2 {
 	font-family: "Lucida Calligraphy", cursive;
 }
 
@@ -21,4 +26,27 @@ header p, header td {
 #patrons h4 {
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
+}
+
+img.left, img.right, img.middle {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+img.left {
+	float: left;
+}
+
+img.right {
+	float: right;
+}
+
+img.middle {
+    margin-left: auto;
+    margin-right: auto
+}
+
+div#data {
+	clear: both;
 }
