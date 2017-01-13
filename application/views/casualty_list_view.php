@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
-
 <h2>
 <?php 
 
@@ -11,12 +10,9 @@ if(isset($item_id)) {
 } else {
 	echo $item_name; 
 }
-
-
-
 ?>
-	
 </h2>
+
 <?php
 	echo "<table>";
 	echo "<tr><th>Given Name</th><th>Family Name</th><th>Date of death</th></tr>";
@@ -34,4 +30,3 @@ if(isset($item_id)) {
 	echo "</table>";
 ?>
 
-</table>

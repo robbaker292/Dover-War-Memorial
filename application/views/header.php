@@ -9,12 +9,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/bootstrap.min.css">
+    
+ <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/navbar.css">
 
-    <script src="<?php echo asset_url(); ?>css/jquery-3.1.1.min.css"></script>
+    <script src="<?php echo asset_url(); ?>js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/navbar.js"></script>
+
+    <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'detail') { ?>
+			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
+	<?php } ?>
 
 	<title><?php echo $title; ?></title>
 </head>

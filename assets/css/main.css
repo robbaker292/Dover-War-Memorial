@@ -50,3 +50,7 @@ img.middle {
 div#data {
 	clear: both;
 }
+
+.hidden {
+	display: none;
+}
