@@ -36,8 +36,23 @@ $(document).ready( function() {
 	function loadCasulaties() {
 		var itemId = $("#item_id").text();
 		console.log(itemId);
-		$.ajax({url: "../getCasualtiesOfLetterFromMemorial/"+itemId+"/"+letter, success: function(result){
+		$.ajax({url: "../getCasualtiesOfLetterFromMemorial/"+itemId+"/"+letter, dataType: "json", success: function(result){
         	console.log(result);
+
+        	$("#casualtyTable > tbody").empty();
+        	$.each(result, function (k,v) {
+
+        		var row = "<tr><td>" + v.given_name + "</td><td>" + v.family_name + "</td><td>";
+
+        		if (v.date_of_death == "null") {
+        			row += "&nbsp;</td></tr>"
+        		} else {
+        			row += v.date_of_death + "</td></tr>";
+        		}        		
+
+        		$("#casualtyTable > tbody").append(row);
+        	})
+
    		}});
 
 	}
