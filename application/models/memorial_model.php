@@ -35,13 +35,51 @@ class Memorial_model extends CI_Model {
         *       Lists the casualties from a memorial with the given firstletter as their surname
         */
         public function getCasualtiesOfLetterFromMemorialFromWar($memorialId, $warId, $firstLetter) {
-                $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
-                        LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
-                        LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE cl.id = ? AND c.family_name LIKE ? ORDER BY c.family_name, c.given_name ASC
-                ";
-                $query = $this->db->query($sql, array($memorialId, $firstLetter."%"));
+
+                $query;
+                if ($warId == 0) {
+                    if($firstLetter == "any") {
+                        //every war and other letter
+                        $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
+                            LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
+                            LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
+                            WHERE cl.id = ? AND c.family_name REGEXP '^[^A-Za-z]' ORDER BY c.family_name, c.given_name ASC
+                        ";
+                        $query = $this->db->query($sql, array($memorialId));
+                    } else {
+                        //every war and given letter
+                        $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
+                            LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
+                            LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
+                            WHERE cl.id = ? AND c.family_name LIKE ? ORDER BY c.family_name, c.given_name ASC
+                        ";
+                        $query = $this->db->query($sql, array($memorialId, $firstLetter."%"));
+                    }
+                } else {
+                    if($firstLetter == "any") {
+                        //given war and other letter
+                        $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
+                            LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
+                            LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
+                            WHERE cl.id = ? AND c.war = ? AND c.family_name REGEXP '^[^A-Za-z]' ORDER BY c.family_name, c.given_name ASC
+                        ";
+                        $query = $this->db->query($sql, array($memorialId, $warId));
+
+                    } else {
+                        //given war and given letter
+                        $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
+                            LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
+                            LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
+                            WHERE cl.id = ? AND c.war = ? AND c.family_name LIKE ? ORDER BY c.family_name, c.given_name ASC
+                        ";
+                        $query = $this->db->query($sql, array($memorialId, $warId, $firstLetter."%"));
+                    }
+                }
+
+                
                 return $query->result();
+
+                //SELECT * FROM casualty WHERE family_name REGEXP '^[^A-Za-z]'
         }
 
 }

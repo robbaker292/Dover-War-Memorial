@@ -54,3 +54,7 @@ div#data {
 .hidden {
 	display: none;
 }
+
+tr.clickableRow { 
+	cursor: pointer; 
+} 

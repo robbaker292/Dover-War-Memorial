@@ -12,14 +12,8 @@ class Memorial extends CI_Controller {
 		$this->load->view('header', array("title" => "Memorials - Dover War Memorial Project"));
 
 
-		$this->load->view('memorial_list_view', array('item_name'=>'Dover War Memorial', 'item_id'=>2, 'item_type'=>'memorial'));
-		$this->load->view('memorial_list_view', array('item_name'=>'Book of Remembrance', 'item_id'=>1, 'item_type'=>'memorial'));
-
-		//$casualty_data = $this->memorial_model->getCasualtiesFromMemorial(2);
-		//$this->load->view('casualty_list_view', array('casualty_data' => $casualty_data, 'item_name'=>'Dover War Memorial', 'item_id'=>2, 'item_type'=>'memorial'));
-
-		//$casualty_data = $this->memorial_model->getCasualtiesFromMemorial(1);
-		//$this->load->view('casualty_list_view', array('casualty_data' => $casualty_data, 'item_name'=>'Book of Remembrance', 'item_id'=>1, 'item_type'=>'memorial'));
+		$this->load->view('memorial_list_view', array('item_name'=>'Dover War Memorial', 'item_id'=>1, 'item_type'=>'memorial'));
+		$this->load->view('memorial_list_view', array('item_name'=>'Book of Remembrance', 'item_id'=>2, 'item_type'=>'memorial'));
 
 		$this->load->view('footer');
 	}
@@ -31,12 +25,11 @@ class Memorial extends CI_Controller {
 		$this->load->model('memorial_model');
 
 		$memorial_data = $this->memorial_model->getMemorial($memId);
-		$casualty_data = $this->memorial_model->getCasualtiesFromMemorial($memId);
 
 		$this->load->view('header', array("title" => $memorial_data[0]->name." - Dover War Memorial Project"));
 
 		$this->load->view('memorial_view', 
-			array('casualty_data' => $casualty_data, 'memorial_data'=>$memorial_data, 'item_name'=>$memorial_data[0]->name, 'item_id'=>$memId, 'item_type'=>'memorial')
+			array('memorial_data'=>$memorial_data, 'item_name'=>$memorial_data[0]->name, 'item_id'=>$memId, 'item_type'=>'memorial')
 		);
 
 		$this->load->view('footer');
@@ -45,9 +38,9 @@ class Memorial extends CI_Controller {
 	/**
 	*	 Displays a JSON list of casualties from the given memorial and with the given first letter
 	*/
-	public function getCasualtiesOfLetterFromMemorial($memorialId, $firstLetter) {
+	public function getCasualtiesOfLetterFromMemorial($memorialId, $warId, $firstLetter) {
 		$this->load->model('memorial_model');
-		$casualty_data = $this->memorial_model->getCasualtiesOfLetterFromMemorialFromWar($memorialId, 1, $firstLetter);
+		$casualty_data = $this->memorial_model->getCasualtiesOfLetterFromMemorialFromWar($memorialId, $warId, $firstLetter);
 		echo json_encode($casualty_data);
 	}
 

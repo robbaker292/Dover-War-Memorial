@@ -25,25 +25,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title><?php echo $title; ?></title>
 </head>
 <body>
-	<header>
-		<h1>Dover War Memorial Project</h1>
-		<h2><small>Welcome to <span class="dwmp">Dover's Virtual War Memorial</span></small></h2>
+	<header class="container">
+		<div class="col-md-12">
+			<h1>Dover War Memorial Project</h1>
+			<h2><small>Welcome to <span class="dwmp">Dover's Virtual War Memorial</span></small></h2>
 
-		<div id="patrons">
-			<h4><small>Patrons:</small></h4>
-			<h4><small>Dame Vera Lynn, CH, DBE, LL.D, M.Mus</small></h4>
-			<h4><small>Admiral of the Fleet the Lord Boyce, KG, GCB, OBE, DL<br>
-			Lord Warden and Admiral of the Cinque Ports and Constable of Dover Castle</small></h4>
+			<div id="patrons">
+				<h4><small>Patrons:</small></h4>
+				<h4><small>Dame Vera Lynn, CH, DBE, LL.D, M.Mus</small></h4>
+				<h4><small>Admiral of the Fleet the Lord Boyce, KG, GCB, OBE, DL<br>
+				Lord Warden and Admiral of the Cinque Ports and Constable of Dover Castle</small></h4>
+			</div>
+			<nav id="nav-main">
+			    <ul>
+			        <li><a href="<?php echo base_url(); ?>">Home</a></li>
+			        <li><a href="<?php echo base_url(); ?>siteUpdate">Latest News</a></li>
+			        <li><a href="<?php echo base_url(); ?>memorial/listMain">Casualty Index</a></li>
+			        <li><a href="#">Information Index</a></li>
+			        <li><a href="#">Search</a></li>
+			        <li><a href="#">About &amp; Contact</a></li>
+			    </ul>
+			</nav>
 		</div>
-	
 	</header>
-	<nav id="nav-main">
-	    <ul>
-	        <li><a href="<?php echo base_url(); ?>">Home</a></li>
-	        <li><a href="<?php echo base_url(); ?>siteUpdate">Latest News</a></li>
-	        <li><a href="<?php echo base_url(); ?>memorial/listMain">Casualty Index</a></li>
-	        <li><a href="/">Information Index</a></li>
-	        <li><a href="/">Search</a></li>
-	        <li><a href="/">About &amp; Contact</a></li>
-	    </ul>
-	</nav>
+	
+<main class="container">
+<div class="col-md-12">
