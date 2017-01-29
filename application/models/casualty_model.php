@@ -18,7 +18,7 @@ class Casualty_model extends CI_Model {
         * Returns all the data about the given casualty
         */
         public function getCasualty($id) {
-                $sql = "SELECT c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, frp.name AS 'final_resting_place', r.name AS 'rank', w.name AS 'war', sc.name AS 'country', pb.name AS 'place_of_birth', lka.name AS 'last_known_address', last_known_address_year, scf.flag FROM casualty c
+                $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, frp.name AS 'final_resting_place', r.name AS 'rank', w.name AS 'war', sc.name AS 'country', pb.name AS 'place_of_birth', lka.name AS 'last_known_address', last_known_address_year, scf.flag FROM casualty c
                         LEFT JOIN commemoration_location frp ON c.final_resting_place = frp.id
                         LEFT JOIN war w ON c.war = w.id
                         LEFT JOIN rank r ON c.rank_at_death = r.id
@@ -27,6 +27,16 @@ class Casualty_model extends CI_Model {
                         LEFT JOIN place pb ON c.place_of_birth = pb.id
                         LEFT JOIN place lka ON c.last_known_address = lka.id
                         WHERE c.id = ?
+                ";
+                $query = $this->db->query($sql, array($id));
+                return $query->result();
+        }
+
+        /*
+        * Returns basic data about the given casualty
+        */
+        public function getCasualtyBasic($id) {
+                $sql = "SELECT * FROM casualty c WHERE c.id = ?
                 ";
                 $query = $this->db->query($sql, array($id));
                 return $query->result();

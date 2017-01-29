@@ -13,15 +13,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="/">Information Index</a>&nbsp;&nbsp;|&nbsp;
         <a href="/">Search</a>&nbsp;&nbsp;|&nbsp;
         <a href="/">About &amp; Contact</a>&nbsp;&nbsp;|&nbsp;
-        <a href="<?php echo base_url(); ?>user/login">Login</a>
-        <a href="<?php echo base_url(); ?>user/logout">Logout</a>
+        <?php
+        if(isset($_SESSION['user'])) {
+            ?>
+           <span class="loginInfo"> Logged in as: <?php echo $_SESSION['user']; ?></span>&nbsp;&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>user/logout">Logout</a>
+            <?php
+        } else {
+            ?>
+            <a href="<?php echo base_url(); ?>user/login">Login</a>
+            <?php
+        }
 
-    	<br>
+        ?>
+    	<p class="small">
     	This website uses cookies for various required functions.<br>
     	Copyright 2006-<?php echo date("y"); ?> &copy; Marilyn Stephenson-Knight. All Rights Reserved
+        </p>
     </div>
 </footer>
-
-
 </body>
 </html>

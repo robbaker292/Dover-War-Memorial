@@ -33,6 +33,7 @@ class User extends CI_Controller {
 		if($result[0]) {
 			//login successful
 			$this->session->token = $result[1];
+			$this->session->user = $result[2];
 			header('Location: '.base_url());
 
 		} else {

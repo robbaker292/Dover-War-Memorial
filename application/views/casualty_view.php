@@ -4,10 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include APPPATH . 'third_party/Parsedown.php';
 include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
-
 ?>
 
-	<h2><?php echo $casualty_data->given_name." ".$casualty_data->family_name ?></h2>
+	<h2><?php 
+		echo $casualty_data->given_name." ".$casualty_data->family_name; 
+		if($loggedIn) {
+			echo "<small>&nbsp;<a href=\"".base_url()."casualty/edit/".$casualty_data->id."\">Edit</a></small>";
+		}
+
+		?></h2>
 
 	<div id="narrative">
 	<?php
