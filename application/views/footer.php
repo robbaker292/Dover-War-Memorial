@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 </div>
+</div>
 </main>
 <footer class="container">
     <div class="col-md-12">
@@ -12,7 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="/">Information Index</a>&nbsp;&nbsp;|&nbsp;
         <a href="/">Search</a>&nbsp;&nbsp;|&nbsp;
         <a href="/">About &amp; Contact</a>&nbsp;&nbsp;|&nbsp;
-        <a href="/">Login</a>
+        <a href="<?php echo base_url(); ?>user/login">Login</a>
+        <a href="<?php echo base_url(); ?>user/logout">Logout</a>
 
     	<br>
     	This website uses cookies for various required functions.<br>

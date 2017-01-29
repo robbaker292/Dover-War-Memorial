@@ -29,3 +29,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 assets/flags-iso/*
 assets/pictures
 application/config/config.php
+application/models/login_model.php
