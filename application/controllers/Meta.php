@@ -11,7 +11,7 @@ class Meta extends CI_Controller {
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 
 		$this->load->view('header', array(
-			"title" => "Markdown Help - Dover War Memorial Project"));
+			"title" => "Dover War Memorial Project"));
 		$this->load->view('static_home_view');
 		$this->load->view('footer');
 	}
@@ -30,5 +30,16 @@ class Meta extends CI_Controller {
 
 	}
 
+	/**
+	*	Handles the AJAX preview for editing some text
+	*/
+	public function parseMarkdown() {
+		$raw = $this->input->post('raw');
+
+		include APPPATH . 'third_party/Parsedown.php';
+		include APPPATH . 'third_party/ParsedownExtra.php';
+		$Parsedown = new ParsedownExtra();
+		echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $raw));
+	}
 
 }

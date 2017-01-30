@@ -23,6 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
 	<?php } else if($this->uri->segment(1) == 'casualty' && $this->uri->segment(2) == 'view') { ?>
 			<script src="<?php echo asset_url(); ?>js/casualty.js"></script>
+	<?php } else if($this->uri->segment(1) == 'casualty' && $this->uri->segment(2) == 'edit') { ?>
+			<script src="<?php echo asset_url(); ?>js/bootstrap-markdown.js"></script>
+			<script src="<?php echo asset_url(); ?>js/narrative_edit.js"></script>
+			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/bootstrap-markdown.min.css">
 	<?php } ?>
 
 	<title><?php echo $title; ?></title>

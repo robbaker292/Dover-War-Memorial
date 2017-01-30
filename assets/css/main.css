@@ -101,3 +101,11 @@ tr.clickableRow {
 .loginInfo {
   font-weight: bold;
 }
+
+#markdownPreviewArea {
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: hidden;
+  display: none;
+}

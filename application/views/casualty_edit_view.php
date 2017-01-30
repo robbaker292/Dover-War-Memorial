@@ -46,8 +46,10 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="narrative">Narrative:</label>
 			<div class="col-sm-9">
-				<textarea class="form-control" rows="10" id="narrative" placeholder="Enter Narrative" name="narrative"><?php if(!$new) { echo $casualty_data->narrative; }?></textarea>
+				<textarea class="form-control" rows="15" id="narrative" placeholder="Enter Narrative" name="narrative"><?php if(!$new) { echo $casualty_data->narrative; }?></textarea>
 				<div class="help-block">Use Markdown to specify formatting. <a href="<?php echo base_url();?>static/markdown">Help is available.</a> Add pictures?</div>
+				<button type="button" class="btn btn-default" id="markdownPreview">Preview Below</button>
+				<div id="markdownPreviewArea"></div>
 			</div>
 		</div>
 
