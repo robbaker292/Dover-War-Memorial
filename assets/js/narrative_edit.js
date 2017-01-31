@@ -12,14 +12,23 @@ $(document).ready( function() {
   		savable: false,
   		iconlibrary: "fa",
   		hiddenButtons: ["cmdImage","cmdCode","cmdPreview"],
+  		disabledButtons: "cmdAddImage",
   		additionalButtons: [
   			[{
   				name: "imageGroup",
   				data: [{
+  					name: "cmdAddImage",
+  					toggle: false,
+  					disabled: true,
+  					title: "Insert Image:",
+  					btnText: "Insert Image:",
+  					icon: {"fa": "fa fa-file-image-o"}
+  				},{
   					name: "cmdLeftImage",
   					toggle: false,
   					title: "Insert Image to the Left",
   					icon: {"fa": "fa fa-hand-o-left"},
+  					btnText: "Left",
   					callback: function(e){
   						var url = urlPrePrompt + window.prompt(urlPromptMessage,urlPrompt);
   						var title = window.prompt(titlePromptMessage,titlePrompt);
@@ -33,6 +42,7 @@ $(document).ready( function() {
   					toggle: false,
   					title: "Insert Image to the Center",
   					icon: {"fa": "fa fa-hand-o-up"},
+  					btnText: "Centre",
   					callback: function(e){
   						var url = urlPrePrompt + window.prompt(urlPromptMessage,urlPrompt);
   						var title = window.prompt(titlePromptMessage,titlePrompt);
@@ -46,6 +56,7 @@ $(document).ready( function() {
   					toggle: false,
   					title: "Insert Image to the Right",
   					icon: {"fa": "fa fa-hand-o-right"},
+  					btnText: "Right",
   					callback: function(e){
   						var url = urlPrePrompt + window.prompt(urlPromptMessage,urlPrompt);
   						var title = window.prompt(titlePromptMessage,titlePrompt);
