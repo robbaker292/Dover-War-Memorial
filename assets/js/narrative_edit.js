@@ -2,6 +2,12 @@ $(document).ready( function() {
 
 	//http://www.codingdrama.com/bootstrap-markdown/
 
+	var urlPromptMessage = "Enter the file name of the picture, including any folders deeper than \"pictures\".\ne.g. For a picture in \"assets/pictures/faces/me.png\" use \"faces/me.png\"";
+	var urlPrompt = "faces/me.png";
+	var urlPrePrompt = "%asset_url%pictures/";
+	var titlePromptMessage = "Enter the title of the picture";
+	var titlePrompt = "Picture of a face by M. Smith";
+
 	$("#narrative").markdown({
   		savable: false,
   		iconlibrary: "fa",
@@ -15,7 +21,12 @@ $(document).ready( function() {
   					title: "Insert Image to the Left",
   					icon: {"fa": "fa fa-hand-o-left"},
   					callback: function(e){
-  						console.log("left");
+  						var url = urlPrePrompt + window.prompt(urlPromptMessage,urlPrompt);
+  						var title = window.prompt(titlePromptMessage,titlePrompt);
+
+  						var outputText = "\n![" + title + "](" + url + " \"" + title + "\"){.left}\n";
+
+  						e.replaceSelection(outputText);
   					}
   				},{
   					name: "cmdCenterImage",
@@ -23,7 +34,12 @@ $(document).ready( function() {
   					title: "Insert Image to the Center",
   					icon: {"fa": "fa fa-hand-o-up"},
   					callback: function(e){
-  						console.log("Center");
+  						var url = urlPrePrompt + window.prompt(urlPromptMessage,urlPrompt);
+  						var title = window.prompt(titlePromptMessage,titlePrompt);
+
+  						var outputText = "\n![" + title + "](" + url + " \"" + title + "\"){.middle}\n";
+
+  						e.replaceSelection(outputText);
   					}
   				},{
   					name: "cmdRightImage",
@@ -31,7 +47,12 @@ $(document).ready( function() {
   					title: "Insert Image to the Right",
   					icon: {"fa": "fa fa-hand-o-right"},
   					callback: function(e){
-  						console.log("right");
+  						var url = urlPrePrompt + window.prompt(urlPromptMessage,urlPrompt);
+  						var title = window.prompt(titlePromptMessage,titlePrompt);
+
+  						var outputText = "\n![" + title + "](" + url + " \"" + title + "\"){.right}\n";
+
+  						e.replaceSelection(outputText);
   					}
   				}]
   			}]
