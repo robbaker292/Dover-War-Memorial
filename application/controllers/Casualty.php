@@ -12,17 +12,29 @@ class Casualty extends CI_Controller {
 	/**
 	*	Displays the details of the given casualty
 	*/
-	public function view($id) {
+	public function view($id, $name = null) {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 
 		$this->load->model('casualty_model');
 		$casualty_data = $this->casualty_model->getCasualty($id);
+
+		//redirect if invalid url
+		if(count($casualty_data) == 0) {
+			redirect(site_url());
+		}
+
+		//rewrite url to be nicer
+		if($name == null) {
+			$name = urlencode($casualty_data[0]->given_name."-".$casualty_data[0]->family_name);
+			redirect(site_url(uri_string()."/".$name));
+		}
+
 		$regiment_data = $this->casualty_model->getRegimentService($id);
 		$service_numbers = $this->casualty_model->getServiceNumbers($id);
 		$commemorations = $this->casualty_model->getCommemorations($id);
 		
-		$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
+		//$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
 
 		$data = array(
 			'casualty_data' => $casualty_data[0],
@@ -52,6 +64,11 @@ class Casualty extends CI_Controller {
 			$this->load->model('general_model');
 
 			$casualty_data = $this->casualty_model->getCasualtyBasic($id);
+
+			//redirect if invalid url
+			if(count($casualty_data) == 0) {
+				redirect(site_url());
+			}
 
 			$regiment_data = $this->casualty_model->getRegimentService($id);
 			$service_numbers = $this->casualty_model->getServiceNumbers($id);
