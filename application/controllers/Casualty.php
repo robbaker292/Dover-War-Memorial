@@ -89,8 +89,48 @@ class Casualty extends CI_Controller {
 	/**
 	* Handles the updating of a casualty
 	*/
-	public function doUpdate() {
-		echo "updating!";
+	public function doUpdate($type) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+
+			$basicForm = $this->input->post();
+			//$basicForm = array("id" => "1", "given_name" => "Frank3", "DANGER" => "DANEGR");
+
+			$id = -1;
+			if(isset($basicForm['id'])) {
+				$id = $basicForm['id'];
+			}
+			
+			$this->load->model('casualty_model');
+
+			//update casualty
+			$result = $this->casualty_model->updateCasualty($id, $basicForm);
+
+			//if the update worked
+			if($result["type"] == "success") {
+				//store the result data
+				$this->session->set_flashdata($result);
+				echo json_encode($result);
+				//direct to the relevant location
+			//	if($type == 0) {
+			//		redirect("casualty/edit/".$id."#saveResult");
+			//	} else {
+			//		redirect("casualty/view/".$id."#saveResult");
+			//	}
+			} else {
+				//output the error message :(
+				header('HTTP/1.1 500 Internal Server Error');
+       			header('Content-Type: application/json; charset=UTF-8');
+        		die(json_encode($result));
+			}
+
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('type'=>'failure', 'message'=>'User is not logged in')));
+		}
 	}
 
 }

@@ -24,6 +24,13 @@ $Parsedown = new ParsedownExtra();
 	<div id="toggler">Click for more details <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></div>
 	<br>
 	<div id="data">
+		<?php
+			if($casualty_data->recently_uploaded == 1) {
+				?>
+				<div class="alert alert-info" role="alert"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;This casualty has recently been imported, so full data may not yet be available.</div>
+				<?php
+			}
+		?>
 	<table>
 	<?php
 		foreach ($casualty_data as $key => $value) {

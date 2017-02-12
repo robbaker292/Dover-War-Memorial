@@ -20,7 +20,8 @@ $Parsedown = new ParsedownExtra();
 
 	<h3>Basic Details:</h3>
 
-	<form>
+	<form id="basicForm">
+		<input type="hidden" id="id" name="id" <?php if(!$new) { echo "value=\"".$casualty_data->id."\""; }?>>
 
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="given_name">Given Name:</label>
@@ -47,7 +48,7 @@ $Parsedown = new ParsedownExtra();
 			<label class="control-label col-sm-3" for="narrative">Narrative:</label>
 			<div class="col-sm-9">
 				<textarea class="form-control" rows="15" id="narrative" placeholder="Enter Narrative" name="narrative"><?php if(!$new) { echo $casualty_data->narrative; }?></textarea>
-				<div class="help-block">Use Markdown to specify formatting. <a href="<?php echo base_url();?>static/markdown">Help is available.</a> Add pictures?</div>
+				<div class="help-block">Use Markdown to specify formatting. <a href="<?php echo base_url();?>static/markdown">Help is available</a>. Click below to preview narrative.</div>
 				<button type="button" class="btn btn-default" id="markdownPreview">Preview Below</button>
 				<div id="markdownPreviewArea"></div>
 			</div>
@@ -241,11 +242,47 @@ $Parsedown = new ParsedownExtra();
 		</div>
 
 		<div class="form-group">
-			<button type="button" class="btn btn-default" id="saveBasic">Save this section</button>
-			<span class="help-block">Must be saved before below sections can be completed</span>
+			<label class="control-label col-sm-3" for="recently_uploaded">Recently Imported:</label>
+			<div class="col-sm-9">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-default <?php if(!$new && $casualty_data->recently_uploaded == 1 ) { echo "active"; }?>">
+						<input type="radio" name="recently_uploaded" id="recently_uploaded_yes" value="1" autocomplete="off" <?php if(!$new && $casualty_data->recently_uploaded == 1 ) { echo "checked"; }?>>
+						Yes
+					</label>
+
+					<label class="btn btn-default <?php if(!$new && $casualty_data->recently_uploaded == 0 ) { echo "active"; }?>">
+						<input type="radio" name="recently_uploaded" id="recently_uploaded_no" value="0" autocomplete="off" <?php if(!$new && $casualty_data->recently_uploaded == 0 ) { echo "checked"; }?>>
+						No
+					</label>
+				</div>
+				<div class="help-block">Will remove the warning label displayed to a user and removes this from the "recently imported" list.</div>
+			</div>
+			
+		</div>
+
+		<div class="form-group">
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" class="btn btn-primary" id="saveBasic">Save and continue with editing</button>
+				<button type="button" class="btn btn-primary" id="saveReturn">Save and return to casualty</button>
+			</div>
+			<div id="saveResult">
+				<?php
+					if($this->session->flashdata('type') != null) {
+						$type = $this->session->flashdata('type');
+						$message = $this->session->flashdata('message');
+
+						if($type == "success") {
+							?>
+							<div class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+							<?php
+						}
+					}
+				?>
+			</div>			
+			<?php if($new) { echo "<div class=\"help-block\">Casualty must be saved before below sections can be completed</div>"; } ?>
 		</div>
 	</form>
-
+ 
 	<h3>Commemorations Data:</h3>
 	<form>
 
