@@ -46,7 +46,7 @@ class Casualty_model extends CI_Model {
     * Returns the all the places the casualty is commemorated
     */
     public function getCommemorations($id) {
-        $sql = "SELECT cl.name FROM casualty c
+        $sql = "SELECT cl.id, cl.name FROM casualty c
             LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
             LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
             WHERE c.id = ?
@@ -59,7 +59,7 @@ class Casualty_model extends CI_Model {
     * Returns the regiments and services the casualty was in
     */
     public function getRegimentService($id) {
-        $sql = "SELECT rs.name FROM casualty c
+        $sql = "SELECT rs.id, rs.name FROM casualty c
             LEFT JOIN regiment_service_casualty rsc ON c.id = rsc.casualty_id
             LEFT JOIN regiment_service rs ON rs.id = rsc.regiment_service_id
             WHERE c.id = ?
@@ -124,11 +124,83 @@ class Casualty_model extends CI_Model {
         }        
         
         if($result) {
-            return array('type'=>'success', 'message'=>'Save completed', 'insert_id' => $insert_id);
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed', 'insert_id' => $insert_id);
         } else {
-            return array('type'=>'failure', 'message'=>'Database error');     
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
 
     }
 
+    /**
+    *   Updates the commemoration locations for a casualty
+    */
+    public function updateCommemorations($id, $data) {
+
+        //delete old records
+        $sql = "DELETE FROM commemoration_location_casualty WHERE casualty_id = ?";
+        $this->db->query($sql, array($id));
+
+        $valueString = "";
+        foreach ($data as $cLI) {
+            $valueString .= "(".$id.", ?), ";
+        }
+        $valueString = substr($valueString,0,strlen($valueString)-2);
+
+        $sql = "INSERT INTO commemoration_location_casualty VALUES ".$valueString;
+        $result = $this->db->query($sql, $data);
+        if($result) {
+            return array('area' => 'commemoration', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'commemoration', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
+
+    /**
+    *   Updates the regiments for a casualty
+    */
+    public function updateRegiments($id, $data) {
+
+        //delete old records
+        $sql = "DELETE FROM regiment_service_casualty WHERE casualty_id = ?";
+        $this->db->query($sql, array($id));
+
+        $valueString = "";
+        foreach ($data as $cLI) {
+            $valueString .= "(".$id.", ?), ";
+        }
+        $valueString = substr($valueString,0,strlen($valueString)-2);
+
+        $sql = "INSERT INTO regiment_service_casualty VALUES ".$valueString;
+        $result = $this->db->query($sql, $data);
+        if($result) {
+            return array('area' => 'regiment', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'regiment', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
+    /**
+    *   Updates the service numbers for a casualty
+    */
+    public function updateServiceNumbers($id, $data) {
+
+        //delete old records
+        $sql = "DELETE FROM service_number WHERE casualty_id = ?";
+        $this->db->query($sql, array($id));
+
+        $valueString = "";
+        foreach ($data as $cLI) {
+            $valueString .= "(".$id.", ?), ";
+        }
+        $valueString = substr($valueString,0,strlen($valueString)-2);
+
+        $sql = "INSERT INTO service_number VALUES ".$valueString;
+        $result = $this->db->query($sql, $data);
+        if($result) {
+            return array('area' => 'serivceNumber', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'serivceNumber', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
 }

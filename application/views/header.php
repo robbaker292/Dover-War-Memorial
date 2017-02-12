@@ -28,8 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php } else if($this->uri->segment(1) == 'casualty' && $this->uri->segment(2) == 'edit') { ?>
 			<script src="<?php echo asset_url(); ?>js/casualty.js"></script>
 			<script src="<?php echo asset_url(); ?>js/bootstrap-markdown.js"></script>
+			<script src="<?php echo asset_url(); ?>js/bootstrap-select.min.js"></script>
 			<script src="<?php echo asset_url(); ?>js/narrative_edit.js"></script>
 			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/bootstrap-markdown.min.css">
+			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/bootstrap-select.min.css">
 	<?php } ?>
 
 	<title><?php echo $title; ?></title>

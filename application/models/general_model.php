@@ -18,6 +18,15 @@ class General_model extends CI_Model {
                 return $query->result();
         }
 
+         /**
+        *       Lists all regiments
+        */
+        public function getRegiments() {
+                $sql = "SELECT * FROM regiment_service";
+                $query = $this->db->query($sql);
+                return $query->result();
+        }
+
         /**
         *       Lists all commemoration locations
         */

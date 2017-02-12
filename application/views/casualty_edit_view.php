@@ -91,7 +91,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="war">War:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="war" name="war">
+				<select class="form-control selectpicker" id="war" name="war" data-live-search="true">
 					<?php
 					if($casualty_data->war == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
@@ -116,7 +116,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="final_resting_place">Final Resting Place:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="final_resting_place" name="final_resting_place">
+				<select class="form-control selectpicker" id="final_resting_place" name="final_resting_place" data-live-search="true">
 					<?php
 
 					if($casualty_data->final_resting_place == null) {
@@ -141,7 +141,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="rank_at_death">Rank at death:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="rank_at_death" name="rank_at_death">
+				<select class="form-control selectpicker" id="rank_at_death" name="rank_at_death" data-live-search="true">
 					<?php
 					if($casualty_data->rank_at_death == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
@@ -165,7 +165,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="service_country">Service Country:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="service_country" name="service_country">
+				<select class="form-control selectpicker" id="service_country" name="service_country" data-live-search="true">
 					<?php
 					if($casualty_data->service_country == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
@@ -189,7 +189,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="place_of_birth">Place of Birth:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="place_of_birth" name="place_of_birth">
+				<select class="form-control selectpicker" id="place_of_birth" name="place_of_birth" data-live-search="true">
 					<?php
 					if($casualty_data->place_of_birth == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
@@ -213,7 +213,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="last_known_address">Last Known Address:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="last_known_address" name="last_known_address">
+				<select class="form-control selectpicker" id="last_known_address" name="last_known_address" data-live-search="true">
 					<?php
 					if($casualty_data->last_known_address == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
@@ -267,13 +267,13 @@ $Parsedown = new ParsedownExtra();
 			</div>
 			<div id="saveResult">
 				<?php
-					if($this->session->flashdata('type') != null) {
+					if($this->session->flashdata('area') == "main") {
 						$type = $this->session->flashdata('type');
 						$message = $this->session->flashdata('message');
 
 						if($type == "success") {
 							?>
-							<div class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+							<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
 							<?php
 						}
 					}
@@ -284,80 +284,119 @@ $Parsedown = new ParsedownExtra();
 	</form>
  
 	<h3>Commemorations Data:</h3>
-	<form>
+	<form id="commemorationForm">
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="commemorations">Commemoration Locations:</label>
+			<div class="col-sm-9">
+				<select class="form-control selectpicker" id="commemorations" name="commemorations" data-live-search="true" multiple data-selected-text-format="count > 3">
+					<?php
 
-	<button type="button" class="btn btn-default" id="saveCommemorations">Save this section</button>
+					foreach($commemorationLocationList as $cL) {
+						if(in_array($cL->id,$commemorationIds)) {
+							echo "<option value=\"".$cL->id."\" selected>(".$cL->id.") ".$cL->name."</option>";
+						} else {
+							echo "<option value=\"".$cL->id."\">(".$cL->id.") ".$cL->name."</option>";
+						}
+					}
+
+					?>
+				</select>
+			</div>
+			<div class="help-block">Final Resting place is listed above.</div>
+		</div>
+	<button type="button" class="btn btn-primary" id="saveCommemorations">Save this section</button>
+		<div id="saveResultCommemoration">
+			<?php
+				if($this->session->flashdata('area') == "commemoration") {
+					$type = $this->session->flashdata('type');
+					$message = $this->session->flashdata('message');
+
+					if($type == "success") {
+						?>
+						<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+						<?php
+					}
+				}
+			?>
+		</div>
 	</form>
 
 	<h3>Regiment Data:</h3>
-	<form>
+	<form id="regimentForm">
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="regiments">Regiment / Service:</label>
+			<div class="col-sm-9">
+				<select class="form-control selectpicker" id="regiments" name="regiments" data-live-search="true" multiple data-selected-text-format="count > 3">
+					<?php
 
-	<button type="button" class="btn btn-default" id="saveRegiment">Save this section</button>
+					foreach($regimentList as $rL) {
+						if(in_array($rL->id,$regimentIds)) {
+							echo "<option value=\"".$rL->id."\" selected>(".$rL->id.") ".$rL->name."</option>";
+						} else {
+							echo "<option value=\"".$rL->id."\">(".$rL->id.") ".$rL->name."</option>";
+						}
+					}
+
+					?>
+				</select>
+			</div>
+		</div>
+		<button type="button" class="btn btn-primary" id="saveRegiment">Save this section</button>
+		<div id="saveResultRegiment">
+			<?php
+				if($this->session->flashdata('area') == "regiment") {
+					$type = $this->session->flashdata('type');
+					$message = $this->session->flashdata('message');
+
+					if($type == "success") {
+						?>
+						<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+						<?php
+					}
+				}
+			?>
+		</div>
 	</form>
 
 	<h3>Service Number Data:</h3>
-	<form>
+	<form id="serviceNumberForm">
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="service_numbers">Current Service Numbers:</label>
+			<div class="col-sm-9">
+				<select class="form-control selectpicker" id="service_numbers" name="service_numbers" data-live-search="true" multiple data-selected-text-format="count > 5">
+					<?php
 
-	<button type="button" class="btn btn-default" id="saveService">Save this section</button>
+					foreach($service_numbers as $rL) {
+						echo "<option value=\"".$rL->service_number."\" selected>".$rL->service_number."</option>";
+					}
+
+					?>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="service_numbers_add">Add number:</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="service_numbers_add" placeholder="Enter Service Number" name="service_numbers_add">
+				<button type="button" class="btn btn-default" id="addServiceNumber">Add number</button>
+			</div>
+		</div>
+
+	<button type="button" class="btn btn-primary" id="saveServiceNumber">Save this section</button>
+		<div id="saveResultServiceNumber">
+			<?php
+				if($this->session->flashdata('area') == "serivceNumber") {
+					$type = $this->session->flashdata('type');
+					$message = $this->session->flashdata('message');
+
+					if($type == "success") {
+						?>
+						<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+						<?php
+					}
+				}
+			?>
+		</div>
 	</form>
 
-	<table>
-	<?php
-var_dump($casualty_data);
-	
-		foreach ($casualty_data as $key => $value) {
-			
-			//if($key == "flag") {
-			//	continue;
-			//}
-
-			echo "<tr>";
-			echo "<td>";
-			echo $key;
-			echo "</td><td>";
-			/*
-			if ($key == "narrative") {
-				echo $Parsedown->text($value);
-			} else if ($key == "country") {
-				echo $value."&nbsp;<img src=\"".asset_url().$casualty_data->flag."\" alt=\"".$value."\">";
-			} else {
-				echo $value;
-			}*/
-			echo $value;
-			echo "</td>";
-			echo "</tr>";
-		}
-
-
-		foreach ($commemorations as $data) {
-			echo "<tr>";
-			echo "<td>";
-			echo "commemorations";
-			echo "</td><td>";
-			echo $data->name;
-			echo "</td>";
-			echo "</tr>";
-		}
-		foreach ($regiment_data as $data) {
-			echo "<tr>";
-			echo "<td>";
-			echo "name";
-			echo "</td><td>";
-			echo $data->name;
-			echo "</td>";
-			echo "</tr>";
-		}
-		foreach ($service_numbers as $data) {
-			echo "<tr>";
-			echo "<td>";
-			echo "service number";
-			echo "</td><td>";
-			echo $data->service_number;
-			echo "</td>";
-			echo "</tr>";
-		}
-
-	?>
-	</table>
 	</div>
-
