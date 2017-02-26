@@ -13,6 +13,13 @@ class Casualty extends CI_Controller {
 	*	Displays the details of the given casualty
 	*/
 	public function view($id, $name = null) {
+
+		//rewrite url to be nicer
+		if($name == null) {
+			$name = urlencode($casualty_data[0]->given_name."-".$casualty_data[0]->family_name);
+			redirect(site_url(uri_string()."/".$name));
+		}
+
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 
@@ -22,12 +29,6 @@ class Casualty extends CI_Controller {
 		//redirect if invalid url
 		if(count($casualty_data) == 0) {
 			redirect(site_url());
-		}
-
-		//rewrite url to be nicer
-		if($name == null) {
-			$name = urlencode($casualty_data[0]->given_name."-".$casualty_data[0]->family_name);
-			redirect(site_url(uri_string()."/".$name));
 		}
 
 		$regiment_data = $this->casualty_model->getRegimentService($id);

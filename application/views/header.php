@@ -16,17 +16,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/navbar.css">
 
     <script src="<?php echo asset_url(); ?>js/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo asset_url(); ?>js/jquery.validate.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/navbar.js"></script>
 
     <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'detail') { ?>
 			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
 
-	<?php } else if($this->uri->segment(1) == 'casualty' && $this->uri->segment(2) == 'view') { ?>
+	<?php } else if($this->uri->segment(1) == 'casualty') { ?>
 			<script src="<?php echo asset_url(); ?>js/casualty.js"></script>
 
-	<?php } else if($this->uri->segment(1) == 'casualty' && $this->uri->segment(2) == 'edit') { ?>
-			<script src="<?php echo asset_url(); ?>js/casualty.js"></script>
+	<?php } else if($this->uri->segment(1) == 'siteUpdate') { ?>
+			<script src="<?php echo asset_url(); ?>js/siteUpdate.js"></script>
+
+	<?php }
+
+		if($this->uri->segment(2) == 'edit') { ?>
 			<script src="<?php echo asset_url(); ?>js/bootstrap-markdown.js"></script>
 			<script src="<?php echo asset_url(); ?>js/bootstrap-select.min.js"></script>
 			<script src="<?php echo asset_url(); ?>js/narrative_edit.js"></script>

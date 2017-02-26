@@ -7,19 +7,29 @@ $Parsedown = new ParsedownExtra();
 
 //var_dump($updates);
 ?>
-<h2>Updates from <?php echo $year ?></h2>
+<h2>Updates from <?php echo $year;
+ 			if($loggedIn) {
+				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\">New</a></small>";
+			}
+			?></h2>
 
 
 <?php
 
-	//echo $Parsedown->text($casualty_data->narrative);
+
 ?>
-<div id="data">
+<div id="updates">
 <?php
 	foreach ($updates as $update) {
 		?>
 		<div>
-		<h3><?php echo $update->title; ?></h3>
+		<h3><?php 
+			echo $update->title;
+			if($loggedIn) {
+				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/".$update->id."\">Edit</a></small>";
+			}
+		?>
+		</h3>
 		<p><?php echo $Parsedown->text($update->content); ?></p>
 		<h6><small>Posted:&nbsp;<?php echo $update->date; ?></small></h6>
 		</div>
@@ -32,15 +42,19 @@ $Parsedown = new ParsedownExtra();
 
 ?>
 </div>
-<h4>Previous updates:</h4>
-<div class="container">
-	<table class="table table-striped table-bordered">
-	<tr><th>Year</th><th>Updates</th></tr>
-	<?php
-		foreach ($updateFromYear as $updateYear) {
-			echo "<tr><td><a href=\"".base_url()."siteUpdate/".$updateYear->year."\">".$updateYear->year."</a></td><td>".$updateYear->count."</td></tr>";
-		}
 
-	?>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">Previous Updates</div>
+	<table class="table table-striped">
+		<tr><th>Year</th><th>Updates</th></tr>
+		<?php
+			foreach ($updateFromYear as $updateYear) {
+				echo "<tr><td><a href=\"".base_url()."siteUpdate/".$updateYear->year."\">".$updateYear->year."</a></td><td>".$updateYear->count."</td></tr>";
+			}
+
+		?>
 	</table>
 </div>
+
+	

@@ -27,4 +27,43 @@ class SiteUpdate_model extends CI_Model {
                 return $query->result();
         }
 
+        /*
+        * Returns a specific update
+        */
+        public function getUpdate($id) {
+                $sql = "SELECT * FROM site_update WHERE id = ?";
+                $query = $this->db->query($sql, array($id));
+                return $query->result();
+        }
+
+        /**
+        *  Updates a site update
+        */
+        public function editSiteUpdate($basicForm) {
+
+                $sql = "UPDATE site_update SET title=?, content=?, date=?, family=? WHERE id=?";
+                $result = $this->db->query($sql, array($basicForm['title'], $basicForm['content'], $basicForm['date'], $basicForm['family'], $basicForm['id']));
+
+                if($result) {
+                    return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+                } else {
+                    return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+                }
+        }
+
+        /**
+        *       Inserts a new site update
+        */
+        public function addSiteUpdate($basicForm) {
+
+                $sql = "INSERT INTO site_update (title, content, date, family) VALUES(?,?,?,?)";
+                $result = $this->db->query($sql, array($basicForm['title'], $basicForm['content'], $basicForm['date'], $basicForm['family']));
+
+                if($result) {
+                    return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+                } else {
+                    return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+                }
+        }
+
 }

@@ -8,6 +8,8 @@ class SiteUpdate extends CI_Controller {
 			$year = date("Y");
 		}
 
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+
 		$this->load->model('siteUpdate_model');
 		
 		$updates = $this->siteUpdate_model->getUpdatesFromYear($year);
@@ -16,13 +18,102 @@ class SiteUpdate extends CI_Controller {
 		$data = array(
 			'year' => $year,
 			'updates' => $updates,
-			'updateFromYear' => $updateFromYear
+			'updateFromYear' => $updateFromYear,
+			'loggedIn' => $loggedIn
 		);
 
 		$this->load->view('header', array("title" => $year." Site Updates - Dover War Memorial Project"));
 		$this->load->view('updates_view', $data);
 		$this->load->view('footer');
 
+	}
+
+	/**
+	*	Handles the loading of the edit page of a site update
+	*/
+	public function edit($id = null) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn || $id==null) {
+
+			//is an update being created?
+			if($id == "-1") {
+				$data = array(
+					'loggedIn' => $loggedIn,
+					'new' => true
+				);
+
+				$this->load->view('header', array("title" => "Editing: Site Update - Dover War Memorial Project"));
+				$this->load->view('update_edit_view', $data);
+				$this->load->view('footer');
+
+			//editing rather than creating
+			} else {
+				$this->load->model('siteUpdate_model');		
+				$update = $this->siteUpdate_model->getUpdate($id);
+				if(count($update) == 0) {
+					redirect("siteUpdate");
+				}
+				$data = array(
+					'update' => $update[0],
+					'loggedIn' => $loggedIn,
+					'new' => false
+				);
+
+				$this->load->view('header', array("title" => "Editing: Site Update - Dover War Memorial Project"));
+				$this->load->view('update_edit_view', $data);
+				$this->load->view('footer');
+
+			}
+
+
+		} else {
+			redirect("siteUpdate");
+		}
+
+	}
+
+	/**
+	* Handles the updating of a site update
+	*/
+	public function doUpdate() {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+
+			$basicForm = $this->input->post();
+			//$basicForm = array("id" => "1", "given_name" => "Frank3", "DANGER" => "DANEGR");
+			var_dump($basicForm);
+
+
+			$this->load->model('siteUpdate_model');
+
+			if($basicForm['id']=="") {
+				//add new update
+				$result = $this->siteUpdate_model->addSiteUpdate($basicForm);
+			} else {
+				//edit update
+				$result = $this->siteUpdate_model->editSiteUpdate($basicForm);
+			}
+
+			//if the update worked
+			if($result["type"] == "success") {
+				//store the result data
+				$this->session->set_flashdata($result);
+				echo json_encode($result);
+			} else {
+				//output the error message :(
+				header('HTTP/1.1 500 Internal Server Error');
+       			header('Content-Type: application/json; charset=UTF-8');
+        		die(json_encode($result));
+			}
+
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
 	}
 
 }

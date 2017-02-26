@@ -12,7 +12,7 @@ footer, h1, header h2 {
 	text-align: center;
 }
 
-h1, .dwmp, h2 {
+h1, .dwmp, h2, h3 {
 	font-family: "Lucida Calligraphy", cursive;
 }
 
@@ -71,6 +71,7 @@ tr.clickableRow {
   padding: 24px;
   position: relative;
   width: 92%;
+
 }
 .letter:before, .letter:after {
   content: "";
@@ -112,4 +113,8 @@ tr.clickableRow {
 
 #narrative {
   overflow: hidden;
+}
+
+.error-block {
+  font-weight: bold;
 }
