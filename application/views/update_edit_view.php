@@ -22,7 +22,7 @@ $Parsedown = new ParsedownExtra();
 		<input type="hidden" id="id" name="id" <?php if(!$new) { echo "value=\"".$update->id."\""; }?>>
 
 		<div class="form-group" id="titleGroup">
-			<label class="control-label col-sm-3" for="title">Given Name:</label>
+			<label class="control-label col-sm-3" for="title">Title:</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" <?php if(!$new) { echo "value=\"".$update->title."\""; }?> >
 			</div>
