@@ -26,7 +26,7 @@ $Parsedown = new ParsedownExtra();
 	<?php
 	foreach ($meta_data as $data) {
 		echo "<tr>";
-		echo "<td><a href=\"../meta/view/".$data->id."\">";
+		echo "<td><a href=\"../meta/viewFull/".$data->id."\">";
 		echo $data->id;
 		echo "</a></td><td>";
 		echo $data->title;
