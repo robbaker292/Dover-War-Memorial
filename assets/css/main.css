@@ -118,3 +118,7 @@ tr.clickableRow {
 .error-block {
   font-weight: bold;
 }
+
+.btn {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}

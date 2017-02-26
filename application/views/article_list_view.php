@@ -8,10 +8,17 @@ $Parsedown = new ParsedownExtra();
 ?>
 <h2>Information Index <?php 
 		if($loggedIn) {
-			echo "<small>&nbsp;<a href=\"".base_url()."article/edit/-1\">New</a></small>";
+			echo "<a href=\"".base_url()."article/edit/-1\" class=\"btn btn-primary btn-xs\" role=\"button\">New</a>";
 		}
 
 		?></h2>
+
+<div id="narrative"><?php echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $meta->content)); 
+		if($loggedIn) {
+			echo "<a href=\"".base_url()."meta/edit/".$meta->id."\" class=\"btn btn-primary btn-xs\" role=\"button\" >Edit This Text</a>";
+		}
+		?>
+</div>
 
 <?php
 

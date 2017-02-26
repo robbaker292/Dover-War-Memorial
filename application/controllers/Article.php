@@ -12,10 +12,13 @@ class Article extends CI_Controller {
 
 		$this->load->model('article_model');
 		$articles_data = $this->article_model->getArticlesFromCategories();
-		//var_dump($articles_data);
+
+		$this->load->model('meta_model');
+		$meta = $this->meta_model->getMeta("infoIndex");
 
 		$data = array(
 			'articles_data' => $articles_data,
+			'meta' => $meta[0],
 			"loggedIn" => $loggedIn
 		);
 

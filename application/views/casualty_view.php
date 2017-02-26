@@ -10,7 +10,7 @@ $Parsedown = new ParsedownExtra();
 	<h2><?php 
 		echo $casualty_data->given_name." ".$casualty_data->family_name; 
 		if($loggedIn) {
-			echo "<small>&nbsp;<a href=\"".base_url()."casualty/edit/".$casualty_data->id."\">Edit</a></small>";
+			echo "<small>&nbsp;<a href=\"".base_url()."casualty/edit/".$casualty_data->id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
 		}
 
 		?></h2>
