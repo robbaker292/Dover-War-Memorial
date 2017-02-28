@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<?php }
 
-		if($this->uri->segment(2) == 'edit') { ?>
+		if($this->uri->segment(2) == 'edit' || $this->uri->segment(1) == 'search') { ?>
 			<script src="<?php echo asset_url(); ?>js/bootstrap-markdown.js"></script>
 			<script src="<?php echo asset_url(); ?>js/bootstrap-select.min.js"></script>
 			<script src="<?php echo asset_url(); ?>js/narrative_edit.js"></script>
@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			        <li><a href="<?php echo base_url(); ?>siteUpdate">Latest News</a></li>
 			        <li><a href="<?php echo base_url(); ?>memorial/listMain">Casualty Index</a></li>
 			        <li><a href="<?php echo base_url(); ?>article">Information Index</a></li>
-			        <li><a href="#">Search</a></li>
+			        <li><a href="<?php echo base_url(); ?>search">Search</a></li>
 			        <li><a href="#">About &amp; Contact</a></li>
 			    </ul>
 			</nav>
