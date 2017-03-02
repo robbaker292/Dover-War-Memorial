@@ -22,9 +22,9 @@ class Search_model extends CI_Model {
         if(in_array("casualty", $options)) {
             $query[] = "(
                 SELECT \"casualty\" AS type, id, CONCAT(given_name, \" \", middle_names, \" \", family_name) AS title, narrative AS content,
-                (MATCH(given_name) AGAINST(?) + MATCH(family_name) AGAINST(?) + MATCH(given_name, middle_names, family_name, narrative) AGAINST(?)) as score
+                (MATCH(given_name) AGAINST(? IN BOOLEAN MODE) + MATCH(family_name) AGAINST(? IN BOOLEAN MODE) + MATCH(given_name, middle_names, family_name, narrative) AGAINST(? IN BOOLEAN MODE)) as score
                 FROM casualty
-                WHERE MATCH(given_name, middle_names, family_name, narrative) AGAINST(?)
+                WHERE MATCH(given_name, middle_names, family_name, narrative) AGAINST(? IN BOOLEAN MODE)
                 )";
             $count += 4;
         }
@@ -32,9 +32,9 @@ class Search_model extends CI_Model {
         if(in_array("article", $options)) {
             $query[] = "(
                 SELECT \"article\" AS type, id, title, content,
-                MATCH(title, content) AGAINST(?) as score
+                MATCH(title, content) AGAINST(? IN BOOLEAN MODE) as score
                 FROM article
-                WHERE MATCH(title, content) AGAINST(?)
+                WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)
                 )";
             $count += 2;
         }
@@ -42,9 +42,9 @@ class Search_model extends CI_Model {
         if(in_array("site_update", $options)) {
             $query[] = "(
                 SELECT \"siteUpdate\" AS type, id, title, content,
-                MATCH(title, content) AGAINST(?) as score
+                MATCH(title, content) AGAINST(? IN BOOLEAN MODE) as score
                 FROM site_update
-                WHERE MATCH(title, content) AGAINST(?)
+                WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)
                 )";
             $count += 2;
         }
@@ -52,9 +52,9 @@ class Search_model extends CI_Model {
         if(in_array("memorial", $options)) {
             $query[] = "(
                 SELECT \"memorial\" AS type, id, name AS title, narrative AS content,
-                MATCH(name, narrative) AGAINST(?) as score
+                MATCH(name, narrative) AGAINST(? IN BOOLEAN MODE) as score
                 FROM commemoration_location
-                WHERE MATCH(name, narrative) AGAINST(?)
+                WHERE MATCH(name, narrative) AGAINST(? IN BOOLEAN MODE)
                 )";
             $count += 2;
         }

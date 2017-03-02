@@ -17,12 +17,14 @@ class Search extends CI_Controller {
 		} else {
 			//load search results
 
+			$term = urldecode($term);
+
 			$optionsArr = explode("-", $options);
 			$this->load->model('search_model');
 			$result = $this->search_model->getSearchResults($term, $optionsArr);
 
 			$resultCount = count($result);
-			$pageCount = ceil($resultCount/$resultsPerPage);
+			$pageCount = (int) ceil($resultCount/$resultsPerPage);
 
 			if($page > $pageCount) {
 				$page = $pageCount;
@@ -58,7 +60,7 @@ class Search extends CI_Controller {
 		//var_dump($term);
 		//var_dump($options);
 		$page = 1;
-		redirect(base_url()."search/index/".$term."/".$options."/".$page);
+		redirect(base_url()."search/index/".urlencode($term)."/".$options."/".$page);
 	}
 
 }

@@ -4,20 +4,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include APPPATH . 'third_party/Parsedown.php';
 include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
-$pageCount = (int)$pageCount;
+
 
 /**
 *	Samples the text and highlights the search term
 */
 function sampleContent($text, $term) {
 	$buffer = 200;
-
-	$index = strpos($text, $term);
+	$term = preg_replace('/["\-+]/', "", $term);
+	$index = stripos($text, $term);
 	$first = max(0,$index-$buffer);
 	$length = strlen($term)+(2*$buffer);
 	$substr = substr($text, $first, $length);
-	$output = str_replace(ucfirst($term), "<mark>".ucfirst($term)."</mark>",$substr);
-	$output = str_replace(lcfirst($term), "<mark>".lcfirst($term)."</mark>",$output);
+
+	$terms = explode(" ", $term);
+	foreach($terms as $item) {
+		if($index === false) { //maybe the whole search couldn't be found
+			$itemIndex = stripos($text, $item);
+			if($itemIndex !== false) { //if it could be found this time
+				$first = max(0,$itemIndex-$buffer);
+				$length = strlen($item)+(2*$buffer);
+				$substr = substr($text, $first, $length);
+			}
+
+		}
+
+		$item = preg_replace('[^A-Za-z0-9]', "", $item);
+		$substr = preg_replace('/\b' . preg_quote($item, "/") . '\b/i', "<mark>\$0</mark>", $substr);
+	}
+	
+	$output = preg_replace('/\b' . preg_quote($term, "/") . '\b/i', "<mark>\$0</mark>", $substr);
+	//$output = str_replace(lcfirst($term), "<mark>".lcfirst($term)."</mark>",$output);
 
 	return "...".$output."...";
 
@@ -33,7 +50,7 @@ function sampleContent($text, $term) {
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="term">Search for</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="term" placeholder="Enter Search Term" name="term" <?php if($results) { echo "value=\"".$term."\""; }?> >
+						<input type="text" class="form-control" id="term" placeholder="Enter Search Term" name="term" <?php if($results) { echo "value=\"".str_replace('"', '&quot;', $term)."\""; }?> >
 					</div>
 				</div>
 			
