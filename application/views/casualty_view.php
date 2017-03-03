@@ -35,13 +35,19 @@ $Parsedown = new ParsedownExtra();
 				<tr class="info"><td colspan="2"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;This casualty has recently been imported, so full data may not yet be available.</td></tr>
 				<?php
 			}
+
+			if($casualty_data->unsure_details == 1) {
+				?>
+				<tr class="warning"><td colspan="2"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;This casualty has some unknown details.</td></tr>
+				<?php
+			}
 		?>
 	
 		<tr><th class="col-sm-3">Given Name</th><td><?php echo $casualty_data->given_name; ?></td></tr>
 		<tr><th>Middle Names</th><td><?php echo $casualty_data->middle_names; ?></td></tr>
 		<tr><th>Family Name</th><td><?php echo $casualty_data->family_name; ?></td></tr>
 		<tr><th>Civilian</th><td><?php echo $casualty_data->civilian == 0 ? "Yes" : "No" ; ?></td></tr>
-		<tr><th>Gender</th><td><?php echo $casualty_data->gender == "M" ? "Male" : "Female" ; ?></td></tr>
+		<tr><th>Gender</th><td><?php echo $casualty_data->gender == "M" ? "Male" : $casualty_data->gender == "F" ? "Female" : "" ; ?></td></tr>
 		<tr><th>Date of Birth</th><td><?php echo $casualty_data->date_of_birth; ?></td></tr>
 		<tr><th>Date of Death</th><td><?php echo $casualty_data->date_of_death; ?></td></tr>
 		<tr><th>Final Resting Place</th><td><?php echo $casualty_data->final_resting_place; ?></td></tr>

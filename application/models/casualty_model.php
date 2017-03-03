@@ -18,7 +18,7 @@ class Casualty_model extends CI_Model {
     * Returns all the data about the given casualty
     */
     public function getCasualty($id) {
-        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, frp.name AS 'final_resting_place', r.name AS 'rank', w.name AS 'war', sc.name AS 'country', pb.name AS 'place_of_birth', lka.name AS 'last_known_address', last_known_address_year, scf.flag FROM casualty c
+        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, c.unsure_details, frp.name AS 'final_resting_place', r.name AS 'rank', w.name AS 'war', sc.name AS 'country', pb.name AS 'place_of_birth', lka.name AS 'last_known_address', last_known_address_year, scf.flag FROM casualty c
             LEFT JOIN commemoration_location frp ON c.final_resting_place = frp.id
             LEFT JOIN war w ON c.war = w.id
             LEFT JOIN rank r ON c.rank_at_death = r.id
@@ -86,7 +86,7 @@ class Casualty_model extends CI_Model {
     public function updateCasualty($id, $data) {
     
         //list of valid keys
-        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded");
+        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded", "unsure_details");
 
 
         $keyText = "(";

@@ -256,8 +256,25 @@ $Parsedown = new ParsedownExtra();
 					</label>
 				</div>
 				<div class="help-block">Will remove the warning label displayed to a user and removes this from the "recently imported" list.</div>
-			</div>
-			
+			</div>			
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="unsure_details">Unsure Details:</label>
+			<div class="col-sm-9">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-default <?php if(!$new && $casualty_data->unsure_details == 1 ) { echo "active"; }?>">
+						<input type="radio" name="unsure_details" id="recently_uploaded_yes" value="1" autocomplete="off" <?php if(!$new && $casualty_data->unsure_details == 1 ) { echo "checked"; }?>>
+						Yes
+					</label>
+
+					<label class="btn btn-default <?php if(!$new && $casualty_data->unsure_details == 0 ) { echo "active"; }?>">
+						<input type="radio" name="unsure_details" id="recently_uploaded_no" value="0" autocomplete="off" <?php if(!$new && $casualty_data->unsure_details == 0 ) { echo "checked"; }?>>
+						No
+					</label>
+				</div>
+				<div class="help-block">Will remove the warning label displayed to a user because the casualty has some very unknown details.</div>
+			</div>			
 		</div>
 
 		<div class="form-group">
