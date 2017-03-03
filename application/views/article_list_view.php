@@ -8,7 +8,7 @@ $Parsedown = new ParsedownExtra();
 ?>
 <h2>Information Index <?php 
 		if($loggedIn) {
-			echo "<a href=\"".base_url()."article/edit/-1\" class=\"btn btn-primary btn-xs\" role=\"button\">New</a>";
+			echo "<a href=\"".base_url()."article/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\">New</a>";
 		}
 
 		?></h2>

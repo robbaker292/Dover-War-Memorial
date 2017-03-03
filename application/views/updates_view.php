@@ -9,7 +9,7 @@ $Parsedown = new ParsedownExtra();
 ?>
 <h2>Updates from <?php echo $year;
  			if($loggedIn) {
-				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\" class=\"btn btn-primary btn-xs\" role=\"button\">New</a></small>";
+				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\">New</a></small>";
 			}
 			?></h2>
 

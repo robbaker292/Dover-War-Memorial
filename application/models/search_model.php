@@ -9,11 +9,9 @@ class Search_model extends CI_Model {
         parent::__construct();
     }
 
-    public function testDb() {
-        $query = $this->db->query("SELECT * FROM war");
-        return $query->result();
-    }
-
+    /**
+    *   Displays the text search results
+    */
     public function getSearchResults($term, $options) {
 
         $query = array(); //query
@@ -77,24 +75,6 @@ class Search_model extends CI_Model {
         return $search_query->result();
 
 
-    }
-
-    /*
-    * Returns all the data about the given casualty
-    */
-    public function getCasualty($id) {
-        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, frp.name AS 'final_resting_place', r.name AS 'rank', w.name AS 'war', sc.name AS 'country', pb.name AS 'place_of_birth', lka.name AS 'last_known_address', last_known_address_year, scf.flag FROM casualty c
-            LEFT JOIN commemoration_location frp ON c.final_resting_place = frp.id
-            LEFT JOIN war w ON c.war = w.id
-            LEFT JOIN rank r ON c.rank_at_death = r.id
-            LEFT JOIN service_country sc ON c.service_country = sc.id
-            LEFT JOIN service_country_flag scf ON scf.country_id = sc.id
-            LEFT JOIN place pb ON c.place_of_birth = pb.id
-            LEFT JOIN place lka ON c.last_known_address = lka.id
-            WHERE c.id = ?
-        ";
-        $query = $this->db->query($sql, array($id));
-        return $query->result();
     }
 
 }
