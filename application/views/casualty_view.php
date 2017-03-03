@@ -47,7 +47,13 @@ $Parsedown = new ParsedownExtra();
 		<tr><th>Middle Names</th><td><?php echo $casualty_data->middle_names; ?></td></tr>
 		<tr><th>Family Name</th><td><?php echo $casualty_data->family_name; ?></td></tr>
 		<tr><th>Civilian</th><td><?php echo $casualty_data->civilian == 0 ? "Yes" : "No" ; ?></td></tr>
-		<tr><th>Gender</th><td><?php echo $casualty_data->gender == "M" ? "Male" : $casualty_data->gender == "F" ? "Female" : "" ; ?></td></tr>
+		<tr><th>Gender</th><td><?php 
+		if($casualty_data->gender == "M") {
+			echo "Male";
+		} elseif($casualty_data->gender == "F") {
+			echo "Female";
+		}
+		?></td></tr>
 		<tr><th>Date of Birth</th><td><?php echo $casualty_data->date_of_birth; ?></td></tr>
 		<tr><th>Date of Death</th><td><?php echo $casualty_data->date_of_death; ?></td></tr>
 		<tr><th>Final Resting Place</th><td><?php echo $casualty_data->final_resting_place; ?></td></tr>
@@ -95,7 +101,7 @@ $Parsedown = new ParsedownExtra();
 		foreach ($regiment_data as $data) {
 			echo "<tr>";
 			echo "<th>";
-			echo "Regiment / Service Name";
+			echo "Regiment / Service";
 			echo "</th><td>";
 			echo $data->name;
 			echo "</td>";
