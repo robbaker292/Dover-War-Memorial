@@ -24,7 +24,7 @@ $Parsedown = new ParsedownExtra();
 		?>
 		<div>
 		<h3><?php 
-			echo $update->title;
+			echo "<a href=\"".base_url()."siteUpdate/view/".$update->id."\">".$update->title."</a>";
 			if($loggedIn) {
 				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/".$update->id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
 			}

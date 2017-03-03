@@ -31,7 +31,7 @@ class SiteUpdate_model extends CI_Model {
         * Returns a specific update
         */
         public function getUpdate($id) {
-                $sql = "SELECT * FROM site_update WHERE id = ?";
+                $sql = "SELECT *, YEAR(date) AS 'year' FROM site_update WHERE id = ?";
                 $query = $this->db->query($sql, array($id));
                 return $query->result();
         }

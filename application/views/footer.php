@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php
         if(isset($_SESSION['user'])) {
             ?>
-           <span class="loginInfo"> Logged in as: <?php echo $_SESSION['user']; ?></span>&nbsp;&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>user/logout">Logout</a>
+           <span class="loginInfo"> Logged in as: <?php echo $_SESSION['user']; ?></span>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>meta/view/admin">Admin</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>user/logout">Logout</a>
             <?php
         } else {
             ?>

@@ -28,6 +28,37 @@ class SiteUpdate extends CI_Controller {
 
 	}
 
+
+	public function view($id, $name = null) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+
+		$this->load->model('siteUpdate_model');
+		$update_data = $this->siteUpdate_model->getUpdate($id);
+
+		//redirect if invalid url
+		if(count($update_data) == 0) {
+			redirect(site_url());
+		}
+
+		//rewrite url to be nicer
+		if($name == null) {
+			$name = urlencode($update_data[0]->title);
+			redirect(site_url(uri_string()."/".$name));
+		}
+		//$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
+
+		$data = array(
+			'update' => $update_data[0],
+			"loggedIn" => $loggedIn
+		);
+
+		$this->load->view('header', array(
+			"title" => $update_data[0]->title." - Dover War Memorial Project"));
+		$this->load->view('update_view_one', $data);
+		$this->load->view('footer');
+	}
+
 	/**
 	*	Handles the loading of the edit page of a site update
 	*/
