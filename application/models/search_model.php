@@ -79,9 +79,11 @@ class Search_model extends CI_Model {
     *   Performs a data seach on casulaties
     */
     public function performDataSearch($data) {
+
+        //var_dump($data);
     
         //list of valid keys
-        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded", "unsure_details");
+        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded", "unsure_details", "commemoration_location.id", "regiment_service.id", "service_number.service_number");
 
         $query = array();
         $params = array();
@@ -93,12 +95,17 @@ class Search_model extends CI_Model {
             }
         }
 
-        $sql = "SELECT \"casualty\" AS type, id, CONCAT(given_name, \" \", middle_names, \" \", family_name) AS title, narrative AS content FROM casualty WHERE ";
+        $sql = "SELECT DISTINCT \"casualty\" AS type, c.id, CONCAT(c.given_name, \" \", c.middle_names, \" \", c.family_name) AS title, c.narrative AS content FROM casualty c ";
+        $sql .= " JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id JOIN commemoration_location ON clc.commemoration_location_id = commemoration_location.id ";
+        $sql .= " JOIN regiment_service_casualty rsc ON rsc.casualty_id = c.id JOIN regiment_service ON rsc.regiment_service_id=regiment_service.id ";
+        $sql .= " JOIN service_number ON service_number.casualty_id = c.id ";
+        $sql .= " WHERE ";
         if(count($query) > 1) {
             $sql .= implode(" AND ", $query);
         } else {
             $sql .= $query[0];
         }
+        
 
        // var_dump($sql, $params);
 

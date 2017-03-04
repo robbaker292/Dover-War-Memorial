@@ -56,8 +56,8 @@ function sampleContent($text, $term) {
 			
 				<div class="form-group">
 					<label class="control-label col-sm-1" for="options">In</label>
-					<div class="col-sm-4">
-						<select class="form-control selectpicker" id="options" name="options[]" data-live-search="true" multiple data-selected-text-format="count > 4">
+					<div class="col-sm-3">
+						<select class="form-control selectpicker" id="options" name="options[]" data-live-search="true" multiple data-selected-text-format="count > 2">
 							<option value="casualty" <?php if($results && in_array("casualty", $options)) { echo "selected"; }?>>Casualty</option>
 							<option value="article" <?php if($results && in_array("article", $options)) { echo "selected"; }?>>Article</option>
 							<option value="site_update" <?php if($results && in_array("site_update", $options)) { echo "selected"; }?>>Update</option>
@@ -65,7 +65,7 @@ function sampleContent($text, $term) {
 						</select>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary col-sm-1" id="search">Search</button>
+				<button type="submit" class="btn btn-primary col-sm-2" id="search"><i class="fa fa-search"></i> Search</button>
 			</form>
 		</div>
 	</div>
@@ -120,7 +120,250 @@ function sampleContent($text, $term) {
 					</div>
 				</div>
 
-				<button type="submit" class="btn btn-primary col-sm-1" id="search">Search</button>
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="date_of_birth">Date Of Birth:</label>
+					<div class="col-sm-9">
+						<input type="date" class="form-control" id="date_of_birth" placeholder="Enter Date of Birth" name="date_of_birth" <?php if($results && isset($data["date_of_birth"])) { echo "value=\"".$data["date_of_birth"]."\""; }?>>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="date_of_death">Date Of Death:</label>
+					<div class="col-sm-9">
+						<input type="date" class="form-control" id="date_of_death" placeholder="Enter Date of Death" name="date_of_death" <?php if($results && isset($data["date_of_death"])) { echo "value=\"".$data["date_of_death"]."\""; }?>>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="war">War:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="war" name="war" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["war"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+
+							foreach($warList as $war) {
+								if($results && isset($data["war"]) && $war->id == $data["war"]) {
+									echo "<option value=\"".$war->id."\" selected>(".$war->id.") ".$war->name."</option>";
+								} else {
+									echo "<option value=\"".$war->id."\">(".$war->id.") ".$war->name."</option>";
+								}
+								
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="final_resting_place">Final Resting Place:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="final_resting_place" name="final_resting_place" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["final_resting_place"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+
+							foreach($commemorationLocationList as $cL) {
+								if($results && isset($data["final_resting_place"]) && $cL->id == $data["final_resting_place"]) {
+									echo "<option value=\"".$cL->id."\" selected>(".$cL->id.") ".$cL->name."</option>";
+								} else {
+									echo "<option value=\"".$cL->id."\">(".$cL->id.") ".$cL->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="rank_at_death">Rank at death:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="rank_at_death" name="rank_at_death" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["rank_at_death"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+							
+							foreach($rankList as $rank) {
+								if($results && isset($data["rank_at_death"]) && $rank->id == $data["rank_at_death"]) {
+									echo "<option value=\"".$rank->id."\" selected>(".$rank->id.") ".$rank->name."</option>";
+								} else {
+									echo "<option value=\"".$rank->id."\">(".$rank->id.") ".$rank->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="service_country">Service Country:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="service_country" name="service_country" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["service_country"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+							
+							foreach($countryList as $country) {
+								if($results && isset($data["service_country"]) && $country->id == $data["service_country"]) {
+									echo "<option value=\"".$country->id."\" selected>(".$country->id.") ".$country->name."</option>";
+								} else {
+									echo "<option value=\"".$country->id."\">(".$country->id.") ".$country->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="place_of_birth">Place of Birth:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="place_of_birth" name="place_of_birth" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["place_of_birth"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+							
+							foreach($placeList as $place) {
+								if($results && isset($data["place_of_birth"]) && $place->id == $data["place_of_birth"]) {
+									echo "<option value=\"".$place->id."\" selected>(".$place->id.") ".$place->name."</option>";
+								} else {
+									echo "<option value=\"".$place->id."\">(".$place->id.") ".$place->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="last_known_address">Last Known Address:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="last_known_address" name="last_known_address" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["last_known_address"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+							
+							foreach($placeList as $place) {
+								if($results && isset($data["last_known_address"]) && $place->id == $data["last_known_address"]) {
+									echo "<option value=\"".$place->id."\" selected>(".$place->id.") ".$place->name."</option>";
+								} else {
+									echo "<option value=\"".$place->id."\">(".$place->id.") ".$place->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="last_known_address_year">Last Known Address Year:</label>
+					<div class="col-sm-9">
+						<input type="number" class="form-control" id="last_known_address_year" placeholder="Last Known Address Year" name="last_known_address_year" <?php if($results && isset($data["last_known_address_year"])) { echo "value=\"".$data["last_known_address_year"]."\""; }?> >
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="commemoration_location">Commemoration Location:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="commemoration_location" name="commemoration_location" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["commemoration_location.id"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+
+							foreach($commemorationLocationList as $cL) {
+								if($results && isset($data["commemoration_location"]) && $cL->id == $data["commemoration_location"]) {
+									echo "<option value=\"".$cL->id."\" selected>(".$cL->id.") ".$cL->name."</option>";
+								} else {
+									echo "<option value=\"".$cL->id."\">(".$cL->id.") ".$cL->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="regiment_service">Regiment / Service:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="regiment_service" name="regiment_service" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["regiment_service"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+
+							foreach($regimentList as $rL) {
+								if($results && isset($data["regiment_service"]) && $rL->id == $data["regiment_service"]) {
+									echo "<option value=\"".$rL->id."\" selected>(".$rL->id.") ".$rL->name."</option>";
+								} else {
+									echo "<option value=\"".$rL->id."\">(".$rL->id.") ".$rL->name."</option>";
+								}
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="service_numbers">Current Service Numbers:</label>
+					<div class="col-sm-9">
+						<select class="form-control selectpicker" id="service_numbers" name="service_numbers" data-live-search="true">
+							<?php
+							echo "<option value=\"\"";
+							if($results || !isset($data["service_numbers"])) {	
+								echo "selected";	
+							}
+							echo " > </option>";
+
+							foreach($service_numbers as $rL) {
+								if($rL->service_number == "") {
+									continue;
+								}
+
+								if($results && isset($data["service_numbers"]) && $rL->service_number == $data["service_numbers"]) {
+									echo "<option value=\"".$rL->service_number."\" selected>".$rL->service_number."</option>";
+								} else {
+									echo "<option value=\"".$rL->service_number."\">".$rL->service_number."</option>";
+								}
+								
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary col-sm-2" id="searchData"><i class="fa fa-search"></i> Search</button>
 
 			</form>
 		</div>
