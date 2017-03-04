@@ -36,7 +36,7 @@ function sampleContent($text, $term) {
 	$output = preg_replace('/\b' . preg_quote($term, "/") . '\b/i', "<mark>\$0</mark>", $substr);
 	//$output = str_replace(lcfirst($term), "<mark>".lcfirst($term)."</mark>",$output);
 
-	return "...".$output."...";
+	return $output;
 
 }
 ?>
@@ -50,7 +50,7 @@ function sampleContent($text, $term) {
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="term">Search for</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="term" placeholder="Enter Search Term" name="term" <?php if($results) { echo "value=\"".str_replace('"', '&quot;', $term)."\""; }?> >
+						<input type="text" class="form-control" id="term" placeholder="Enter Search Term" name="term" <?php if($results && isset($term)) { echo "value=\"".str_replace('"', '&quot;', $term)."\""; }?> >
 					</div>
 				</div>
 			
@@ -71,9 +71,58 @@ function sampleContent($text, $term) {
 	</div>
 
 	<div class="panel panel-primary">
-		<div class="panel-heading">Search by data</div>
+		<div class="panel-heading">Search Casualty by data</div>
 		<div class="panel-body" id="searchData">
-			Search by data
+			<div id="toggler">Show search options <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></div>
+
+			<form id="dataForm" action="<?php echo base_url();?>search/doSearchData" method="post">
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="given_name">Given Name:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="given_name" placeholder="Enter Given Name (e.g. Henry)" name="given_name" <?php if($results && isset($data["given_name"])) { echo "value=\"".$data["given_name"]."\""; }?> >
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="middle_names">Middle Names:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="middle_names" placeholder="Enter Middle Names (e.g. Henry)" name="middle_names" <?php if($results && isset($data["middle_names"])) { echo "value=\"".$data["middle_names"]."\""; }?>>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="family_name">Family Name:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="family_name" placeholder="Enter Family Name (e.g. Jones)" name="family_name" <?php if($results && isset($data["family_name"])) { echo "value=\"".$data["family_name"]."\""; }?>>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="civilian">Civilian:</label>
+					<div class="col-sm-9">
+						<select class="form-control" id="civilian" name="civilian">
+							<option value="" <?php if($results || !isset($data["civilian"])) { echo "selected"; }?> > </option>
+							<option value="0" <?php if($results && isset($data["civilian"]) && $data["civilian"] == "0") { echo "selected"; }?> >No</option>
+							<option value="1" <?php if($results && isset($data["civilian"]) && $data["civilian"] == "1") { echo "selected"; }?> >Yes</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="gender">Gender:</label>
+					<div class="col-sm-9">
+						<select class="form-control" id="gender" name="gender">
+							<option value="" <?php if($results || !isset($data["gender"])) { echo "selected"; }?> > </option>
+							<option value="M" <?php if($results && isset($data["gender"]) && $data["gender"] == "M") { echo "selected"; }?>>Male</option>
+							<option value="F" <?php if($results && isset($data["gender"]) && $data["gender"] == "F") { echo "selected"; }?>>Female</option>
+						</select>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary col-sm-1" id="search">Search</button>
+
+			</form>
 		</div>
 	</div>
 
@@ -112,7 +161,12 @@ function sampleContent($text, $term) {
 					echo "<tr>";
 					echo "<td>".ucfirst($res->type)."</td>";
 					echo "<td><a href=\"".base_url().$res->type."/view/".$res->id."\">".$res->title."</a></td>";
-					echo "<td>".sampleContent($res->content,$term)."</td>";
+					if(isset($term)) {
+						echo "<td>...".sampleContent($res->content,$term)."...</td>";
+					} else {
+						echo "<td>...".substr($res->content,0,200)."...</td>";
+					}
+					
 				}
 
 				?>

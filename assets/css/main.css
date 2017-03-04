@@ -33,6 +33,7 @@ img.left, img.right, img.middle {
 	max-width: 100%;
 	height: auto;
 	display: block;
+  margin: 0.7em;
 }
 
 img.left {
@@ -95,7 +96,7 @@ tr.clickableRow {
   transform: rotate(1.4deg);
 }
 
-#data {
+#data, #dataForm {
 	display: none;
 }
 

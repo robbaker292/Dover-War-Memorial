@@ -5,12 +5,55 @@ $(document).ready( function() {
 
 	});
 
+
+    /**
+    *   Adds another relation option
+    */
+    $("#relationAdder").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "../createRelationDropdowns",
+            success: function(data) {
+                //console.log(data);
+                $("#relationChoosers").append(data);
+                var clone = $(".relationOptions").last();
+                clone.find('.bootstrap-select').remove();
+                clone.find('select').selectpicker();
+                console.log(clone);
+            }
+        });
+
+
+    })
+
+    /**
+    *  Saves the relation data
+    */
+    $("#saveRelations").click(function() {
+        var id = $("#id").val();
+        var basicForm = $("#relationForm").serialize();
+        //console.log(basicForm);
+        $.ajax({
+            type: "POST",
+            url: "../doUpdateRelations/"+id,
+            data: basicForm,
+            success: function(data) {
+                console.log(data);
+               // location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+                $("#saveResultRelations").text(data);
+            }
+        });
+
+    })
+
 	/**
 	*	Saves the current casualty in the DB
 	*/
 	$("#saveBasic").click(function() {
 		var basicForm = $("#basicForm").serialize();
-		console.log(basicForm);
 		$.ajax({
             type: "POST",
             url: "../doUpdate/0",

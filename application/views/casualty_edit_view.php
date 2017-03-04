@@ -415,5 +415,65 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
+	<h3>Relation Data:</h3>
+	<form id="relationForm">
+		<div id="relationChoosers">
+		<?php foreach($relations as $relation) {?>
+			<div class="relationOptions">
+				<div class="form-group">
+					<label class="control-label col-sm-3" for="relations">Current Relations:</label>
+					<div class="col-sm-4">
+						<select class="form-control selectpicker" name="relations[]" data-live-search="true" multiple data-max-options="1">
+							<?php
+
+							foreach($casualties as $rL) {
+								echo "<option value=\"".$rL->id."\" data-subtext=\"Born ".$rL->date_of_birth."\"";
+								if($relation->id == $rL->id) {
+									echo "selected";
+								}
+								echo ">(".$rL->id.") ".$rL->given_name." ".$rL->middle_names." ".$rL->family_name."</option>";
+							}
+
+							?>
+						</select>
+					</div>
+					<div class="col-sm-5">
+						<select class="form-control selectpicker" name="relationType[]" data-live-search="true" multiple data-max-options="2">
+							<?php
+
+							foreach($relationTypes as $rL) {
+								echo "<option value=\"".$rL->id."\" ";
+								if($rL->id == $relation->relationType) {
+									echo "selected";
+								}
+								echo ">".$rL->name."</option>";
+							}
+
+							?>
+						</select>
+					</div>
+				</div>
+			</div>
+			<?php
+			}
+			?>
+		</div>
+	<button type="button" class="btn btn-success" id="relationAdder">Add another relation</button>&nbsp;
+	<button type="button" class="btn btn-primary" id="saveRelations">Save this section</button>
+		<div id="saveResultRelations">
+			<?php
+				if($this->session->flashdata('area') == "relations") {
+					$type = $this->session->flashdata('type');
+					$message = $this->session->flashdata('message');
+
+					if($type == "success") {
+						?>
+						<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+						<?php
+					}
+				}
+			?>
+		</div>
+	</form>
 
 	</div>

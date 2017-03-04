@@ -35,6 +35,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php } else if($this->uri->segment(1) == 'meta') { ?>
 			<script src="<?php echo asset_url(); ?>js/meta.js"></script>
 
+	<?php } else if($this->uri->segment(1) == 'search') { ?>
+			<script src="<?php echo asset_url(); ?>js/search.js"></script>
+
 	<?php }
 
 		if($this->uri->segment(2) == 'edit' || $this->uri->segment(1) == 'search') { ?>

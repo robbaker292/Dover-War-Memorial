@@ -73,7 +73,37 @@ class Search_model extends CI_Model {
 
         $search_query = $this->db->query($sql, $params);
         return $search_query->result();
+    }
 
+    /**
+    *   Performs a data seach on casulaties
+    */
+    public function performDataSearch($data) {
+    
+        //list of valid keys
+        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded", "unsure_details");
+
+        $query = array();
+        $params = array();
+        foreach($data as $key => $value) {
+            if(in_array($key, $validKeys)) {
+                $query[] = " ".$key."=? ";
+                $params[] = $value;
+                //var_dump($key, $value);
+            }
+        }
+
+        $sql = "SELECT \"casualty\" AS type, id, CONCAT(given_name, \" \", middle_names, \" \", family_name) AS title, narrative AS content FROM casualty WHERE ";
+        if(count($query) > 1) {
+            $sql .= implode(" AND ", $query);
+        } else {
+            $sql .= $query[0];
+        }
+
+       // var_dump($sql, $params);
+
+        $search_query = $this->db->query($sql, $params);
+        return $search_query->result();
 
     }
 

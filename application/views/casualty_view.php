@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include APPPATH . 'third_party/Parsedown.php';
 include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
-
 ?>
 
 	<h2><?php 
@@ -113,6 +112,15 @@ $Parsedown = new ParsedownExtra();
 			echo "Service Number";
 			echo "</th><td>";
 			echo $data->service_number;
+			echo "</td>";
+			echo "</tr>";
+		}
+		foreach ($relation_data as $data) {
+			echo "<tr>";
+			echo "<th>";
+			echo "Relations";
+			echo "</th><td>";
+			echo "<a href=\"../".$data->id."\">".$data->given_name." ".$data->family_name."</a> (".$data->name.")";
 			echo "</td>";
 			echo "</tr>";
 		}

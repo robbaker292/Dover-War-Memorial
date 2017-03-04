@@ -9,11 +9,6 @@ class Casualty_model extends CI_Model {
         parent::__construct();
     }
 
-    public function testDb() {
-        $query = $this->db->query("SELECT * FROM war");
-        return $query->result();
-    }
-
     /*
     * Returns all the data about the given casualty
     */
@@ -78,6 +73,36 @@ class Casualty_model extends CI_Model {
         ";
         $query = $this->db->query($sql, array($id));
         return $query->result();
+    }
+
+    /**
+    *   Gets the relations of this casualty
+    */
+    public function getRelations($id) {
+        $sql = "(SELECT c2.id, c2.given_name, c2.family_name, r.name, r.id as 'relationType' from casualty c2 JOIN casualty_relation cr ON c2.id=cr.casualty_id_senior 
+            JOIN relation r ON r.id=cr.relation_id WHERE cr.casualty_id_junior = ?) UNION 
+            (SELECT c2.id, c2.given_name, c2.family_name, r.name, r.id as 'relationType' from casualty c2 JOIN casualty_relation cr ON c2.id=cr.casualty_id_junior 
+            JOIN relation r ON r.id=cr.relation_id WHERE cr.casualty_id_senior = ?)";
+        $query = $this->db->query($sql, array($id, $id));
+        return $query->result();
+    }
+
+    /**
+    * Get relation types
+    */
+    public function getRelationTypes() {
+        $sql = "SELECT * FROM relation";
+        $query = $this->db->query($sql);
+        return $query->result();        
+    }
+
+    /**
+    * Get all casualties
+    */
+    public function getAllCasualties() {
+        $sql = "SELECT id, given_name, middle_names, family_name, date_of_birth FROM casualty";
+        $query = $this->db->query($sql);
+        return $query->result();        
     }
 
     /**
@@ -202,5 +227,37 @@ class Casualty_model extends CI_Model {
         } else {
             return array('area' => 'serivceNumber', 'type'=>'failure', 'message'=>'Database error');     
         }
+    }
+
+    /**
+    *   Handles the updating of relations
+    */
+    public function updateRelations($id, $data) {
+        var_dump($data);
+
+        $sql = "DELETE FROM casualty_relation WHERE casualty_id_senior=? OR casualty_id_junior=?";
+        $this->db->query($sql, array($id, $id));
+
+        
+        $queryArr = array();
+        $params = array();
+        for($i = 0; $i < count($data["relations"]); $i++) {
+            $relation = $data["relations"][$i];
+            $type = $data["relationType"][$i];
+            $params[] = $id;
+            $params[] = $relation;
+            $params[] = $type;
+            $queryArr[] = "(?,?,?)";
+        }
+        $sql = "INSERT INTO casualty_relation VALUES ".implode(", ", $queryArr);
+
+        $result = $this->db->query($sql, $params);
+
+        if($result) {
+            return array('area' => 'serivceNumber', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'serivceNumber', 'type'=>'failure', 'message'=>'Database error');     
+        }
+
     }
 }

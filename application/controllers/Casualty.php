@@ -34,6 +34,7 @@ class Casualty extends CI_Controller {
 		$regiment_data = $this->casualty_model->getRegimentService($id);
 		$service_numbers = $this->casualty_model->getServiceNumbers($id);
 		$commemorations = $this->casualty_model->getCommemorations($id);
+		$relation_data = $this->casualty_model->getRelations($id);
 		
 		//$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
 
@@ -42,6 +43,7 @@ class Casualty extends CI_Controller {
 			'regiment_data' => $regiment_data,
 			'service_numbers' => $service_numbers,
 			'commemorations' => $commemorations,
+			'relation_data' => $relation_data,
 			"loggedIn" => $loggedIn
 		);
 
@@ -74,6 +76,9 @@ class Casualty extends CI_Controller {
 			$regiment_data = $this->casualty_model->getRegimentService($id);
 			$service_numbers = $this->casualty_model->getServiceNumbers($id);
 			$commemorations = $this->casualty_model->getCommemorations($id);
+			$relation_data = $this->casualty_model->getRelations($id);
+			$casualties = $this->casualty_model->getAllCasualties();
+			$relationTypes = $this->casualty_model->getRelationTypes();
 
 			$commemorationIds = array();
 			foreach($commemorations as $id) {
@@ -95,13 +100,14 @@ class Casualty extends CI_Controller {
 				'rankList' => $this->general_model->getRanks(),
 				'countryList' => $this->general_model->getCountries(),
 				'placeList' => $this->general_model->getPlaces(),
-
+				'relations' => $relation_data,
 				'regiment_data' => $regiment_data,
 				'service_numbers' => $service_numbers,
 				'commemorations' => $commemorations,
 				'commemorationIds' => $commemorationIds,
 				'regimentIds' => $regimentIds,
-
+				'casualties' => $casualties,
+				'relationTypes' => $relationTypes,
 				"loggedIn" => $loggedIn,
 				"new" => false
 			);
@@ -270,6 +276,79 @@ class Casualty extends CI_Controller {
     		die(json_encode(array('area' => 'serivceNumber', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
 
+	}
+
+	/**
+	* Handles the updating of relations
+	*/
+	public function doUpdateRelations($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$basicForm = $this->input->post();
+			if(count($basicForm) > 0) {
+
+				$this->load->model('casualty_model');
+
+				//update casualty
+				$result = $this->casualty_model->updateRelations($id, $basicForm);
+
+				//if the update worked
+				if($result["type"] == "success") {
+					//store the result data
+					$this->session->set_flashdata($result);
+					echo json_encode($result);
+				} else {
+					//output the error message :(
+					header('HTTP/1.1 500 Internal Server Error');
+	       			header('Content-Type: application/json; charset=UTF-8');
+	        		die(json_encode($result));
+				}
+			}			
+
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'serivceNumber', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
+
+	}
+
+	/**
+	*	Returns the AJAX code to create the extra relation dropdowns
+	*/
+	public function createRelationDropdowns() {
+		$this->load->model('casualty_model');
+		$casualties = $this->casualty_model->getAllCasualties();
+		$relationTypes = $this->casualty_model->getRelationTypes();
+
+		echo "			<div class=\"relationOptions\">
+				<div class=\"form-group\">
+					<label class=\"control-label col-sm-3\" for=\"relations\">Current Relations:</label>
+					<div class=\"col-sm-4\">
+						<select class=\"form-control selectpicker\" name=\"relations[]\" data-live-search=\"true\" multiple data-max-options=\"1\" >";
+
+							foreach($casualties as $rL) {
+								echo "<option value=\"".$rL->id."\" data-subtext=\"Born ".$rL->date_of_birth."\">(".$rL->id.") ".$rL->given_name." ".$rL->middle_names." ".$rL->family_name."</option>";
+							}
+
+echo "
+						</select>
+					</div>
+					<div class=\"col-sm-5\">
+						<select class=\"form-control selectpicker\" name=\"relationType[]\" data-live-search=\"true\" multiple data-max-options=\"1\" >";
+							foreach($relationTypes as $rL) {
+								echo "<option value=\"".$rL->id."\">".$rL->name."</option>";
+							}
+
+echo "
+						</select>
+					</div>
+				</div>
+			</div>
+
+			";
 	}
 
 }
