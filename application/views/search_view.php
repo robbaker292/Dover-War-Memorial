@@ -130,7 +130,7 @@ function sampleContent($text, $term) {
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="date_of_death">Date Of Death:</label>
 					<div class="col-sm-9">
-						<input type="date" class="form-control" id="date_of_death" placeholder="Enter Date of Death" name="date_of_death" <?php if($results && isset($data["date_of_death"])) { echo "value=\"".$data["date_of_death"]."\""; }?>>
+						<input type="date" class="form-control" id="date_of_death" placeholder="Enter Date of Death" name="date_of_death" <?php if($results && isset($data["date_of_death"])) { echo "value=\"".$data["date_of_death"]."\""; } ?>>
 					</div>
 				</div>
 

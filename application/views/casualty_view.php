@@ -40,54 +40,121 @@ $Parsedown = new ParsedownExtra();
 				<tr class="warning"><td colspan="2"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;This casualty has some unknown details.</td></tr>
 				<?php
 			}
-		?>
-	
-		<tr><th class="col-sm-3">Given Name</th><td><?php echo $casualty_data->given_name; ?></td></tr>
-		<tr><th>Middle Names</th><td><?php echo $casualty_data->middle_names; ?></td></tr>
-		<tr><th>Family Name</th><td><?php echo $casualty_data->family_name; ?></td></tr>
-		<tr><th>Civilian</th><td><?php echo $casualty_data->civilian == 0 ? "Yes" : "No" ; ?></td></tr>
-		<tr><th>Gender</th><td><?php 
-		if($casualty_data->gender == "M") {
-			echo "Male";
-		} elseif($casualty_data->gender == "F") {
-			echo "Female";
+
+		if(trim($casualty_data->given_name) != "") {
+			echo "<tr><th class=\"col-sm-3\">Given Name</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/given_name=".$casualty_data->given_name."/1\">";
+			echo $casualty_data->given_name;
+			echo "</a>";
+			echo "</td></tr>";
 		}
-		?></td></tr>
-		<tr><th>Date of Birth</th><td><?php echo $casualty_data->date_of_birth; ?></td></tr>
-		<tr><th>Date of Death</th><td><?php echo $casualty_data->date_of_death; ?></td></tr>
-		<tr><th>Final Resting Place</th><td><?php echo $casualty_data->final_resting_place; ?></td></tr>
-		<tr><th>Rank at Death</th><td><?php echo $casualty_data->rank; ?></td></tr>
-		<tr><th>War</th><td><?php echo $casualty_data->war; ?></td></tr>
-		<tr><th>Country</th><td><?php echo $casualty_data->country;
-			if($casualty_data->country != "") {
-				echo "&nbsp;<img src=\"".asset_url().$casualty_data->flag."\" alt=\"".$casualty_data->country."\">";
+
+
+		if(trim($casualty_data->middle_names) != "" && $casualty_data->middle_names != " ") {
+			echo "<tr><th class=\"col-sm-3\">Middle Names</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/middle_names=".$casualty_data->middle_names."/1\">";
+			echo $casualty_data->middle_names;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if(trim($casualty_data->family_name) != "") {
+			echo "<tr><th class=\"col-sm-3\">Family Name</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/family_name=".$casualty_data->family_name."/1\">";
+			echo $casualty_data->family_name;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->civilian != "") {
+			echo "<tr><th class=\"col-sm-3\">Civilian</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/civilian=".$casualty_data->civilian."/1\">";
+			if($casualty_data->civilian == 0) {
+				echo "No";
+			} elseif($casualty_data->civilian == 1) {
+				echo "Yes";
 			}
-		?></td></tr>
-		<tr><th>Last Known Address</th><td><?php echo $casualty_data->last_known_address; ?></td></tr>
-		<tr><th>Last Known Address Year</th><td><?php echo $casualty_data->last_known_address_year; ?></td></tr>
-	<?php
+			echo "</a>";
+			echo "</td></tr>";
+		}
 
-
-
-	/*	foreach ($casualty_data as $key => $value) {
-			if($key == "flag") {
-				continue;
+		if($casualty_data->gender != "") {
+			echo "<tr><th class=\"col-sm-3\">Gender</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/gender=".$casualty_data->gender."/1\">";
+			if($casualty_data->gender == "M") {
+				echo "Male";
+			} elseif($casualty_data->gender == "F") {
+				echo "Female";
 			}
+			echo "</a>";
+			echo "</td></tr>";
+		}
 
-			echo "<tr>";
-			echo "<td>";
-			echo $key;
-			echo "</td><td>";
-			if ($key == "narrative") {
-				echo $Parsedown->text($value);
-			} else if ($key == "country") {
-				echo $value."&nbsp;<img src=\"".asset_url().$casualty_data->flag."\" alt=\"".$value."\">";
-			} else {
-				echo $value;
-			}		
-			echo "</td>";
-			echo "</tr>";
-		}*/
+		if($casualty_data->date_of_birth != "" && $casualty_data->date_of_birth != "0000-00-00") {
+			echo "<tr><th class=\"col-sm-3\">Date of Birth</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/date_of_birth=".$casualty_data->date_of_birth."/1\">";
+			echo $casualty_data->date_of_birth;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->date_of_death != "" && $casualty_data->date_of_death != "0000-00-00") {
+			echo "<tr><th class=\"col-sm-3\">Date of Death</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/date_of_death=".$casualty_data->date_of_death."/1\">";
+			echo $casualty_data->date_of_death;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->final_resting_place != "") {
+			echo "<tr><th class=\"col-sm-3\">Final Resting Place</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/final_resting_place=".$casualty_data->frpId."/1\">";
+			echo $casualty_data->final_resting_place;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->rank != "") {
+			echo "<tr><th class=\"col-sm-3\">Rank at Death</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/rank_at_death=".$casualty_data->rId."/1\">";
+			echo $casualty_data->rank;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->war != "") {
+			echo "<tr><th class=\"col-sm-3\">War</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/war=".$casualty_data->wId."/1\">";
+			echo $casualty_data->war;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->country != "") {
+			echo "<tr><th class=\"col-sm-3\">Country</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/service_country=".$casualty_data->scId."/1\">";
+			echo $casualty_data->country;
+			echo "</a>";
+			echo "&nbsp;<img src=\"".asset_url().$casualty_data->flag."\" alt=\"".$casualty_data->country."\">";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->last_known_address != "") {
+			echo "<tr><th class=\"col-sm-3\">Last Known Address</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/last_known_address=".$casualty_data->lkaId."/1\">";
+			echo $casualty_data->last_known_address;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
+		if($casualty_data->last_known_address_year != "" && $casualty_data->last_known_address_year != "0") {
+			echo "<tr><th class=\"col-sm-3\">Last Known Address Year</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/last_known_address_year=".$casualty_data->last_known_address_year."/1\">";
+			echo $casualty_data->last_known_address_year;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
 		foreach ($commemorations as $data) {
 			echo "<tr>";
 			echo "<th>";
