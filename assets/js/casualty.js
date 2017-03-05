@@ -53,6 +53,12 @@ $(document).ready( function() {
 	*	Saves the current casualty in the DB
 	*/
 	$("#saveBasic").click(function() {
+        var id = $("#id").val();
+
+        if(id == "-1") {
+            return;
+        }
+
 		var basicForm = $("#basicForm").serialize();
 		$.ajax({
             type: "POST",
@@ -152,8 +158,8 @@ $(document).ready( function() {
         });
 	});
 
-		/**
-	*	Saves the current casualty's regiments in the DB
+	/**
+	*	Saves the current casualty's service numbers in the DB
 	*/
 	$("#saveServiceNumber").click(function() {
 		var id = $("#id").val();
@@ -174,5 +180,32 @@ $(document).ready( function() {
             }
         });
 	});
+
+    /**
+    *   Saves the current update data
+    */
+    $("#saveChangedDetails").click(function() {
+        var id = $("#id").val();
+        var basicForm = $("#changed_details").val();
+        $.ajax({
+            type: "POST",
+            url: "../../meta/doAddChange",
+            data: {
+                reason : basicForm,
+                id : id,
+                type : 1,
+            },
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                //$("#saveResultCommemoration").text(data);
+                //location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+                $("#saveResultServiceNumber").text(data);
+            }
+        });
+    });
 
 });

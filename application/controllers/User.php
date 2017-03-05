@@ -10,7 +10,7 @@ class User extends CI_Controller {
 		//$this->load->model('user_model');
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 		if($loggedIn) {
-			header('Location: '.base_url());
+			header('Location: '.base_url()."meta/view/admin");
 		} else {
 			$this->load->view('header', array("title" => "Admin Login - Dover War Memorial Project"));
 
@@ -34,7 +34,7 @@ class User extends CI_Controller {
 			//login successful
 			$this->session->token = $result[1];
 			$this->session->user = $result[2];
-			header('Location: '.base_url());
+			header('Location: '.base_url()."meta/view/admin");
 
 		} else {
 			$this->load->view('header', array("title" => "Admin Login - Dover War Memorial Project"));

@@ -145,9 +145,6 @@ class Meta extends CI_Controller {
 		if($loggedIn) {
 
 			$basicForm = $this->input->post();
-			//$basicForm = array("id" => "1", "given_name" => "Frank3", "DANGER" => "DANEGR");
-			var_dump($basicForm);
-
 
 			$this->load->model('meta_model');
 
@@ -199,6 +196,41 @@ class Meta extends CI_Controller {
 
 		} else {
 			redirect(base_url());
+		}
+	}
+
+	/**
+	*	Add to change log
+	*/
+	public function doAddChange() {
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$basicForm = $this->input->post();
+			//var_dump($basicForm);
+
+			$this->load->model('meta_model');
+
+			//edit meta page
+			$result = $this->meta_model->addToChangeLog($basicForm);
+
+			//if the update worked
+			if($result["type"] == "success") {
+				//store the result data
+				$this->session->set_flashdata($result);
+				echo json_encode($result);
+			} else {
+				//output the error message :(
+				header('HTTP/1.1 500 Internal Server Error');
+       			header('Content-Type: application/json; charset=UTF-8');
+        		die(json_encode($result));
+			}
+
+
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
 	}
 }

@@ -52,5 +52,17 @@ class Meta_model extends CI_Model {
         return $query->result();
     }
 
+    /**
+    *   Adds to change log
+    */
+    public function addToChangeLog($data) {
+        $sql = "INSERT INTO change_log (change_type, item_id, description, date) VALUES(?,?,?, NOW())";
+        $result = $this->db->query($sql, array($data["type"],$data["id"],$data["reason"]));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
 
 }

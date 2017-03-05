@@ -279,7 +279,7 @@ $Parsedown = new ParsedownExtra();
 
 		<div class="form-group">
 			<div class="btn-group" role="group" aria-label="...">
-				<button type="button" class="btn btn-primary" id="saveBasic">Save and continue with editing</button>
+				<button type="button" class="btn btn-primary <?php if($new) { echo "disabled"; }?>" id="saveBasic">Save and continue with editing</button>
 				<button type="button" class="btn btn-primary" id="saveReturn">Save and return to casualty</button>
 			</div>
 			<div id="saveResult">
@@ -395,7 +395,7 @@ $Parsedown = new ParsedownExtra();
 			<label class="control-label col-sm-3" for="service_numbers_add">Add number:</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="service_numbers_add" placeholder="Enter Service Number" name="service_numbers_add">
-				<button type="button" class="btn btn-default" id="addServiceNumber">Add number</button>
+				<button type="button" class="btn btn-success" id="addServiceNumber">Add number</button>
 			</div>
 		</div>
 
@@ -415,6 +415,7 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
+
 	<h3>Relation Data:</h3>
 	<form id="relationForm">
 		<div id="relationChoosers">
@@ -458,8 +459,8 @@ $Parsedown = new ParsedownExtra();
 			}
 			?>
 		</div>
-	<button type="button" class="btn btn-success" id="relationAdder">Add another relation</button>&nbsp;
-	<button type="button" class="btn btn-primary" id="saveRelations">Save this section</button>
+		<button type="button" class="btn btn-success" id="relationAdder">Add another relation</button>&nbsp;
+		<button type="button" class="btn btn-primary" id="saveRelations">Save this section</button>
 		<div id="saveResultRelations">
 			<?php
 				if($this->session->flashdata('area') == "relations") {
@@ -476,4 +477,34 @@ $Parsedown = new ParsedownExtra();
 		</div>
 	</form>
 
-	</div>
+	<h3>Change Details</h3>
+	<form id="changeDetailsForm">
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="changed_details">What's changed:</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="changed_details" placeholder="Enter details of what has changed in this edit" name="changed_details" value="">
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-primary" id="saveChangedDetails">Save this section</button>
+		<div id="saveResultChangedDetails">
+			<?php
+				if($this->session->flashdata('area') == "changedDetails") {
+					$type = $this->session->flashdata('type');
+					$message = $this->session->flashdata('message');
+
+					if($type == "success") {
+						?>
+						<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i><strong>Success</strong>&nbsp;<?php echo $message;?></div>
+						<?php
+					}
+				}
+			?>
+		</div>
+	</form>
+	<h3>Save all sections</h3>
+	<form id="saveAllForm">
+		<button type="button" class="btn btn-primary <?php if($new) { echo "disabled"; }?>" id="saveAll">Save all sections</button>
+		<div class="help-block">Can only save all sections of an already existing casualty.</div>
+	</form>
+</div>
