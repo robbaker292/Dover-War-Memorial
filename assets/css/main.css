@@ -123,3 +123,7 @@ tr.clickableRow {
 .btn {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+#saveAllResultChangedDetails {
+  display: none;
+}

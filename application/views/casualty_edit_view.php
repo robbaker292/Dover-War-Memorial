@@ -299,7 +299,7 @@ $Parsedown = new ParsedownExtra();
 			<?php if($new) { echo "<div class=\"help-block\">Casualty must be saved before below sections can be completed</div>"; } ?>
 		</div>
 	</form>
- 
+ 	<hr>
 	<h3>Commemorations Data:</h3>
 	<form id="commemorationForm">
 		<div class="form-group">
@@ -337,7 +337,7 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
-
+	<hr>
 	<h3>Regiment Data:</h3>
 	<form id="regimentForm">
 		<div class="form-group">
@@ -374,7 +374,7 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
-
+	<hr>
 	<h3>Service Number Data:</h3>
 	<form id="serviceNumberForm">
 		<div class="form-group">
@@ -415,7 +415,7 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
-
+	<hr>
 	<h3>Relation Data:</h3>
 	<form id="relationForm">
 		<div id="relationChoosers">
@@ -476,7 +476,7 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
-
+	<hr>
 	<h3>Change Details</h3>
 	<form id="changeDetailsForm">
 		<div class="form-group">
@@ -502,9 +502,12 @@ $Parsedown = new ParsedownExtra();
 			?>
 		</div>
 	</form>
+	<hr>
 	<h3>Save all sections</h3>
 	<form id="saveAllForm">
 		<button type="button" class="btn btn-primary <?php if($new) { echo "disabled"; }?>" id="saveAll">Save all sections</button>
 		<div class="help-block">Can only save all sections of an already existing casualty.</div>
+		<div class="alert alert-success" role="alert" id="saveAllResultChangedDetails"><i class="fa fa-check" aria-hidden="true"></i><strong>Saved</strong></div>
+		</div>
 	</form>
 </div>

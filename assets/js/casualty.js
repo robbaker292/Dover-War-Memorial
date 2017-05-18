@@ -5,27 +5,6 @@ $(document).ready( function() {
 
 	});
 
-
-    /**
-    *   Adds another relation option
-    */
-    $("#relationAdder").click(function() {
-        $.ajax({
-            type: "POST",
-            url: "../createRelationDropdowns",
-            success: function(data) {
-                //console.log(data);
-                $("#relationChoosers").append(data);
-                var clone = $(".relationOptions").last();
-                clone.find('.bootstrap-select').remove();
-                clone.find('select').selectpicker();
-                console.log(clone);
-            }
-        });
-
-
-    })
-
     /**
     *  Saves the relation data
     */
@@ -47,7 +26,7 @@ $(document).ready( function() {
             }
         });
 
-    })
+    });
 
 	/**
 	*	Saves the current casualty in the DB
@@ -95,6 +74,24 @@ $(document).ready( function() {
 
 	});
 
+    /**
+    *   Adds another relation option
+    */
+    $("#relationAdder").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "../createRelationDropdowns",
+            success: function(data) {
+                //console.log(data);
+                $("#relationChoosers").append(data);
+                var clone = $(".relationOptions").last();
+                clone.find('.bootstrap-select').remove();
+                clone.find('select').selectpicker();
+                console.log(clone);
+            }
+        });
+    });
+
 	/**
 	*	Adds service number to list
 	*/
@@ -112,79 +109,53 @@ $(document).ready( function() {
 	});
 
 
+    /**
+    *   Updates the various details (regiments, etc)
+    */
+    function updateDetails(url, basicForm, saveLocation, all){
+        var id = $("#id").val();
+        $.ajax({
+            type: "POST",
+            url: "../"+url+"/"+id,
+            data: {basicForm : basicForm},
+            dataType: "json",
+            success: function(data) {
+                if(!all) {
+                    location.reload();
+                }                
+            },
+            error: function(data) {
+                saveLocation.text(data);
+            }
+        });
+    }
+
 	/**
 	*	Saves the current casualty's commemoration locations in the DB
 	*/
 	$("#saveCommemorations").click(function() {
-		var id = $("#id").val();
-		var basicForm = $("#commemorations").val();
-		$.ajax({
-            type: "POST",
-            url: "../doUpdateCommemorations/"+id,
-            data: {basicForm : basicForm},
-            dataType: "json",
-            success: function(data) {
-            	//console.log(data);
-            	//$("#saveResultCommemoration").text(data);
-            	location.reload();
-            },
-            error: function(data) {
-            	console.log(data);
-                $("#saveResultCommemoration").text(data);
-            }
-        });
+        updateDetails("doUpdateCommemorations", $("#commemorations").val(), $("#saveResultCommemoration"), false);
 	});
 
 	/**
 	*	Saves the current casualty's regiments in the DB
 	*/
 	$("#saveRegiment").click(function() {
-		var id = $("#id").val();
-		var basicForm = $("#regiments").val();
-		$.ajax({
-            type: "POST",
-            url: "../doUpdateRegiments/"+id,
-            data: {basicForm : basicForm},
-            dataType: "json",
-            success: function(data) {
-            	//console.log(data);
-            	//$("#saveResultCommemoration").text(data);
-            	location.reload();
-            },
-            error: function(data) {
-            	console.log(data);
-                $("#saveResultRegiments").text(data);
-            }
-        });
+        updateDetails("doUpdateRegiments", $("#regiments").val(), $("#saveResultRegiments"), false);
 	});
 
 	/**
 	*	Saves the current casualty's service numbers in the DB
 	*/
 	$("#saveServiceNumber").click(function() {
-		var id = $("#id").val();
-		var basicForm = $("#service_numbers").val();
-		$.ajax({
-            type: "POST",
-            url: "../doUpdateServiceNumbers/"+id,
-            data: {basicForm : basicForm},
-            dataType: "json",
-            success: function(data) {
-            	//console.log(data);
-            	//$("#saveResultCommemoration").text(data);
-            	location.reload();
-            },
-            error: function(data) {
-            	console.log(data);
-                $("#saveResultServiceNumber").text(data);
-            }
-        });
+        updateDetails("doUpdateServiceNumbers", $("#service_numbers").val(), $("#saveResultServiceNumber"), false);
 	});
 
+
     /**
-    *   Saves the current update data
+    *   Saves the reason for this change
     */
-    $("#saveChangedDetails").click(function() {
+    function saveChangedDetails(all) {
         var id = $("#id").val();
         var basicForm = $("#changed_details").val();
         $.ajax({
@@ -197,15 +168,33 @@ $(document).ready( function() {
             },
             dataType: "json",
             success: function(data) {
-                console.log(data);
-                //$("#saveResultCommemoration").text(data);
-                //location.reload();
+                if(!all) {
+                    location.reload();
+                }  
             },
             error: function(data) {
-                console.log(data);
                 $("#saveResultServiceNumber").text(data);
             }
         });
+    }
+
+    /**
+    *   Saves the current update data
+    */
+    $("#saveChangedDetails").click(function() {
+        saveChangedDetails(false);
+    });
+
+
+    /**
+    *   Saves all the changed data
+    */
+    $("#saveAll").click(function() {
+        updateDetails("doUpdateCommemorations", $("#commemorations").val(), $("#saveResultCommemoration"), true);
+        updateDetails("doUpdateRegiments", $("#regiments").val(), $("#saveResultRegiments"), true);
+        updateDetails("doUpdateServiceNumbers", $("#service_numbers").val(), $("#saveResultServiceNumber"), true);
+        saveChangedDetails(true);
+        $("#saveAllResultChangedDetails").show();
     });
 
 });
