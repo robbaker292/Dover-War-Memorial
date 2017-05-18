@@ -65,6 +65,13 @@ $Parsedown = new ParsedownExtra();
 		</div>
 
 		<div class="form-group">
+			<label class="control-label col-sm-3" for="changed_details">What's changed:</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="changed_details" placeholder="Enter details of what has changed in this edit" name="changed_details" value="">
+			</div>
+		</div>
+
+		<div class="form-group">
 			<div class="btn-group" role="group" aria-label="...">
 				<button type="button" class="btn btn-primary" id="saveBasic">Save update</button>
 			</div>
