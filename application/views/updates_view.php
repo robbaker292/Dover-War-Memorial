@@ -9,15 +9,15 @@ $Parsedown = new ParsedownExtra();
 ?>
 <h2>Updates from <?php echo $year;
  			if($loggedIn) {
-				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\">New</a></small>";
+				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> New</a></small>";
 			}
 			?></h2>
-
-
 <?php
 
 
 ?>
+<h6><a href="<?php echo base_url()."siteUpdate/changes"; ?>">View change log</a></h6>
+<hr>
 <div id="updates">
 <?php
 	foreach ($updates as $update) {
@@ -37,7 +37,9 @@ $Parsedown = new ParsedownExtra();
 		<?php
 	}
 	if(sizeof($updates) == 0) {
-		echo "No updates this year";
+		?>
+		<div class="alert alert-info" role="alert"><i class="fa fa-info-circle" aria-hidden="true"></i><strong> No updates from this year</strong></div>
+		<?php
 	}
 
 ?>

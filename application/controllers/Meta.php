@@ -207,7 +207,7 @@ class Meta extends CI_Controller {
 		if($loggedIn) {
 			$basicForm = $this->input->post();
 
-			if($basicForm["reason"]) !== "") {
+			if($basicForm["reason"] != "") {
 				//var_dump($basicForm);
 
 				$this->load->model('meta_model');

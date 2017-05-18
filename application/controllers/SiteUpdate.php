@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SiteUpdate extends CI_Controller {
 
+	/**
+	*	Views site updates from the given year. If no year, then the current one is used
+	*/
 	public function index($year = null) {
 		if($year == null) {
 			$year = date("Y");
@@ -28,7 +31,9 @@ class SiteUpdate extends CI_Controller {
 
 	}
 
-
+	/**
+	*	Views a particular site update
+	*/
 	public function view($id, $name = null) {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
@@ -145,6 +150,33 @@ class SiteUpdate extends CI_Controller {
    			header('Content-Type: application/json; charset=UTF-8');
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
+	}
+
+	/**
+	*	Views the change log from a given year
+	*/
+	public function changes($year = null) {
+		if($year == null) {
+			$year = date("Y");
+		}
+
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+
+		$this->load->model('siteUpdate_model');
+		
+		$updates = $this->siteUpdate_model->getChangesFromYear($year);
+		$updateFromYear = $this->siteUpdate_model->countChangesByYear();
+
+		$data = array(
+			'year' => $year,
+			'updates' => $updates,
+			'updateFromYear' => $updateFromYear,
+			'loggedIn' => $loggedIn
+		);
+
+		$this->load->view('header', array("title" => $year." Change Log - Dover War Memorial Project"));
+		$this->load->view('changes_view', $data);
+		$this->load->view('footer');
 	}
 
 }

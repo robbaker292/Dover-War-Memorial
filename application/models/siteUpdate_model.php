@@ -66,4 +66,24 @@ class SiteUpdate_model extends CI_Model {
                 }
         }
 
+        /*
+        * Returns all the changes from a given year
+        */
+        public function getChangesFromYear($year) {
+                $sql = "SELECT cl.date, cl.item_id, cl.description, ct.name FROM change_log cl
+                    JOIN change_type ct ON cl.change_type = ct.id
+                    WHERE YEAR(date) = ? AND date<NOW() ORDER BY date DESC ";
+                $query = $this->db->query($sql, array($year));
+                return $query->result();
+        }
+
+        /**
+        *       Counts the number of changes from all years
+        */
+        public function countChangesByYear() {
+                $sql = "SELECT YEAR(date) AS 'year', COUNT(*) AS 'count' FROM change_log WHERE date<NOW() GROUP BY year ORDER BY year DESC";
+                $query = $this->db->query($sql);
+                return $query->result();
+        }
+
 }
