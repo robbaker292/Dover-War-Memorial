@@ -20,8 +20,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/navbar.js"></script>
 
-    <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'detail') { ?>
+    <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'view') { ?>
+    		<script src="<?php echo asset_url(); ?>js/ol.js"></script>			<!-- maps -->
+			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/ol.css"> <!-- maps -->
 			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
+			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/map.css">
 
 	<?php } else if($this->uri->segment(1) == 'casualty') { ?>
 			<script src="<?php echo asset_url(); ?>js/casualty.js"></script>

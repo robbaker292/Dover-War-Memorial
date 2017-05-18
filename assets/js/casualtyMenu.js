@@ -1,5 +1,25 @@
 $(document).ready( function() {
 
+
+	/**
+	*	Create map
+	*/
+	function initMap() {
+		var map = new ol.Map({
+			target: 'map',
+			layers: [
+			 	new ol.layer.Tile({
+			    	source: new ol.source.OSM()
+			 	})
+
+			],
+			view: new ol.View({
+		  		center: ol.proj.fromLonLat([ +$("#lon").text() , +$("#lat").text() ]),
+				zoom: 14
+			})
+		});
+      }
+
 	var war, letter;
 
 	/**
@@ -51,7 +71,7 @@ $(document).ready( function() {
 	/**
 	*	 Loads the casualty data from the DB
 	*/
-	function loadCasulaties() {
+	function loadCasualties() {
 		var itemId = $("#item_id").text();
 
 		$.ajax({url: "../getCasualtiesOfLetterFromMemorial/"+itemId+"/"+war+"/" + letter, dataType: "json", success: function(result){
@@ -91,7 +111,8 @@ $(document).ready( function() {
 	*/
 	war = 0;
 	letter = 'A';
-	loadCasulaties();
+	loadCasualties();
+	initMap();
 
 	/**
 	* Responds to the user selecting a new war or letter
@@ -100,13 +121,13 @@ $(document).ready( function() {
 	$("#warButtons > label").click(function() {
 		var val = $("input",this)[0].value;
 		getChoice(val, null);
-		loadCasulaties();
+		loadCasualties();
 	});
 
 	$("#letterButtons > label").click(function() {
 		var val = $("input",this)[0].value;
 		getChoice(null,val);
-		loadCasulaties();
+		loadCasualties();
 	});
 
 });
