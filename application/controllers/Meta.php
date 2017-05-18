@@ -206,25 +206,27 @@ class Meta extends CI_Controller {
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 		if($loggedIn) {
 			$basicForm = $this->input->post();
-			//var_dump($basicForm);
 
-			$this->load->model('meta_model');
+			if($basicForm["reason"]) !== "") {
+				//var_dump($basicForm);
 
-			//edit meta page
-			$result = $this->meta_model->addToChangeLog($basicForm);
+				$this->load->model('meta_model');
 
-			//if the update worked
-			if($result["type"] == "success") {
-				//store the result data
-				$this->session->set_flashdata($result);
-				echo json_encode($result);
-			} else {
-				//output the error message :(
-				header('HTTP/1.1 500 Internal Server Error');
-       			header('Content-Type: application/json; charset=UTF-8');
-        		die(json_encode($result));
+				//edit meta page
+				$result = $this->meta_model->addToChangeLog($basicForm);
+
+				//if the update worked
+				if($result["type"] == "success") {
+					//store the result data
+					$this->session->set_flashdata($result);
+					echo json_encode($result);
+				} else {
+					//output the error message :(
+					header('HTTP/1.1 500 Internal Server Error');
+	       			header('Content-Type: application/json; charset=UTF-8');
+	        		die(json_encode($result));
+				}
 			}
-
 
 		} else {
 			//return error message :(
