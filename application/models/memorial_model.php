@@ -82,4 +82,24 @@ class Memorial_model extends CI_Model {
                 //SELECT * FROM casualty WHERE family_name REGEXP '^[^A-Za-z]'
         }
 
+
+        /**
+        * Gets the list of memorials
+        */
+        public function getMemorialList($mainSection) {
+                $sql = "SELECT cl.id, cl.name, COUNT(c.commemoration_location_id) AS casualties FROM commemoration_location cl
+                    LEFT JOIN commemoration_location_casualty c ON c.commemoration_location_id = cl.id
+                ";
+                if($mainSection) {
+                    $sql .= " WHERE mainOrder IS NOT NULL ";
+                } else {
+                     $sql .= " WHERE mainOrder IS NULL ";
+                } 
+                $sql .="   GROUP BY c.commemoration_location_id
+                    ORDER BY mainOrder
+                ";
+                $query = $this->db->query($sql);
+                return $query->result();  
+        }
+
 }

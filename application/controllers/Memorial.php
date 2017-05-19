@@ -4,24 +4,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Memorial extends CI_Controller {
 
 	/**
-	* Loads the main two memorials
+	* Lists all the memorials
 	*/
 	public function listMain() {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+
 		$this->load->model('memorial_model');
+		$mainMemorials = $this->memorial_model->getMemorialList(true);
+		$otherMemorials = $this->memorial_model->getMemorialList(false);
 
-		$this->load->view('header', array("title" => "Memorials - Dover War Memorial Project"));
+		$this->load->model('meta_model');
+		$meta = $this->meta_model->getMeta("memorialIndex");
 
+		$data = array(
+			'mainMemorials' => $mainMemorials,
+			'otherMemorials' => $otherMemorials,
+			'meta' => $meta[0],
+			"loggedIn" => $loggedIn
+		);
 
-		$this->load->view('memorial_list_view', array('item_name'=>'Dover War Memorial', 'item_id'=>1, 'item_type'=>'memorial'));
-		$this->load->view('memorial_list_view', array('item_name'=>'Book of Remembrance', 'item_id'=>2, 'item_type'=>'memorial'));
-
+		$this->load->view('header', array("title" => "Casualty Index - Dover War Memorial Project"));
+		$this->load->view('memorial_list_view', $data);
 		$this->load->view('footer');
 	}
 
 	/**
 	* Loads the detail from a given memorial
 	*/
-	public function view($memId) {
+	public function view($memId, $name = null) {
 
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
@@ -29,6 +40,17 @@ class Memorial extends CI_Controller {
 		$this->load->model('memorial_model');
 
 		$memorial_data = $this->memorial_model->getMemorial($memId);
+
+		//redirect if invalid url
+		if(count($memorial_data) == 0) {
+			redirect(site_url());
+		}
+
+		//rewrite url to be nicer
+		if($name == null) {
+			$name = urlencode($memorial_data[0]->name);
+			redirect(site_url(uri_string()."/".$name));
+		}
 
 		$this->load->view('header', array("title" => $memorial_data[0]->name." - Dover War Memorial Project"));
 
