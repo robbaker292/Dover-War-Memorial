@@ -74,7 +74,7 @@ $(document).ready( function() {
 	function loadCasualties() {
 		var itemId = $("#item_id").text();
 
-		$.ajax({url: "../getCasualtiesOfLetterFromMemorial/"+itemId+"/"+war+"/" + letter, dataType: "json", success: function(result){
+		$.ajax({url: "../../getCasualtiesOfLetterFromMemorial/"+itemId+"/"+war+"/" + letter, dataType: "json", success: function(result){
     
 			if (result.length == 0) {
 				$("#casualtyTable").html("No results found");
@@ -85,7 +85,7 @@ $(document).ready( function() {
 
 	        		//				echo "<td><a href=\"../../casualty/view/".$data->id."\">";
 
-	        		var row = "<tr data-url=\"../../casualty/view/" + v.id + "\" class=\"clickableRow\"><td>" + v.given_name + "</td><td>" + v.family_name + "</td><td>";
+	        		var row = "<tr data-url=\"../../../casualty/view/" + v.id + "\" class=\"clickableRow\"><td>" + v.given_name + "</td><td>" + v.family_name + "</td><td>";
 
 	        		if (v.date_of_death == null) {
 	        			row += "&nbsp;</td></tr>"

@@ -17,8 +17,8 @@ $(document).ready( function() {
             url: "../doUpdateRelations/"+id,
             data: basicForm,
             success: function(data) {
-                console.log(data);
-               // location.reload();
+                //console.log(data);
+                location.reload();
             },
             error: function(data) {
                 console.log(data);
