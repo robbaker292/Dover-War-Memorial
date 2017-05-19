@@ -26,6 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
 			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/map.css">
 
+	<?php } else if($this->uri->segment(1) == 'memorial') { ?>
+			<script src="<?php echo asset_url(); ?>js/memorial.js"></script>
+
 	<?php } else if($this->uri->segment(1) == 'casualty') { ?>
 			<script src="<?php echo asset_url(); ?>js/casualty.js"></script>
 

@@ -67,7 +67,6 @@ class Article extends CI_Controller {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 		if($loggedIn || $id==null) {
-
 			$this->load->model('article_model');
 			$categories = $this->article_model->getCategories();
 

@@ -8,7 +8,12 @@ $Parsedown = new ParsedownExtra();
 
 ?>
 
-<h2>Casualty Index</h2>
+<h2>Casualty Index <?php 
+		if($loggedIn) {
+			echo "<a href=\"".base_url()."memorial/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> New Memorial</a>";
+		}
+
+		?></h2>
 
 <div id="narrative"><?php echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $meta->content)); 
 		if($loggedIn) {
