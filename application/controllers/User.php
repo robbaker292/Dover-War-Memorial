@@ -34,7 +34,7 @@ class User extends CI_Controller {
 			//login successful
 			$this->session->token = $result[1];
 			$this->session->user = $result[2];
-			header('Location: '.base_url()."meta/view/admin");
+			header('Location: '.base_url()."meta/listAll");
 
 		} else {
 			$this->load->view('header', array("title" => "Admin Login - Dover War Memorial Project"));

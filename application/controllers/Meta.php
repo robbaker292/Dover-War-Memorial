@@ -165,7 +165,7 @@ class Meta extends CI_Controller {
 
 		} else {
 			//return error message :(
-			header('HTTP/1.1 500 Internal Server Error');
+			header('HTTP/1.1 401 Unauthorized');
    			header('Content-Type: application/json; charset=UTF-8');
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
@@ -230,7 +230,7 @@ class Meta extends CI_Controller {
 
 		} else {
 			//return error message :(
-			header('HTTP/1.1 500 Internal Server Error');
+			header('HTTP/1.1 401 Unauthorized');
    			header('Content-Type: application/json; charset=UTF-8');
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}

@@ -1,74 +1,74 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class War extends CI_Controller {
+class Regiment_Service extends CI_Controller {
 
 	public function listAll() {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 
-		$this->load->model('war_model');
-		$war_data = $this->war_model->getAll();
+		$this->load->model('regiment_service_model');
+		$regiment_service_data = $this->regiment_service_model->getAll();
 
 		$data = array(
-			'war_data' => $war_data,
+			'regiment_service_data' => $regiment_service_data,
 			'loggedIn' => $loggedIn
 		);
 
 		$this->load->view('header', array(
-			"title" => "List: War - Dover War Memorial Project"));
-		$this->load->view('war_list_view', $data);
+			"title" => "List: Regiment/Service - Dover War Memorial Project"));
+		$this->load->view('regiment_service_list_view', $data);
 		$this->load->view('footer');
 	}
 
 	/**
-	*	Displays the edit page of the given war
+	*	Displays the edit page of the given regiment_service
 	*/
 	public function edit($id = null) {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 		if($loggedIn || $id==null) {
-			$this->load->model('war_model');
+			$this->load->model('regiment_service_model');
 
-			//is an war being created?
+			//is an regiment_service being created?
 			if($id == "-1") {
 				$data = array(
 					'loggedIn' => $loggedIn,
 					'new' => true
 				);
 
-				$this->load->view('header', array("title" => "Creating: War - Dover War Memorial Project"));
-				$this->load->view('war_edit_view', $data);
+				$this->load->view('header', array("title" => "Creating: Regiment/Service - Dover War Memorial Project"));
+				$this->load->view('regiment_service_edit_view', $data);
 				$this->load->view('footer');
 
 			//editing rather than creating
 			} else {		
-				$war = $this->war_model->getWar($id);
+				$regiment_service = $this->regiment_service_model->getRegiment_Service($id);
 				
-				if(count($war) == 0) {
-					redirect("war/listAll");
+				if(count($regiment_service) == 0) {
+					redirect("regiment_service/listAll");
 				}
 				$data = array(
-					'war' => $war[0],
+					'regiment_service' => $regiment_service[0],
 					'loggedIn' => $loggedIn,
 					'new' => false
 				);
 
-				$this->load->view('header', array("title" => "Editing: ".$war[0]->name." - Dover War Memorial Project"));
-				$this->load->view('war_edit_view', $data);
+				$this->load->view('header', array("title" => "Editing: ".$regiment_service[0]->name." - Dover War Memorial Project"));
+				$this->load->view('regiment_service_edit_view', $data);
 				$this->load->view('footer');
 
 			}
 
 		} else {
-			redirect("war/listAll");
+			redirect("regiment_service/listAll");
 		}
 
 	}
 
 
 	/**
-	* Handles the updating of an war
+	* Handles the updating of an regiment_service
 	*/
 	public function doUpdate() {
 		//is the user logged in
@@ -79,14 +79,14 @@ class War extends CI_Controller {
 
 			//var_dump($basicForm);
 
-			$this->load->model('war_model');
+			$this->load->model('regiment_service_model');
 
 			if($basicForm['id']=="") {
 				//add new update
-				$result = $this->war_model->addWar($basicForm);
+				$result = $this->regiment_service_model->addRegiment_Service($basicForm);
 			} else {
 				//edit update
-				$result = $this->war_model->editWar($basicForm);
+				$result = $this->regiment_service_model->editRegiment_Service($basicForm);
 			}
 
 			//if the update worked

@@ -44,6 +44,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php } else if($this->uri->segment(1) == 'search') { ?>
 			<script src="<?php echo asset_url(); ?>js/search.js"></script>
 
+	<?php } else if( 	($this->uri->segment(1) == 'place') ||
+						($this->uri->segment(1) == 'rank') ||
+						($this->uri->segment(1) == 'regiment_service') ||
+						($this->uri->segment(1) == 'relation') ||
+						($this->uri->segment(1) == 'service_country') ||
+						($this->uri->segment(1) == 'war')
+					) { ?>
+			<script src="<?php echo asset_url(); ?>js/saveData.js"></script>
+
 	<?php }
 
 		if($this->uri->segment(2) == 'edit' || $this->uri->segment(1) == 'search') { ?>

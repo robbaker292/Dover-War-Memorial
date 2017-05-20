@@ -20,6 +20,32 @@ $Parsedown = new ParsedownExtra();
 </div>
 <br>
 <div class="panel panel-primary">
+	<div class="panel-heading">Edit Various Lists</div>
+	<table class="table table-striped">	
+	<tr><th>Name</th><th>List All</th><th>New</th></tr>
+	<tr>
+		<td>Place</td><td><a href="<?php echo base_url() ?>place/listAll" class="btn btn-primary btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> List All</a></td>
+		<td><a href="<?php echo base_url() ?>place/edit/-1" class="btn btn-success btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New</a></td>
+	</tr>
+	<tr>
+		<td>Rank</td><td><a href="<?php echo base_url() ?>rank/listAll" class="btn btn-primary btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> List All</a></td>
+		<td><a href="<?php echo base_url() ?>rank/edit/-1" class="btn btn-success btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New</a></td>
+	</tr>
+	<tr><td>Regiment/Service</td><td><a href="<?php echo base_url() ?>regiment_service/listAll" class="btn btn-primary btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> List All</a></td>
+		<td><a href="<?php echo base_url() ?>regiment_service/edit/-1" class="btn btn-success btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New</a></td>
+	</tr>
+	<tr><td>Relation Type</td><td><a href="<?php echo base_url() ?>relation/listAll" class="btn btn-primary btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> List All</a></td>
+		<td><a href="<?php echo base_url() ?>relation/edit/-1" class="btn btn-success btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New</a></td>
+	</tr>
+	<tr><td>Service Country</td><td><a href="<?php echo base_url() ?>service_country/listAll" class="btn btn-primary btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> List All</a></td>
+		<td><a href="<?php echo base_url() ?>service_country/edit/-1" class="btn btn-success btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New</a></td>
+	<tr>
+		<td>War</td><td><a href="<?php echo base_url() ?>war/listAll" class="btn btn-primary btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> List All</a></td>
+		<td><a href="<?php echo base_url() ?>war/edit/-1" class="btn btn-success btn-xs" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New</a></td>
+	</tr>
+	</table>
+</div>
+<div class="panel panel-primary">
 	<div class="panel-heading">List of all meta pages</div>
 	<table class="table table-striped">	
 	<tr><th>ID</th><th>Title</th><th>Where used</th></tr>

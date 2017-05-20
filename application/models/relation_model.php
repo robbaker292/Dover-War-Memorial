@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class War_model extends CI_Model {
+class Relation_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -10,42 +10,30 @@ class War_model extends CI_Model {
 	}
 
 	/**
-	*       Lists the casualties from a given war
-	*/
-	public function getCasualtiesFromWar($warId) {
-		$sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, w.name FROM casualty c
-			LEFT JOIN war w ON c.war = w.id
-			WHERE w.id = ?
-			";
-		$query = $this->db->query($sql, array($warId));
-		return $query->result();
-	}
-
-	/**
-	*      List all Wars
+	*      List all Relations
 	*/
 	public function getAll() {
-		$sql = "SELECT * FROM war c;";
+		$sql = "SELECT * FROM Relation c;";
 		$query = $this->db->query($sql);
 		return $query->result();  
 	}
 
 
 	/**
-	*      List all Wars
+	*      List all Relations
 	*/
-	public function getWar($id) {
-		$sql = "SELECT * FROM war w WHERE w.id=?;";
+	public function getRelation($id) {
+		$sql = "SELECT * FROM Relation w WHERE w.id=?;";
 		$query = $this->db->query($sql, array($id));
 		return $query->result();  
 	}
 
 	/**
-    *  Updates an War
+    *  Updates an Relation
     */
-    public function editWar($basicForm) {
+    public function editRelation($basicForm) {
 
-        $sql = "UPDATE war SET name=? WHERE id=?";
+        $sql = "UPDATE relation SET name=? WHERE id=?";
         $result = $this->db->query($sql, array($basicForm['name'], $basicForm['id']));
 
         if($result) {
@@ -56,11 +44,11 @@ class War_model extends CI_Model {
     }
 
     /**
-    *       Inserts an War
+    *       Inserts an Relation
     */
-    public function addWar($basicForm) {
+    public function addRelation($basicForm) {
 
-        $sql = "INSERT INTO war (name) VALUES(?)";
+        $sql = "INSERT INTO relation (name) VALUES(?)";
         $result = $this->db->query($sql, array($basicForm['name']));
 
         if($result) {

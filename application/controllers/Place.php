@@ -1,74 +1,74 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class War extends CI_Controller {
+class Place extends CI_Controller {
 
 	public function listAll() {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 
-		$this->load->model('war_model');
-		$war_data = $this->war_model->getAll();
+		$this->load->model('place_model');
+		$place_data = $this->place_model->getAll();
 
 		$data = array(
-			'war_data' => $war_data,
+			'place_data' => $place_data,
 			'loggedIn' => $loggedIn
 		);
 
 		$this->load->view('header', array(
-			"title" => "List: War - Dover War Memorial Project"));
-		$this->load->view('war_list_view', $data);
+			"title" => "List: Place - Dover War Memorial Project"));
+		$this->load->view('place_list_view', $data);
 		$this->load->view('footer');
 	}
 
 	/**
-	*	Displays the edit page of the given war
+	*	Displays the edit page of the given place
 	*/
 	public function edit($id = null) {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 		if($loggedIn || $id==null) {
-			$this->load->model('war_model');
+			$this->load->model('place_model');
 
-			//is an war being created?
+			//is an place being created?
 			if($id == "-1") {
 				$data = array(
 					'loggedIn' => $loggedIn,
 					'new' => true
 				);
 
-				$this->load->view('header', array("title" => "Creating: War - Dover War Memorial Project"));
-				$this->load->view('war_edit_view', $data);
+				$this->load->view('header', array("title" => "Creating: Place - Dover War Memorial Project"));
+				$this->load->view('place_edit_view', $data);
 				$this->load->view('footer');
 
 			//editing rather than creating
 			} else {		
-				$war = $this->war_model->getWar($id);
+				$place = $this->place_model->getPlace($id);
 				
-				if(count($war) == 0) {
-					redirect("war/listAll");
+				if(count($place) == 0) {
+					redirect("place/listAll");
 				}
 				$data = array(
-					'war' => $war[0],
+					'place' => $place[0],
 					'loggedIn' => $loggedIn,
 					'new' => false
 				);
 
-				$this->load->view('header', array("title" => "Editing: ".$war[0]->name." - Dover War Memorial Project"));
-				$this->load->view('war_edit_view', $data);
+				$this->load->view('header', array("title" => "Editing: ".$place[0]->name." - Dover War Memorial Project"));
+				$this->load->view('place_edit_view', $data);
 				$this->load->view('footer');
 
 			}
 
 		} else {
-			redirect("war/listAll");
+			redirect("place/listAll");
 		}
 
 	}
 
 
 	/**
-	* Handles the updating of an war
+	* Handles the updating of an place
 	*/
 	public function doUpdate() {
 		//is the user logged in
@@ -79,14 +79,14 @@ class War extends CI_Controller {
 
 			//var_dump($basicForm);
 
-			$this->load->model('war_model');
+			$this->load->model('place_model');
 
 			if($basicForm['id']=="") {
 				//add new update
-				$result = $this->war_model->addWar($basicForm);
+				$result = $this->place_model->addPlace($basicForm);
 			} else {
 				//edit update
-				$result = $this->war_model->editWar($basicForm);
+				$result = $this->place_model->editPlace($basicForm);
 			}
 
 			//if the update worked
