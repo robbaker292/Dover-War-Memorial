@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alike+Angular|Work+Sans|Comfortaa">
 
     <script src="<?php echo asset_url(); ?>js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/jquery.validate.min.js"></script>
@@ -69,24 +70,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<header class="container">
 		<div class="col-md-12">
 			<h1>Dover War Memorial Project</h1>
+			<!--
 			<h2><small>Welcome to <span class="dwmp">Dover's Virtual War Memorial</span></small></h2>
-
-			<div id="patrons">
-				<h4><small>Patrons:</small></h4>
-				<h4><small>Dame Vera Lynn, CH, DBE, LL.D, M.Mus</small></h4>
-				<h4><small>Admiral of the Fleet the Lord Boyce, KG, GCB, OBE, DL<br>
-				Lord Warden and Admiral of the Cinque Ports and Constable of Dover Castle</small></h4>
+			-->
+			<div class="hidden-xs">
+				<table id="patrons">
+					<tr><td colspan="2"><small>Patrons:</small></td></tr>
+					<tr><td class="col-md-6">				
+						<small>Dame Vera Lynn, CH, DBE, LL.D, M.Mus</small>
+					</td><td class="col-md-6">
+						<small>Admiral of the Fleet the Lord Boyce, KG, GCB, OBE, DL<br>
+						Lord Warden and Admiral of the Cinque Ports and Constable of Dover Castle</small>
+					</td></tr>
+				</table>
 			</div>
-			<nav id="nav-main">
-			    <ul>
-			        <li><a href="<?php echo base_url(); ?>">Home</a></li>
-			        <li><a href="<?php echo base_url(); ?>siteUpdate">Latest News</a></li>
-			        <li><a href="<?php echo base_url(); ?>memorial/listMain">Casualty Index</a></li>
-			        <li><a href="<?php echo base_url(); ?>article">Information Index</a></li>
-			        <li><a href="<?php echo base_url(); ?>search">Search</a></li>
-			        <li><a href="#">About &amp; Contact</a></li>
-			    </ul>
-			</nav>
+			<div class="btn-group btn-group-justified">
+                <a href="<?php echo base_url(); ?>" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Home</span></h4></a>
+                <a href="<?php echo base_url(); ?>siteUpdate" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Latest News</span></h4></a>
+                <a href="<?php echo base_url(); ?>memorial/listMain" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Casualty Index</span></h4></a>
+                <a href="<?php echo base_url(); ?>article" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Articles</span></h4></a>
+                <a href="<?php echo base_url(); ?>search" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-search" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Search</span></h4></a>
+                <a href="<?php echo base_url(); ?>meta/view/contactUs" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;About &amp; Contact</span></h4></a>
+            </div>
+            <?php
+			if(isset($_SESSION['user'])) {
+            ?>
+			<div class="btn-group btn-group-justified">
+                <a href="<?php echo base_url(); ?>" class="btn btn-primary disabled"><h4 class="panel-title"><i class="fa fa-key" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logged in as:</span> <?php echo $_SESSION['user']; ?></h4></a>
+                <a href="<?php echo base_url(); ?>meta/view/admin" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Admin</span></h4></a>
+                <a href="<?php echo base_url(); ?>user/logout" class="btn btn-danger"><h4 class="panel-title"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logout</span></h4></a>
+            </div>
+            <?php
+        	}
+            ?>            
 		</div>
 	</header>
 	

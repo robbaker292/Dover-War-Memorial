@@ -9,7 +9,7 @@ $Parsedown = new ParsedownExtra();
 	<h2><?php 
 		echo $casualty_data->given_name." ".$casualty_data->family_name; 
 		if($loggedIn) {
-			echo "<small>&nbsp;<a href=\"".base_url()."casualty/edit/".$casualty_data->id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
+			echo "<small>&nbsp;<a href=\"".base_url()."casualty/edit/".$casualty_data->id."\" class=\"btn btn-primary btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit</a></small>";
 		}
 
 		?></h2>
@@ -21,12 +21,9 @@ $Parsedown = new ParsedownExtra();
 	?>
 	</div>
 	<br>
-	<div id="toggler">Click for more details <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></div>
-	<br>
-	<div id="data">
-
 	<div class="panel panel-primary">
-		<div class="panel-heading">Casualty Details</div>
+		<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapse1" class="panel-title toggler"><i class="fa fa-arrow-down" aria-hidden="true"></i>Casualty Details</a></h4></div>
+		<div id="collapse1" class="panel-collapse collapse">
 		<table class="table table-striped">
 		<?php
 			if($casualty_data->recently_uploaded == 1) {
@@ -194,7 +191,6 @@ $Parsedown = new ParsedownExtra();
 
 	?>
 	</table>
-
 	</div>
 	</div>
 

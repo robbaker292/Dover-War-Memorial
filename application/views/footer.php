@@ -7,27 +7,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <footer class="container">
     <div class="col-md-12">
         <hr>
-        <a href="<?php echo base_url(); ?>">Home</a>&nbsp;&nbsp;|&nbsp;
-        <a href="<?php echo base_url(); ?>siteUpdate">Latest News</a>&nbsp;&nbsp;|&nbsp;
-        <a href="/">Casualty Index</a>&nbsp;&nbsp;|&nbsp;
-        <a href="/">Information Index</a>&nbsp;&nbsp;|&nbsp;
-        <a href="/">Search</a>&nbsp;&nbsp;|&nbsp;
-        <a href="/">About &amp; Contact</a>&nbsp;&nbsp;|&nbsp;
-        <?php
-        if(isset($_SESSION['user'])) {
-            ?>
-           <span class="loginInfo"> Logged in as: <?php echo $_SESSION['user']; ?></span>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>meta/view/admin">Admin</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>user/logout">Logout</a>
-            <?php
-        } else {
-            ?>
-            <a href="<?php echo base_url(); ?>user/login">Login</a>
-            <?php
-        }
+            <div class="btn-group btn-group-justified footer-links">
+                <a href="<?php echo base_url(); ?>" class="btn btn-xs btn-primary"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Home</span></a>
+                <a href="<?php echo base_url(); ?>siteUpdate" class="btn btn-xs btn-primary"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Latest News</span></a>
+                <a href="<?php echo base_url(); ?>memorial/listMain" class="btn btn-xs btn-primary"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Casualty Index</span></a>
+                <a href="<?php echo base_url(); ?>article" class="btn btn-xs btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Articles</span></a>
+                <a href="<?php echo base_url(); ?>search" class="btn btn-xs btn-primary"><i class="fa fa-search" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Search</span></a>
+                <a href="<?php echo base_url(); ?>meta/view/contactUs" class="btn btn-xs btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;About &amp; Contact</span></a>
+                <?php
+                if(isset($_SESSION['user'])) {
+                    ?>
+                    <a href="<?php echo base_url(); ?>user/logout" class="btn btn-xs btn-danger"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logout</span></a>
+                    <?php
+                } else {
+                    ?>
+                    <a href="<?php echo base_url(); ?>user/login" class="btn btn-xs btn-primary"><i class="fa fa-key" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Login</span></a>
+                    <?php
+                }
 
-        ?>
+                ?>
+            </div>
     	<p class="small">
-    	This website uses cookies for various required functions.<br>
-    	Copyright 2006-<?php echo date("y"); ?> &copy; Marilyn Stephenson-Knight. All Rights Reserved
+    	This website uses cookies for various required functions. Copyright 2006-<?php echo date("y"); ?> &copy; Marilyn Stephenson-Knight. All Rights Reserved
         </p>
     </div>
 </footer>

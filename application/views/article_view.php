@@ -9,7 +9,7 @@ $Parsedown = new ParsedownExtra();
 	<h2><?php 
 		echo $article_data->title; 
 		if($loggedIn) {
-			echo "<small>&nbsp;<a href=\"".base_url()."article/edit/".$article_data->id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
+			echo "<small>&nbsp;<a href=\"".base_url()."article/edit/".$article_data->id."\" class=\"btn btn-primary btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit</a></small>";
 		}
 
 		?></h2>

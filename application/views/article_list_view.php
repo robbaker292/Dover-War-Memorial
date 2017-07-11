@@ -6,16 +6,16 @@ include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
 
 ?>
-<h2>Information Index <?php 
+<h2><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Information Index <?php 
 		if($loggedIn) {
-			echo "<a href=\"".base_url()."article/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> New</a>";
+			echo "<a href=\"".base_url()."article/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> New</a>";
 		}
 
 		?></h2>
 
 <div id="narrative"><?php echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $meta->content)); 
 		if($loggedIn) {
-			echo "<a href=\"".base_url()."meta/edit/".$meta->id."\" class=\"btn btn-primary btn-xs\" role=\"button\" >Edit This Text</a>";
+			echo "<a href=\"".base_url()."meta/edit/".$meta->id."\" class=\"btn btn-primary btn-xs\" role=\"button\" ><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit This Text</a>";
 		}
 		?>
 </div>

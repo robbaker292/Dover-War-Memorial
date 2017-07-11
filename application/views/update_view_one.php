@@ -10,7 +10,7 @@ $Parsedown = new ParsedownExtra();
 		<h2><?php 
 			echo $update->title;
 			if($loggedIn) {
-				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/".$update->id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
+				echo "&nbsp;<small><a href=\"".base_url()."siteUpdate/edit/".$update->id."\" class=\"btn btn-primary btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit</a></small>";
 			}
 		?>
 		</h2>
@@ -24,6 +24,6 @@ $Parsedown = new ParsedownExtra();
 		<p><?php echo $Parsedown->text($update->content); ?></p>
 		<h6><small>Posted:&nbsp;<?php echo $update->date; ?></small></h6>
 </div>
-<?php echo "<a href=\"".base_url()."siteUpdate/".$update->year."\">Return to all ".$update->year." updates</a>"; ?>
+<?php echo "<a href=\"".base_url()."siteUpdate/".$update->year."\" class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\" aria-hidden=\"true\"></i> Return to all ".$update->year." updates</a>"; ?>
 
 	

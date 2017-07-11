@@ -7,12 +7,12 @@ $Parsedown = new ParsedownExtra();
 
 //var_dump($updates);
 ?>
-<h2>Changes from <?php echo $year;?></h2>
+<h2><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Changes from <?php echo $year;?></h2>
 <?php
 
 
 ?>
-<h6><a href="<?php echo base_url()."siteUpdate"; ?>">View site updates</a></h6>
+<h6><a href="<?php echo base_url()."siteUpdate"; ?>" class="btn btn-primary"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;View site updates</a></h6>
 <div id="updates">
 	
 	<?php
@@ -53,7 +53,7 @@ $Parsedown = new ParsedownExtra();
 
 
 <div class="panel panel-primary">
-	<div class="panel-heading">Previous Changes</div>
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Previous Changes</h4></div>
 	<table class="table table-striped">
 		<tr><th>Year</th><th>Updates</th></tr>
 		<?php

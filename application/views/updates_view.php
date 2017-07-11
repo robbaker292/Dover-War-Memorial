@@ -7,16 +7,16 @@ $Parsedown = new ParsedownExtra();
 
 //var_dump($updates);
 ?>
-<h2>Updates from <?php echo $year;
+<h2><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;News from <?php echo $year;
  			if($loggedIn) {
-				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> New</a></small>";
+				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> New</a></small>";
 			}
 			?></h2>
 <?php
 
 
 ?>
-<h6><a href="<?php echo base_url()."siteUpdate/changes"; ?>">View change log</a></h6>
+<h6><a href="<?php echo base_url()."siteUpdate/changes"; ?>" class="btn btn-primary"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;View change log</a></h6>
 <hr>
 <div id="updates">
 <?php
@@ -26,7 +26,7 @@ $Parsedown = new ParsedownExtra();
 		<h3><?php 
 			echo "<a href=\"".base_url()."siteUpdate/view/".$update->id."\">".$update->title."</a>";
 			if($loggedIn) {
-				echo "<small>&nbsp;<a href=\"".base_url()."siteUpdate/edit/".$update->id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
+				echo "&nbsp;<small><a href=\"".base_url()."siteUpdate/edit/".$update->id."\" class=\"btn btn-primary btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit</a></small>";
 			}
 		?>
 		</h3>
@@ -47,7 +47,7 @@ $Parsedown = new ParsedownExtra();
 
 
 <div class="panel panel-primary">
-	<div class="panel-heading">Previous Updates</div>
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Previous Updates</h4></div>
 	<table class="table table-striped">
 		<tr><th>Year</th><th>Updates</th></tr>
 		<?php

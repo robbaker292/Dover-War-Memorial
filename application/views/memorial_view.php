@@ -8,7 +8,7 @@ $Parsedown = new ParsedownExtra();
 <?php
 	echo "<h2>".$item_name;
 		if($loggedIn) {
-			echo "<small>&nbsp;<a href=\"".base_url()."memorial/edit/".$item_id."\" class=\"btn btn-primary btn-xs\" role=\"button\">Edit</a></small>";
+			echo "&nbsp;<small><a href=\"".base_url()."memorial/edit/".$item_id."\" class=\"btn btn-primary btn-xs\" role=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit</a></small>";
 		}
 	echo "</h2>"; 
 	echo "<div class=\"hidden\" id=\"item_id\">".$item_id."</div>"; 
@@ -27,7 +27,7 @@ $Parsedown = new ParsedownExtra();
 	</div>
 
 <div class="panel panel-primary">
-	<div class="panel-heading">Commemorated Here</div>
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Commemorated Here</h4></div>
 	<div class="panel-body">
 		<div class="text-center">
 			<div id="warButtons" class="btn-group middle" data-toggle="buttons">
