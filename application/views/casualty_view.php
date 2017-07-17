@@ -132,7 +132,9 @@ $Parsedown = new ParsedownExtra();
 			echo "<a href=\"".base_url()."search/index/data/data/service_country=".$casualty_data->scId."/1\">";
 			echo $casualty_data->country;
 			echo "</a>";
-			echo "&nbsp;<img src=\"".asset_url().$casualty_data->flag."\" alt=\"".$casualty_data->country."\">";
+			if($casualty_data->flag != "") {
+				echo "&nbsp;<img class=\"flag\" src=\"".asset_url().$casualty_data->flag."\" alt=\"".$casualty_data->country."\">";
+			}			
 			echo "</td></tr>";
 		}
 

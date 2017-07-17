@@ -148,3 +148,7 @@ tr.clickableRow {
 a.toggler .fa:after {
     content: "\00a0";
 }
+
+.flag {
+  max-height: 1.2em;
+}

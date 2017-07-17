@@ -13,7 +13,9 @@ class Casualty_model extends CI_Model {
     * Returns all the data about the given casualty
     */
     public function getCasualty($id) {
-        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, c.unsure_details, frp.name AS 'final_resting_place', frp.id AS 'frpId', r.name AS 'rank', r.id AS 'rId', w.name AS 'war', w.id AS 'wId', sc.name AS 'country', sc.id AS 'scId', pb.name AS 'place_of_birth', pb.id AS 'pbId', lka.name AS 'last_known_address', lka.id AS 'lkaId', last_known_address_year, scf.flag FROM casualty c
+        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, c.unsure_details, frp.name AS 'final_resting_place', frp.id AS 'frpId', r.name AS 'rank', r.id AS 'rId', w.name AS 'war', w.id AS 'wId', sc.name AS 'country', sc.id AS 'scId', pb.name AS 'place_of_birth', pb.id AS 'pbId', lka.name AS 'last_known_address', lka.id AS 'lkaId', last_known_address_year, 
+            (SELECT flag FROM service_country_flag scf WHERE scf.country_id = sc.id AND (scf.start < c.date_of_death OR scf.start IS NULL) AND (scf.end > c.date_of_death OR scf.end IS NULL) ) AS 'flag' 
+            FROM casualty c
             LEFT JOIN commemoration_location frp ON c.final_resting_place = frp.id
             LEFT JOIN war w ON c.war = w.id
             LEFT JOIN rank r ON c.rank_at_death = r.id

@@ -1,25 +1,4 @@
 $(document).ready( function() {
-
-
-	/**
-	*	Create map
-	*/
-	function initMap() {
-		var map = new ol.Map({
-			target: 'map',
-			layers: [
-			 	new ol.layer.Tile({
-			    	source: new ol.source.OSM()
-			 	})
-
-			],
-			view: new ol.View({
-		  		center: ol.proj.fromLonLat([ +$("#lon").text() , +$("#lat").text() ]),
-				zoom: 14
-			})
-		});
-      }
-
 	var war, letter;
 
 	/**
@@ -112,7 +91,6 @@ $(document).ready( function() {
 	war = 0;
 	letter = 'A';
 	loadCasualties();
-	initMap();
 
 	/**
 	* Responds to the user selecting a new war or letter
