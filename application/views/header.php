@@ -20,7 +20,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo asset_url(); ?>js/jquery.validate.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/bootbox.min.js"></script>
-    <script src="<?php echo asset_url(); ?>js/navbar.js"></script>
 
     <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'view') { ?>
     		<script src="<?php echo asset_url(); ?>js/ol.js"></script>			<!-- maps -->
