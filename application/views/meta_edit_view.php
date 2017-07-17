@@ -38,7 +38,7 @@ $Parsedown = new ParsedownExtra();
 				<textarea class="form-control" rows="15" id="narrative" placeholder="Enter Content" name="content"><?php if(!$new) { echo $meta->content; }?></textarea>
 				<div class="help-block">Use Markdown to specify formatting. <a href="<?php echo base_url();?>meta/view/markdown" target="_blank">Help is available</a>. Click below to preview content.</div>
 				<button type="button" class="btn btn-default" id="markdownPreview">Preview Below</button>
-				<div id="markdownPreviecategory_idea"></div>
+				<div id="markdownPreview"></div>
 			</div>
 		</div>
 

@@ -128,8 +128,12 @@ tr.clickableRow {
   display: none;
 }
 
-#narrative, #dataForm {
+#dataForm {
   overflow: hidden;
+}
+
+#narrative {
+  overflow: auto;
 }
 
 .error-block {
