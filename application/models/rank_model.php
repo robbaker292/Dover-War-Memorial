@@ -48,11 +48,24 @@ class Rank_model extends CI_Model {
     */
     public function addRank($basicForm) {
 
-        $sql = "INSERT INTO rank (name) VALUES(?,?,?)";
+        $sql = "INSERT INTO rank (name) VALUES(?)";
         $result = $this->db->query($sql, array($basicForm['name']));
 
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
+    /**
+    *   Deletes a Rank
+    */
+    public function deleteRank($id) {
+        $sql = "DELETE FROM rank WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }

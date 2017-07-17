@@ -153,8 +153,33 @@ class Article extends CI_Controller {
    			header('Content-Type: application/json; charset=UTF-8');
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
-		
-		
+	}
+
+	/**
+	*	Deletes a article
+	*/
+	public function delete($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('article_model');
+			$result = $this->article_model->deleteArticle($id);
+			//if the update worked
+			if($result["type"] == "success") {
+				//var_dump($result);
+				redirect("article");
+			} else {
+				//output the error message :(
+				header('HTTP/1.1 500 Internal Server Error');
+	   			header('Content-Type: application/json; charset=UTF-8');
+	    		die(json_encode($result));
+			}
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
 	}
 
 }

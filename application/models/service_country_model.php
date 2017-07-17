@@ -49,7 +49,7 @@ class Service_Country_model extends CI_Model {
     public function addService_Country($basicForm) {
 
         $sql = "INSERT INTO service_country (id, name) VALUES(?,?)";
-        $result = $this->db->query($sql, array($basicForm['id'], $basicForm['name']));
+        $result = $this->db->query($sql, array($basicForm['new_id'], $basicForm['name']));
 
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
@@ -57,5 +57,19 @@ class Service_Country_model extends CI_Model {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
     }
+
+    /**
+    *   Deletes a Service_Country
+    */
+    public function deleteService_Country($id) {
+        $sql = "DELETE FROM service_country WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
 
 }

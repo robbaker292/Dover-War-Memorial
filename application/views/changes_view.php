@@ -7,6 +7,32 @@ $Parsedown = new ParsedownExtra();
 
 //var_dump($updates);
 ?>
+<script>
+$(document).on("click", ".btn-delete", function(e) {
+	var changeId = $(this).first().data("changeid")
+	bootbox.confirm({ 
+		size: "large",
+		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
+		message: "This will delete the current change log item.<br>This CANNOT be undone",
+		buttons: {
+			confirm: {
+				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',
+				className: 'btn-danger'
+			},
+			cancel: {
+				label: '<i class="fa fa-ban" aria-hidden="true"></i>&nbsp;&nbsp;Cancel',
+				className: 'btn-primary'
+			}
+		}, 
+		callback: function(result){ 
+			if(result) {
+				window.location.href = "<?php echo base_url()."siteUpdate/deleteChangeLog/"; ?>"+changeId;
+			}
+		}
+	});
+});
+</script>
+
 <h2><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Changes from <?php echo $year;?></h2>
 <?php
 
@@ -25,20 +51,24 @@ $Parsedown = new ParsedownExtra();
 			?>
 			<table class="table table-striped table-condensed">
 				<tr>
+					<th>Id</th>
 					<th>Date</th>
 					<th>Type</th>
 					<th>Description</th>
 					<th>View</th>
+					<th>Delete</th>
 				</tr>
 
 				<?php
 				foreach ($updates as $update) {
 					?>
 					<tr>
+						<td><?php echo $update->id ?></td>
 						<td><?php echo $update->date ?></td>
 						<td><?php echo ucfirst($update->name) ?></td>
 						<td><?php echo $update->description ?></td>
-						<td><a href="<?php echo base_url().$update->name."/view/".$update->item_id; ?>"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+						<td><a href="<?php echo base_url().$update->name."/view/".$update->item_id; ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+						<td><a href="#" class="btn btn-danger btn-xs btn-delete" role="button" data-changeid="<?php echo $update->id ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 					</tr>
 					<?php
 				}

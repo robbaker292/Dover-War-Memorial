@@ -107,8 +107,33 @@ class Place extends CI_Controller {
    			header('Content-Type: application/json; charset=UTF-8');
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
-		
-		
+	}
+
+	/**
+	*	Deletes a place
+	*/
+	public function delete($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('place_model');
+			$result = $this->place_model->deletePlace($id);
+			//if the update worked
+			if($result["type"] == "success") {
+				//var_dump($result);
+				redirect("place/listAll");
+			} else {
+				//output the error message :(
+				header('HTTP/1.1 500 Internal Server Error');
+	   			header('Content-Type: application/json; charset=UTF-8');
+	    		die(json_encode($result));
+			}
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
 	}
 
 }

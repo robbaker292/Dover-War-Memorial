@@ -58,4 +58,17 @@ class Relation_model extends CI_Model {
         }
     }
 
+    /**
+    *   Deletes a Relation
+    */
+    public function deleteRelation($id) {
+        $sql = "DELETE FROM relation WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
 }

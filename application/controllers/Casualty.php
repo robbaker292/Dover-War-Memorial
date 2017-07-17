@@ -62,61 +62,77 @@ class Casualty extends CI_Controller {
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 		if($loggedIn) {
-
 			$this->load->model('casualty_model');
 			$this->load->model('general_model');
 
-			$casualty_data = $this->casualty_model->getCasualtyBasic($id);
+			//is a new casualty being created?
+			if($id == "-1") {
+				$data = array(
+					'loggedIn' => $loggedIn,
+					'new' => true,
+					'warList' => $this->general_model->getWars(),
+					'commemorationLocationList' => $this->general_model->getCommemorationLocations(),
+					'regimentList' => $this->general_model->getRegiments(),
+					'rankList' => $this->general_model->getRanks(),
+					'countryList' => $this->general_model->getCountries(),
+					'placeList' => $this->general_model->getPlaces(),
+				);
+				$this->load->view('header', array(
+					"title" => "Creating: Casualty - Dover War Memorial Project"));
+				$this->load->view('casualty_edit_view', $data);
+				$this->load->view('footer');
 
-			//redirect if invalid url
-			if(count($casualty_data) == 0) {
-				redirect(site_url());
+			} else {
+
+				$casualty_data = $this->casualty_model->getCasualtyBasic($id);
+
+				//redirect if invalid url
+				if(count($casualty_data) == 0) {
+					redirect(site_url());
+				}
+
+				$regiment_data = $this->casualty_model->getRegimentService($id);
+				$service_numbers = $this->casualty_model->getServiceNumbers($id);
+				$commemorations = $this->casualty_model->getCommemorations($id);
+				$relation_data = $this->casualty_model->getRelations($id);
+				$casualties = $this->casualty_model->getAllCasualties();
+				$relationTypes = $this->casualty_model->getRelationTypes();
+
+				$commemorationIds = array();
+				foreach($commemorations as $id) {
+					$commemorationIds[] = $id->id;
+				}
+				
+				$regimentIds = array();
+				foreach($regiment_data as $id) {
+					$regimentIds[] = $id->id;
+				}
+
+				$data = array(
+					'casualty_data' => $casualty_data[0],
+					'warList' => $this->general_model->getWars(),
+					'commemorationLocationList' => $this->general_model->getCommemorationLocations(),
+					'regimentList' => $this->general_model->getRegiments(),
+					'rankList' => $this->general_model->getRanks(),
+					'countryList' => $this->general_model->getCountries(),
+					'placeList' => $this->general_model->getPlaces(),
+					'relations' => $relation_data,
+					'regiment_data' => $regiment_data,
+					'service_numbers' => $service_numbers,
+					'commemorations' => $commemorations,
+					'commemorationIds' => $commemorationIds,
+					'regimentIds' => $regimentIds,
+					'casualties' => $casualties,
+					'relationTypes' => $relationTypes,
+					"loggedIn" => $loggedIn,
+					"new" => false
+				);
+
+				$this->load->view('header', array(
+					"title" => "Editing: ".$casualty_data[0]->given_name." ".$casualty_data[0]->family_name." - Dover War Memorial Project"));
+				$this->load->view('casualty_edit_view', $data);
+				$this->load->view('footer');
 			}
-
-			$regiment_data = $this->casualty_model->getRegimentService($id);
-			$service_numbers = $this->casualty_model->getServiceNumbers($id);
-			$commemorations = $this->casualty_model->getCommemorations($id);
-			$relation_data = $this->casualty_model->getRelations($id);
-			$casualties = $this->casualty_model->getAllCasualties();
-			$relationTypes = $this->casualty_model->getRelationTypes();
-
-			$commemorationIds = array();
-			foreach($commemorations as $id) {
-				$commemorationIds[] = $id->id;
-			}
-			
-			$regimentIds = array();
-			foreach($regiment_data as $id) {
-				$regimentIds[] = $id->id;
-			}
-
-			$slug = $casualty_data[0]->given_name."-".$casualty_data[0]->family_name;
-
-			$data = array(
-				'casualty_data' => $casualty_data[0],
-				'warList' => $this->general_model->getWars(),
-				'commemorationLocationList' => $this->general_model->getCommemorationLocations(),
-				'regimentList' => $this->general_model->getRegiments(),
-				'rankList' => $this->general_model->getRanks(),
-				'countryList' => $this->general_model->getCountries(),
-				'placeList' => $this->general_model->getPlaces(),
-				'relations' => $relation_data,
-				'regiment_data' => $regiment_data,
-				'service_numbers' => $service_numbers,
-				'commemorations' => $commemorations,
-				'commemorationIds' => $commemorationIds,
-				'regimentIds' => $regimentIds,
-				'casualties' => $casualties,
-				'relationTypes' => $relationTypes,
-				"loggedIn" => $loggedIn,
-				"new" => false
-			);
-
-			$this->load->view('header', array(
-				"title" => "Editing: ".$casualty_data[0]->given_name." ".$casualty_data[0]->family_name." - Dover War Memorial Project"));
-			$this->load->view('casualty_edit_view', $data);
-			$this->load->view('footer');
-
 
 		} else {
 			redirect("casualty/view/".$id);
@@ -143,7 +159,13 @@ class Casualty extends CI_Controller {
 			$this->load->model('casualty_model');
 
 			//update casualty
-			$result = $this->casualty_model->updateCasualty($id, $basicForm);
+			if($basicForm['id']=="") {
+				//add new update
+				$result = $this->casualty_model->updateCasualty(-1, $basicForm);
+			} else {
+				//edit update
+				$result = $this->casualty_model->updateCasualty($id, $basicForm);
+			}
 
 			//if the update worked
 			if($result["type"] == "success") {
@@ -349,6 +371,33 @@ echo "
 			</div>
 
 			";
+	}
+
+	/**
+	*	Deletes a casualty
+	*/
+	public function delete($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('casualty_model');
+			$result = $this->casualty_model->deleteCasualty($id);
+			//if the update worked
+			if($result["type"] == "success") {
+				//var_dump($result);
+				redirect("memorial/listMain");
+			} else {
+				//output the error message :(
+				header('HTTP/1.1 500 Internal Server Error');
+	   			header('Content-Type: application/json; charset=UTF-8');
+	    		die(json_encode($result));
+			}
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
 	}
 
 }

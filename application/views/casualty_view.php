@@ -136,6 +136,14 @@ $Parsedown = new ParsedownExtra();
 			echo "</td></tr>";
 		}
 
+		if($casualty_data->place_of_birth != "") {
+			echo "<tr><th class=\"col-sm-3\">Place Of Birth</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/place_of_birth=".$casualty_data->pbId."/1\">";
+			echo $casualty_data->place_of_birth;
+			echo "</a>";
+			echo "</td></tr>";
+		}
+
 		if($casualty_data->last_known_address != "") {
 			echo "<tr><th class=\"col-sm-3\">Last Known Address</th><td>";
 			echo "<a href=\"".base_url()."search/index/data/data/last_known_address=".$casualty_data->lkaId."/1\">";

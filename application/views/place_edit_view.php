@@ -6,11 +6,41 @@ include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
 
 ?>
+<script>
+$(document).on("click", ".btn-delete", function(e) {
+	bootbox.confirm({ 
+		size: "large",
+		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
+		message: "This will delete the current place.<br>All Casualties with this place will be set to have no place.<br>This CANNOT be undone",
+		buttons: {
+			confirm: {
+				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',
+				className: 'btn-danger'
+			},
+			cancel: {
+				label: '<i class="fa fa-ban" aria-hidden="true"></i>&nbsp;&nbsp;Cancel',
+				className: 'btn-primary'
+			}
+		}, 
+		callback: function(result){ 
+			if(result) {
+				window.location.href = <?php echo "\"".base_url()."place/delete/".$place->id."\""; ?>;
+			}
+		}
+	});
+});
+</script>
 	<?php
 	if ($new) {
 		echo "<h2>New Place</h2>";
 	} else {		
-		echo "<h2>Editing Place</h2>";
+		echo "<h2>Editing Place";
+		?>
+		<a href="#" class="btn btn-danger btn-md pull-right btn-delete" role="button">
+			<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete Place
+		</a>
+		</h2>
+		<?php
 	}	
 	?>
 

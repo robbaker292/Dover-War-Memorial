@@ -14,11 +14,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/navbar.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alike+Angular|Work+Sans|Comfortaa">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
 
     <script src="<?php echo asset_url(); ?>js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/jquery.validate.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo asset_url(); ?>js/bootbox.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/navbar.js"></script>
 
     <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'view') { ?>

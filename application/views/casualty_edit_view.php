@@ -5,13 +5,40 @@ include APPPATH . 'third_party/Parsedown.php';
 include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
 ?>
-
+<script>
+$(document).on("click", ".btn-delete", function(e) {
+	bootbox.confirm({ 
+		size: "large",
+		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
+		message: "This will delete the current casualty.<br>This CANNOT be undone",
+		buttons: {
+			confirm: {
+				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',
+				className: 'btn-danger'
+			},
+			cancel: {
+				label: '<i class="fa fa-ban" aria-hidden="true"></i>&nbsp;&nbsp;Cancel',
+				className: 'btn-primary'
+			}
+		}, 
+		callback: function(result){ 
+			if(result) {
+				window.location.href = <?php echo "\"".base_url()."casualty/delete/".$casualty_data->id."\""; ?>;
+			}
+		}
+	});
+});
+</script>
 	<?php
 	if ($new) {
 		echo "<h2>New Casualty</h2>";
 	} else {
 		?>
 			<h2>Editing: <?php echo $casualty_data->given_name." ".$casualty_data->family_name; ?></h2>
+		<a href="#" class="btn btn-danger btn-md pull-right btn-delete" role="button">
+			<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete Casualty
+		</a>
+		</h2>
 		<?php
 	}	
 	?>
@@ -279,8 +306,19 @@ $Parsedown = new ParsedownExtra();
 
 		<div class="form-group">
 			<div class="btn-group" role="group" aria-label="...">
-				<button type="button" class="btn btn-primary <?php if($new) { echo "disabled"; }?>" id="saveBasic">Save and continue with editing</button>
-				<button type="button" class="btn btn-primary" id="saveReturn">Save and return to casualty</button>
+			<?php
+				if($new) {
+					?>
+						<button type="button" class="btn btn-primary" id="saveNew">Save and continue with editing</button>
+					<?php
+				}
+				else {
+					?>
+						<button type="button" class="btn btn-primary" id="saveBasic">Save and continue with editing</button>
+						<button type="button" class="btn btn-primary" id="saveReturn">Save and return to casualty</button>
+					<?php
+				}
+			?>
 			</div>
 			<div id="saveResult">
 				<?php
@@ -299,6 +337,8 @@ $Parsedown = new ParsedownExtra();
 			<?php if($new) { echo "<div class=\"help-block\">Casualty must be saved before below sections can be completed</div>"; } ?>
 		</div>
 	</form>
+
+	<?php if(!$new) {?>
  	<hr>
 	<h3>Commemorations Data:</h3>
 	<form id="commemorationForm">
@@ -510,4 +550,6 @@ $Parsedown = new ParsedownExtra();
 		<div class="alert alert-success" role="alert" id="saveAllResultChangedDetails"><i class="fa fa-check" aria-hidden="true"></i><strong>Saved</strong></div>
 		</div>
 	</form>
+
+	<?php }?>
 </div>

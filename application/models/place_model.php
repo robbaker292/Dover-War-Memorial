@@ -58,4 +58,17 @@ class Place_model extends CI_Model {
         }
     }
 
+    /**
+    *   Deletes a Place
+    */
+    public function deletePlace($id) {
+        $sql = "DELETE FROM place WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
 }

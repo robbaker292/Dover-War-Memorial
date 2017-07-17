@@ -38,7 +38,7 @@ $Parsedown = new ParsedownExtra();
 			    <input type="radio" name="item_<?php echo $item_id; ?>" value="2" autocomplete="off"> World War Two
 			  </label>
 			  <label class="btn btn-default active">
-			    <input type="radio" name="item_<?php echo $item_id; ?>" value="0" autocomplete="off"> Both
+			    <input type="radio" name="item_<?php echo $item_id; ?>" value="0" autocomplete="off"> All
 			  </label>
 			</div>
 			<p></p>

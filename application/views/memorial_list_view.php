@@ -11,6 +11,7 @@ $Parsedown = new ParsedownExtra();
 <h2><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Casualty Index <?php 
 		if($loggedIn) {
 			echo "<a href=\"".base_url()."memorial/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> New Memorial</a>";
+			echo "<a href=\"".base_url()."casualty/edit/-1\" class=\"btn btn-success btn-xs\" role=\"button\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> New Casualty</a>";
 		}
 
 		?></h2>

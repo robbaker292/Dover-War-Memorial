@@ -74,4 +74,17 @@ class Article_model extends CI_Model {
         }
     }
 
+    /**
+    *   Deletes a article
+    */
+    public function deleteArticle($id) {
+        $sql = "DELETE FROM article WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
 }

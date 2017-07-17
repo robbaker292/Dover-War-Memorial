@@ -123,12 +123,25 @@ class Memorial_model extends CI_Model {
     */
     public function addMemorial($basicForm) {
 
-        $sql = "INSERT INTO article (name, narrative, location, lat, lon, mainOrder) VALUES(?,?,?,?,?,?)";
+        $sql = "INSERT INTO commemoration_location (name, narrative, location, lat, lon, mainOrder) VALUES(?,?,?,?,?,?)";
         $result = $this->db->query($sql, array($basicForm['name'], $basicForm['narrative'], $basicForm['location'], 
             $basicForm['lat'], $basicForm['lon'], $basicForm['mainOrder']));
 
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
+    /**
+    *   Deletes a memorial
+    */
+    public function deleteMemorial($id) {
+        $sql = "DELETE FROM commemoration_location WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }

@@ -75,6 +75,27 @@ $(document).ready( function() {
 	});
 
     /**
+    *   Saves the current casualty in the DB and returns to the reloaded edit page, but with the new ID
+    */
+    $("#saveNew").click(function() {
+        var basicForm = $("#basicForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "../doUpdate/1",
+            data: basicForm,
+            dataType: "json",
+            success: function(data) {
+                //console.log(data);
+                window.location.href = "../edit/"+data.insert_id;
+            },
+            error: function(data) {
+                $("#saveResult").text(data);
+            }
+        });
+
+    });
+
+    /**
     *   Adds another relation option
     */
     $("#relationAdder").click(function() {

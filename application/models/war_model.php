@@ -70,4 +70,17 @@ class War_model extends CI_Model {
         }
     }
 
+    /**
+    *   Deletes a war
+    */
+    public function deleteWar($id) {
+    	$sql = "DELETE FROM war WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
+        if($result) {
+            return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
+        } else {
+            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
+        }
+    }
+
 }
