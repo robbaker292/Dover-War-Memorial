@@ -149,6 +149,11 @@ class Memorial extends CI_Controller {
 				$result = $this->memorial_model->editMemorial($basicForm);
 			}
 
+			if($basicForm['mainOrder'] == "") {
+				$basicForm['mainOrder'] = null;
+			}
+
+
 			//if the update worked
 			if($result["type"] == "success") {
 				//store the result data
@@ -195,6 +200,33 @@ class Memorial extends CI_Controller {
    			header('Content-Type: application/json; charset=UTF-8');
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
+	}
+
+
+	/**
+	* Lists all the memorials
+	*/
+	public function map() {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+
+		$data = array(
+			"loggedIn" => $loggedIn
+		);
+
+		$this->load->view('header', array("title" => "Memorial Map - Dover War Memorial Project"));
+		$this->load->view('memorial_map_view', $data);
+		$this->load->view('footer');
+	}
+
+	/**
+	*	Gets the map data
+	*/
+	public function getMapData() {
+		$this->load->model('memorial_model');
+		$memorials = $this->memorial_model->getMemorialsWithCoords(true);
+		echo json_encode($memorials);
+
 	}
 
 }

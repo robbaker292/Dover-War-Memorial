@@ -21,13 +21,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/bootbox.min.js"></script>
 
-    <?php if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'view') { ?>
+    <?php if($this->uri->segment(1) == 'memorial' && ($this->uri->segment(2) == 'view' || $this->uri->segment(2) == 'map') ) { ?>
     		<script src="<?php echo asset_url(); ?>js/ol.js"></script>			<!-- maps -->
-			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/ol.css"> <!-- maps -->
-			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
+			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/ol.css"> <!-- maps -->			
 			<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/map.css">
 
-	<?php } else if($this->uri->segment(1) == 'memorial') { ?>
+	<?php }
+
+		if($this->uri->segment(1) == 'memorial' && $this->uri->segment(2) == 'view') { ?>
+			<script src="<?php echo asset_url(); ?>js/memorial.js"></script>
+			<script src="<?php echo asset_url(); ?>js/casualtyMenu.js"></script>
+
+	<?php } else if($this->uri->segment(1) == 'memorial' && ($this->uri->segment(2) != 'map')) { ?>
 			<script src="<?php echo asset_url(); ?>js/memorial.js"></script>
 
 	<?php } else if($this->uri->segment(1) == 'casualty') { ?>

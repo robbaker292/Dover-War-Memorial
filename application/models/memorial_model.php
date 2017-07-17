@@ -18,6 +18,19 @@ class Memorial_model extends CI_Model {
             return $query->result();
     }
 
+    /*
+    * Returns all the data about all memorials, with lat and lon
+    */
+    public function getMemorialsWithCoords() {
+            $sql = "SELECT cl.id, cl.name, cl.lat, cl.lon, COUNT(c.commemoration_location_id) AS casualties FROM commemoration_location cl
+                    LEFT JOIN commemoration_location_casualty c ON c.commemoration_location_id = cl.id                    
+                    WHERE lat IS NOT NULL AND lon IS NOT NULL
+                    GROUP BY c.commemoration_location_id
+            ";
+            $query = $this->db->query($sql);
+            return $query->result();
+    }
+
     /**
     *       Lists the casualties from a memorial
     */
@@ -91,9 +104,9 @@ class Memorial_model extends CI_Model {
                 LEFT JOIN commemoration_location_casualty c ON c.commemoration_location_id = cl.id
             ";
             if($mainSection) {
-                $sql .= " WHERE mainOrder IS NOT NULL ";
+                $sql .= " WHERE mainOrder IS NOT NULL AND mainOrder > 0";
             } else {
-                 $sql .= " WHERE mainOrder IS NULL ";
+                 $sql .= " WHERE mainOrder IS NULL OR mainOrder = 0";
             } 
             $sql .="   GROUP BY c.commemoration_location_id
                 ORDER BY mainOrder

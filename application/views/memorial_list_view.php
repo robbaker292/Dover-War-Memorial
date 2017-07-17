@@ -23,6 +23,9 @@ $Parsedown = new ParsedownExtra();
 		?>
 </div>
 <br>
+<div>
+<a href="<?php echo base_url()."memorial/map"; ?>" class="btn btn-success btn-md" role="button"><i class="fa fa-globe" aria-hidden="true"></i> View Memorial Map</a>
+</div><br>
 <div class="panel panel-primary">
 	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp;Memorials</h4></div>
 	<table class="table table-striped">

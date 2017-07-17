@@ -5,7 +5,7 @@ $(document).ready( function() {
 	*/
     function submitForm() {
 		var basicForm = $("#basicForm").serialize();
-		console.log(basicForm);
+		//console.log(basicForm);
 		$.ajax({
             type: "POST",
             url: "../doUpdate",
