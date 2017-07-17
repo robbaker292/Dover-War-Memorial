@@ -34,7 +34,10 @@ $(document).on("click", ".btn-delete", function(e) {
 		echo "<h2>New Casualty</h2>";
 	} else {
 		?>
-			<h2>Editing: <?php echo $casualty_data->given_name." ".$casualty_data->family_name; ?></h2>
+			<h2>Editing: <?php echo $casualty_data->given_name." ".$casualty_data->family_name; ?>
+
+			<a href="<?php echo base_url()."casualty/view/".$casualty_data->id?>" class="btn btn-primary btn-md" role="button"><i class="fa fa-arrow-left" aria-hidden="true"></i> View</a>
+			
 		<a href="#" class="btn btn-danger btn-md pull-right btn-delete" role="button">
 			<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete Casualty
 		</a>

@@ -36,6 +36,7 @@ $(document).on("click", ".btn-delete", function(e) {
 	} else {		
 		echo "<h2>Editing Article";
 		?>
+		<a href="<?php echo base_url()."article/view/".$article->id?>" class="btn btn-primary btn-md" role="button"><i class="fa fa-arrow-left" aria-hidden="true"></i> View</a>
 		<a href="#" class="btn btn-danger btn-md pull-right btn-delete" role="button">
 			<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete Article
 		</a>

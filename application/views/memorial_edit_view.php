@@ -36,6 +36,8 @@ $(document).on("click", ".btn-delete", function(e) {
 	} else {		
 		echo "<h2>Editing Memorial";
 		?>
+		<a href="<?php echo base_url()."memorial/view/".$memorial->id?>" class="btn btn-primary btn-md" role="button"><i class="fa fa-arrow-left" aria-hidden="true"></i> View</a>
+			
 		<a href="#" class="btn btn-danger btn-md pull-right btn-delete" role="button">
 			<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete Memorial
 		</a>
