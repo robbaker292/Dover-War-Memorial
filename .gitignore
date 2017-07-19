@@ -29,6 +29,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 assets/flags/*
 assets/pictures
 application/config/config.php
+application/config/database.php
 application/models/login_model.php
 
 ## Core latex/pdflatex auxiliary files:
