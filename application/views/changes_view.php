@@ -56,7 +56,13 @@ $(document).on("click", ".btn-delete", function(e) {
 					<th>Type</th>
 					<th>Description</th>
 					<th>View</th>
+					<?php
+					if($loggedIn) {
+						?>
 					<th>Delete</th>
+					<?php
+				}
+					?>
 				</tr>
 
 				<?php
@@ -68,7 +74,13 @@ $(document).on("click", ".btn-delete", function(e) {
 						<td><?php echo ucfirst($update->name) ?></td>
 						<td><?php echo $update->description ?></td>
 						<td><a href="<?php echo base_url().$update->name."/view/".$update->item_id; ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
-						<td><a href="#" class="btn btn-danger btn-xs btn-delete" role="button" data-changeid="<?php echo $update->id ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+						<?php
+						if($loggedIn) {
+							?>
+							<td><a href="#" class="btn btn-danger btn-xs btn-delete" role="button" data-changeid="<?php echo $update->id ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+							<?php
+						}
+						?>
 					</tr>
 					<?php
 				}

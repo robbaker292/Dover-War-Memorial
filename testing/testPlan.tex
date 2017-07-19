@@ -1,0 +1,373 @@
+\documentclass[12pt]{article}
+
+\usepackage{wasysym}
+
+\newcounter{Test}
+\newcommand{\test}[1]{%
+\stepcounter{Test}%
+\paragraph{Test \theTest} \textbf{#1} }
+
+\title{Dover War Memorial Project - Testing}
+\date{}
+\author{}
+%%%%% document start
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This document lists all the testing that must be taken place to ensure the site is bug free. I have done all these tests myself, but having been so closely involved in the design and construction of the site, someone else must also complete this. It will also allow you to spot any processes that you may find unusual, tricky, annoying or just incorrect. Any comments along the way on the actual processes, as well as the design and styling, are of great use. It is, after all, you who will be both using and maintaining the site. \smiley
+
+\section{Notes}
+Buttons on screen are labelled in \textit{italics}, with text to be entered or displayed in \texttt{monospace}. Errors in links display a default 404 error page. This will be changed, but doing so would affect the Wedding website, so I haven't done that yet.
+
+\section{Navigation}
+
+These tests should ensure that the navigation is working as intended. If it is not, then the other tests might be a bit difficult(/annoying). These tests only need to be completed once, as the code is shared between all pages.
+
+Navigate to \texttt{http://www.baker-wedding.org.uk/Dover-War-Memorial}. Note that the capitals are correct - this is a testing location, and on the real site, the link will be the same as before.
+\test {Does the home page load correctly?}
+Upon loading, the home page should be displayed. This will have the main title, followed by patrons, the top bar, the main blurb for the home page (contained within the pieces of paper effect), the bottom bar and copyright notice.
+
+\test{Does the home page link work correctly? (Top)}
+The left most button on the top bar should simply reload the page.
+
+\test{Does the home page link work correctly? (Bottom)}
+The left most button on the bottom bar should simply reload the page.
+
+\test{Does the Latest News link work correctly? (Top)}
+The second button on the top bar should load up the latest news for 2017. More on this in Section~\ref{sec:siteUpdate}.
+
+\test{Does the Latest News link work correctly? (Bottom)}
+The second button on the bottom bar should load up the latest news for 2017. More on this in Section~\ref{sec:siteUpdate}.
+
+\test{Does the Casualty Index link work correctly? (Top)}
+The third button on the top bar should load up the casualty index. More on this in Section~\ref{sec:memorial}.
+
+\test{Does the Casualty Index link work correctly? (Bottom)}
+The third button on the bottom bar should load up the casualty index. More on this in Section~\ref{sec:memorial}.
+
+\test{Does the Articles link work correctly? (Top)}
+The fourth button on the top bar should load up the information index (called Articles, as it's too long to fit in the box at the top). More on this in Section~\ref{sec:article}.
+
+\test{Does the Articles link work correctly? (Bottom)}
+The fourth button on the bottom bar should load up the information index. More on this in Section~\ref{sec:article}.
+
+\test{Does the Search link work correctly? (Top)}
+The fifth button on the top bar should load up the search page. More on this in Section~\ref{sec:search}.
+
+\test{Does the Search link work correctly? (Bottom)}
+The fifth button on the bottom bar should load up the search page. More on this in Section~\ref{sec:search}.
+
+\test{Does the About \& Contact link work correctly? (Top)}
+The sixth button on the top bar should load up the about page.
+
+\test{Does the About \& Contact link work correctly? (Bottom)}
+The sixth button on the bottom bar should load up the about page.
+
+\test{Does the Login link work correctly? (Bottom)}
+The last button on the bottom bar should load up the login form page. It is only displayed on the bottom page, as you are the only one who will need to login. More about this in Section~\ref{sec:user}.
+
+\section{Login / Logout}\label{sec:user}
+To edit various section of the site, you must be logged in. The username is \texttt{msk} and the password \texttt{hegerty}. The passwords are encrypted in the database, meaning they will be incredibly difficult to break. Tests in other sections will require some logging out, but I have written them to minimise the amount of logging out and back in again. To start, navigate to the login page using the \textit{Login} button in the bottom left.
+
+\test{Does the login page forbid incorrect credentials?}
+Enter an incorrect username and/or password and click \textit{Submit}. The page should reload with a message stating the username or password is incorrect. It will not inform the user which is incorrect - this is a standard security feature.
+
+\test{Does the login page accept correct credentials?}
+Enter the username and/or password and click \textit{Login}. The page should redirect to a page entitled \texttt{Meta Pages}. More on this in Section~\ref{sec:meta}.
+
+\test{Have the admin controls appeared?}
+Underneath the top menu bar another row should have appeared. It should indicate the currently logged in user, an admin button, and a button to logout (in red). The \textit{Login} button on the bottom bar should now be replaced by a \textit{Logout} button, also in red.
+
+\test{Does the admin button work?}
+Click the \textit{Admin} button in the middle of the top bar. It should redirect to a page entitled \texttt{Admin}, which has very little content at present.
+
+\test{Does the Logout button work? (Top)}
+Click the \textit{Logout} button on the right of the top bar. It should redirect back to the home page and the admin bar should now have disappeared.
+
+\test{Does the Logout button work? (Bottom)}
+Log back in again using the \textit{Login} button in the bottom bar. Once logged in, click the \textit{Logout} button on the right of the bottom bar. It should redirect back to the home page and the admin bar should now have disappeared. Stay logged in for now.
+
+\section{Site Update}\label{sec:siteUpdate}
+This section of the site contains two areas: Latest News, and a Change Log. Log in to the site if you have not already done so. Navigate to Site Update section, by clicking the \textit{Latest News} link in either menu bar.
+
+\test{Have the latest news items been displayed?}
+On the site update page, there should be a title, a link to view the change log and a list of latest news items. Each item should have a big title, some text and, in small font, the date it was posted. Next to each title, should be an \textit{Edit} button.
+
+\test{Has the previous news summary been displayed?}
+Further down the page, there should be a list of years alongside the corresponding number of updates for that year.
+
+\test{Has the previous news summary been displayed correctly?}
+Count the number of news items displayed on screen and ensure this matches the number shown for the current year.
+
+\test{Are previous news items displayed correctly?}
+Click on \textit{2016} to view the news from that year. There should be 2 items listed, the first being a long section of placeholder text entitled \texttt{Christmas}.
+
+\test{Is an individual news item displayed correctly?}
+Click on the \textit{Christmas} title. This item should now be displayed on it's own page.
+
+\test{Is an invalid site update displayed gracefully?}
+The URL should be similar to \texttt{/siteUpdate/view/11/Christmas}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. It does not matter about the last section of the address, this can actually be anything. Instead of loading site number \texttt{5000} (as it does not exist), the home page should be displayed instead. This will occur in normal action if someone has a link to a deleted site update, or has incorrectly typed a link, or is trying to mess about.
+
+\test{Is the return button correct?}
+Ensure that the button at the bottom of the page reads \texttt{Return to all 2016 updates}. Click on this. The list of news items from 2016 should now be shown, as it was on a previous test.
+
+\test{Is the list of news items displayed correctly when there are no updates?}
+Navigate back to the 2017 list, either by selecting the date from the bottom, or by clicking the \textit{Latest News} button in either menu bar. Change the URL in the address bar, replacing \texttt{2017}, with some other date (for example, \texttt{2027}). The page should reload with a message indicating there are no updates for that year.
+
+\test{Is there an Add button?}
+Navigate back to the 2017 list, either by selecting the date from the bottom, or by clicking the \textit{Latest News} button in either menu bar. Next to the title should be displayed, in green, a button labelled \textit{New}.
+
+\test{Is there an New page?}
+Click this button. There should now be a page displayed entitled \texttt{New Update}. Enter a title, narrative and the date of the update (choose some time in the past in 2017). Do not worry about the narrative buttons at present, these will be tested in Section~\ref{sec:other}. Also enter some text in the \texttt{What's changed} box. Make a note of what you have entered here, we will use this in a later test.
+
+\test{Has the site update been added?}
+When complete, click the \textit{Save update} button. The page should now be redirected to the list of updates for 2017, and the newly added update should be displayed at the top.
+
+\test{Does the New page stop invalid values? (1)}
+Click the \textit{New} button again to be taken to the page entitled \texttt{New Update}. Without entering anything, click the \textit{Save update} button. The page should not reload and should instead highlight the title and narrative boxes, displaying \texttt{This field is required} below them.
+
+\test{Does the New page stop invalid values? (2)}
+Enter some text in the \texttt{Title} field, but leaving the \texttt{Narrative} field blank. Click the \textit{Save update} button. The page again should not reload but instead highlight only the narrative box.
+
+\test{Does the New page stop invalid values? (3)}
+Remove the text from the \texttt{Title} field and instead add text into the \texttt{Narrative} field. Click the \textit{Save update} button. The page again should not reload but instead highlight only the title box.
+
+\test{Is there an Edit page?}
+Return to the list of updates for 2017, by going Back in your browser, or clicking the \textit{Latest News} button in either menu bar. Displayed next to each news item should be a \textit{Edit}. Click on this button for the site update created earlier. A page should load that is similar to the New page seen earlier, but this time with some boxes complete.
+
+\test{Does the View button work?}
+Next to the title of this site update, there should be a button labelled \textit{View}. Click this and the site update in question should be loaded.
+
+\test{Has the edit been saved?}
+Return to the edit page, by clicking the \textit{Edit} button next to the title of this site update. Change some of the details and when complete, click \textit{Save update}. The list of updates for 2017 should now be displayed and the changes to the recently edited site update should be shown.
+
+\test{Is an invalid site update displayed gracefully?}
+Return to the list of updates for 2017, by going Back in your browser, or clicking the \textit{Latest News} button in either menu bar. Displayed next to each news item should be a \textit{Edit}. Click on this button for the site update created earlier. The URL should be similar to \texttt{/siteUpdate/edit/11}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. Instead of loading site number \texttt{5000} (as it does not exist), the list of site updates for 2017 should be displayed instead. This will occur in normal action if someone has a link to a deleted site update, or has incorrectly typed a link, or is trying to mess about.
+
+\test{Does a Site Update have a delete button?}
+Create a new site update using the process described earlier. This update should now appear on the list of those in 2017. Click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Site Update}.
+
+\test{Can a deletion be stopped?}
+Click this \textit{Delete Site Update} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
+
+\test{Can a site update be deleted?}
+Click the \textit{Delete Site Update} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of updates for 2017, with the newly deleted update missing.
+
+\test{Have the latest change log items been displayed?}
+On the list of updates of a given year, there is a button to \textit{View change log}. Click this button. The page now loads a list of changes to the site in the current year. These are any edits or additions to the site, where the \texttt{What's changed} box has been completed. This allows users to view what is being changed without a news article being posted. Completing the \texttt{What's changed} on an edit is optional, and probably not worth it for a small typo.
+
+\test{Has the previous change log items summary been displayed?}
+Further down the page, there should be a list of years alongside the corresponding number of change log entries for that year.
+
+\test{Has the previous change log items summary been displayed correctly?}
+Count the number of news change log entries displayed on screen and ensure this matches the number shown for the current year.
+
+\test{Is the change log displayed correctly when there are no updates?}
+Change the URL in the address bar, replacing \texttt{2017}, with some other date (for example, \texttt{2027}). If no 2017 is shown, add \texttt{/2027} to the end of the URL. The page should reload with a message indicating there are no updates for that year.
+
+\test{Is an individual news item displayed correctly?}
+Navigate back to the change log for 2017, either by the Back button in your browser, or by clicking the \textit{Latest News} button in either menu bar and then the \textit{View change log} button. One of the most recent entries in the change log will be the creation of a news item described in an earlier test. The \texttt{Description} column should match the text that was entered then.
+
+\test{Does the View button work correctly?}
+Click the arrow button next to the relevant entry in the change log. The news item created earlier should now be displayed.
+
+\test{Does a change log entry have a delete button?}
+Return to the change log for 2017, either by the Back button in your browser, or by clicking the \textit{Latest News} button in either menu bar and then the \textit{View change log} button. For the change log entry created used earlier, it should have a red dustbin button under the \texttt{Delete} column.
+
+\test{Can a deletion be stopped?}
+Click this \textit{Delete} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
+
+\test{Can a site update be deleted?}
+Click the \textit{Delete} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. Not that this only removes the change log entry, not the edit, nor the item in question. The page should reload with that change log item removed.
+
+\test{Are the Edit/New buttons removed when logged out?}
+For the following tests, you will need to be logged out. Navigate back to the Latest News section. The \textit{New} button next to the title and \textit{Edit} buttons next to each title should no longer be displayed.
+
+\test{Are the Delete buttons removed when logged out on the Change Log?}
+For the following tests, you will need to be logged out. Navigate back to the Change Log. The dustbin buttons next to each entry should no longer be displayed.
+
+\section{Memorial}\label{sec:memorial}
+This section of the site contains the list of memorials and some data associated with them. It also contains some of the major new functionality - the memorial map. Log in to the site if you have not already done so.
+
+\test{Has the memorial index been displayed?}
+Click on the \textit{Casualty Index} button on the top or bottom menu bars. Displayed should be a page entitled \texttt{Casualty Index}. This will have a quote, followed by a button and two sections - one showing some memorials, the other collapsed.
+
+\test{Has the main memorial list been displayed?}
+After the main section of text, there should be a list entitled \texttt{Memorials}. This will list all the main memorials (all those on the original site outside the "More memorials" list), and the number of casualties associated with each one.
+
+\test{Does the other memorial list been displayed?}
+After the previous list, there should be a collapsible list showing the other memorials. Click the title of this should show and hide this list.
+
+\test{Does the a memorial get displayed correctly?}
+On the main list of memorials, click on \textit{Dover War Memorial}. This should load a page on that particular memorial, entitled \texttt{Dover War Memorial}. It should have a description of the memorial and a worded description of the location.
+
+\test{Does the map get displayed correctly?}
+On the Dover War Memorial page, there should be a map in the top right. A marker should be displayed in the correct location. Zooming in may be required to identify this more closely.
+
+\test{Does the list of casualties get displayed?}
+At the bottom of the page, there should be a series of buttons. The first row should read \texttt{World War One}, \texttt{World War Two}, and \texttt{All}. The second row should list all letters, plus an asterisk (indicating other characters). Displayed on screen should be all casualties whose surname begins with an A. There should be 3 casualties, all with improbable names.
+
+\test{Does the list of casualties get updated?}
+Clicking \textit{World War Two} should leave only one casualty displayed, while clicking \textit{World War One} should display two. Selecting \textit{World War One} and \textit{S} should result in a long list of casualties displayed.
+
+\test{Does the list of casualties gracefully show if there are no casualties?}
+Select \textit{World War One} and \textit{S} should result in a message stating that no results have been found.
+
+\test{Is an invalid memorial displayed gracefully?}
+The URL should be similar to \texttt{/memorial/view/1/Dover+War+Memorial}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. It does not matter about the last section of the address, this can actually be anything. Instead of loading memorial number \texttt{5000} (as it does not exist), the home page should be displayed instead. This will occur in normal action if someone has a link to a deleted memorial, or has incorrectly typed a link, or is trying to mess about.
+
+\test{Does the memorial map get displayed?}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars. From here, click the \textit{View Memorial Map} button. This should load a page entitled \texttt{Memorial Map}, containing a large map, centred on Dover. There should be two markers visible, one in the centre of Dover and another half way towards Folkestone.
+
+\test{Does the information get displayed about a memorial?}
+Click on the marker located over the centre of Dover. Below the map should be displayed the name of that memorial and the number of casualties commemorated there.
+
+\test{Does the information link correctly?}
+Click on the name of the memorial displayed (in this case, \texttt{Dover War Memorial}). This should now load the memorial page for the Dover War Memorial, as seen in an earlier test.
+
+\test{Is there an Add button?}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars. Next to the title, there should be a \textit{New Memorial} button.
+
+\test{Is there a New page?}
+Click this button. There should now be a page displayed entitled \texttt{New Memorial}. Enter a title and narrative. Do not worry about the narrative buttons at present, these will be tested in Section~\ref{sec:other}. In the \texttt{latitude} box, enter \texttt{51.078324} and in the \texttt{longitude} box enter \texttt{1.187405}. This should place the memorial in Folkestone Harbour. Leave the \texttt{Order in main section} box blank. There is no need to complete the \texttt{What's changed} box.
+
+\test{Has the memorial been added?}
+When complete, click the \textit{Save memorial} button. The page should now be redirected to the list of memorials. The newly created memorial should be in the list under \textit{Other Memorials}. It should have zero casualties.
+
+\test{Has the memorial's map data been added correctly? (1)}
+Click on the name of the newly created memorial. The map in the top right should have a marker placed over Folkestone Harbour.
+
+\test{Has the memorial's map data been added correctly? (2)}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars, then click on \textit{View Memorial Map}. The large map should load, with a new marker placed over Folkestone Harbour. 
+
+\test{Does the New page stop invalid values? (1)}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars. Click the \textit{New Memorial} button again to be taken to the page entitled \texttt{New Memorial}. Without entering anything, click the \textit{Save memorial} button. The page should not reload and should instead highlight the name and content boxes, displaying \texttt{This field is required} below them.
+
+\test{Does the New page stop invalid values? (2)}
+Enter some text in the \texttt{Name} field, but leaving the \texttt{Content} field blank. Click the \textit{Save memorial} button. The page again should not reload but instead highlight only the narrative box.
+
+\test{Does the New page stop invalid values? (3)}
+Remove the text from the \texttt{Name} field and instead add text into the \texttt{Content} field. Click the \textit{Save memorial} button. The page again should not reload but instead highlight only the title box.
+
+\test{Is there an edit page?}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars. The newly created memorial should be in the list under \textit{Other Memorials}. Click on the title of this memorial. The page for this memorial should load. Next to the title, is an \textit{Edit} button. Click this. A page should load that is similar to the new page seen earlier, except with some fields now complete.
+
+\test{Does the View button work?}
+Next to the title of this memorial, there should be a button labelled \textit{View}. Click this and the memorial in question should be loaded.
+
+\test{Has the edit been saved?}
+Return to the edit page, by clicking the \textit{Edit} button next to the title of this site update. Change some of the details and when complete, click \textit{Save memorial}. The list of memorials should now be displayed. Click \textit{Other memorials} to view the other memorials and select the newly edited memorial. The page for this should load and the changes can be seen.
+
+\test{Does a Memorial have a delete button?}
+Create a new memorial using the process described earlier. This memorial will now get added to one of the two lists. Click the memorial to view it, and then click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Memorial}.
+
+\test{Can a deletion be stopped?}
+Click this \textit{Delete Memorial} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
+
+\test{Can a memorial be deleted?}
+Click the \textit{Delete Memorial} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of memorials, with the newly deleted memorial missing. Any casualties who were commemorated here have had that piece of data removed.
+
+\test{Are the Edit/New buttons removed when logged out?}
+For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Memorial} button next to the title should no longer be displayed. Click on a memorial. There should be no \textit{Edit} button next to the title.
+
+\section{Casualty}\label{sec:casualty}
+The casualty section is heavily linked within the memorials. Casualties contain large amounts of information which is used to create the database and for the new search system. Log in to the site if you have not already done so.
+
+\test{Is the casualty summary displayed correctly?}
+Return to the casualty index by using the \textit{Casualty Index} button in either the top or bottom menu bars, then click on a memorial - \textit{Dover War Memorial} is a good one to choose. The memorial place should load. Displayed should be the three casualties with the surname A. Their names should be shown, along with their date of death.
+
+\test{Is a casualty displayed correctly?}
+Click on a casualty's name, for example \texttt{Frank Aaamith}. The page for this casualty should be loaded. The title should be the casualty's name, with the narrative displayed below.
+
+\test{Are a casualty's details displayed correctly?}
+There should also be a hidden table entitled \texttt{Casualty Details} at the bottom of the page. Clicking on this should load a table full of details. The casualty's given, middle and family names are shown, along with other data if available. Fields that have no data are not displayed. A number of these should be links, but they will be tested in Section~\ref{sec:search}.
+
+\test{Is there an Add button?}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars. Next to the title, there should be a \textit{New Casualty} button.
+
+\test{Is there a New page?}
+Click this button. There should now be a page displayed entitled \texttt{New Casualty}. Enter details in the relevant boxes. Do not worry about the narrative buttons at present, these will be tested in Section~\ref{sec:other}. A number of boxes have drop down options. The contents of these options will be tested in Section~\ref{sec:other}.
+
+\test{Do the other data options appear?}
+When complete, click the \textit{Save and continue with editing} button. This will allow the addition of other data that relies on the casualty being saved and created first. The page should refresh with more fields available.
+
+\test{Can a service number be added?}
+In the \texttt{Service Number} section, enter a number (or text) into the \texttt{Add number} field and click \textit{Add number}. This should then appear in the drop down above. Click the dropdown and remove the empty entry.
+
+\test{Can relation data be added?}
+In the \texttt{Relation Date} section, click \textit{Add another relation}. This should load two drop down boxes. In the first, select the name of another casualty and in the second.
+
+\test{Has the casualty been added?}
+First, ensure that the Commemorations Locations is set to one or more locations. When editing is complete, click the \textit{Save all sections} button at the foot of the page. The page should display a green section indicating the Save was complete.
+
+\test{Has the casualty been added correctly? (1)}
+Click on the button labelled \textit{View} next to the casualty's name in the title. The casualty page will now load, display the casualty's name and narrative. Clicking the \textit{Casualty Details} hidden table will display all the data entered.
+
+\test{Has the casualty been added correctly? (2)}
+In the \textit{Casualty Details} table, there should be an entry in the \texttt{Relations} selection. Click the name of the casualty displayed. On that casualty's page, ensure that the first casualty is also displayed.
+
+\test{Has the casualty been added correctly? (3)}
+Return to the casualty index by using the \textit{Casualty Index} button in either the top or bottom menu bars, then click on the memorial that the newly created casualty is commemorated at. Using the buttons, select the relevant war and surname letter and the casualty, along with their date of death should be shown.
+
+\test{Does the New page stop invalid values? (1)}
+Return to the casualty index, either by clicking back on your browser, or using the \textit{Casualty Index} button in either the top or bottom menu bars. Click the \textit{New Casualty} button again to be taken to the page entitled \texttt{New Casualty}. Without entering anything, click the \textit{Save and continue with editing} button. The page should not reload and should instead highlight the family name and narrative boxes, displaying \texttt{This field is required} below them.
+
+\test{Does the New page stop invalid values? (2)}
+Enter some text in the \texttt{Family Name} field, but leaving the \texttt{Narrative} field blank. Click the \textit{Save and continue with editing} button. The page again should not reload but instead highlight only the narrative box.
+
+\test{Does the New page stop invalid values? (3)}
+Remove the text from the \texttt{Family Name} field and instead add text into the \texttt{Narrative} field. Click the \textit{Save and continue with editing} button. The page again should not reload but instead highlight only the title box.
+
+\test{Is there an edit page?}
+Next to the title of the casualty, is an \textit{Edit} button. Click this. A page should load that is similar to the new page seen earlier, except with some fields now complete.
+
+\test{Can a service number be removed?}
+There should be at lease one service number selected from a previous test. Deselect this one in the dropdown.
+
+\test{Can relation data be removed?}
+There should be at least one relation selected from a previous test. In both drop down boxes, deselect the chosen options.
+
+\test{Has the edit been saved?}
+Change some of the details and when complete, click \textit{Save all sections}. The page should display a green section indicating the Save was complete.
+
+\test{Has the edit been saved correctly?}
+Click on the button labelled \textit{View} next to the casualty's name in the title. The casualty page will now load, display the casualty's name and narrative. Clicking the \textit{Casualty Details} hidden table will display all the data entered and any changes can be seen.
+
+\test{Does changing the \texttt{Recently Imported} field affect the display? (1)}
+Return to the edit page of a given casualty. Ensure that the \texttt{Recently Imported} field is set to \texttt{Yes}. Click \textit{Save and return to casualty}. The casualty page will load. Clicking on the \textit{Casualty Details} hidden table will show the casualty's details. Displayed at the top of this table is a message informing the user that some details may not yet have been added.
+
+\test{Does changing the \texttt{Recently Imported} field affect the display? (2)}
+Return to the edit page of a given casualty. Ensure that the \texttt{Recently Imported} field is set to \texttt{No}. Click \textit{Save and return to casualty}. There should now be no message displayed at the top of the  \textit{Casualty Details} hidden table for this casualty.
+
+\test{Does changing the \texttt{Unsure Details} field affect the display? (1)}
+Return to the edit page of a given casualty. Ensure that the \texttt{Unsure Details} field is set to \texttt{Yes}. Click \textit{Save and return to casualty}. The casualty page will load. Clicking on the \textit{Casualty Details} hidden table will show the casualty's details. Displayed at the top of this table is a message informing the user that some details may be unknown. This replacing the previous method of placing an asterisk next to a surname.
+
+\test{Does changing the \texttt{Unsure Details} field affect the display? (2)}
+Return to the edit page of a given casualty. Ensure that the \texttt{Unsure Details} field is set to \texttt{No}. Click \textit{Save and return to casualty}. There should now be no message displayed at the top of the \textit{Casualty Details} hidden table for this casualty.
+
+\test{Does a casualty have a delete button?}
+Create a new casualty using the process described earlier. This memorial will now get added to a memorial. Click the memorial and select the casualty from the filter buttons. When the casualty's page loads, click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Casualty}.
+
+\test{Can a deletion be stopped?}
+Click this \textit{Delete Casualty} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
+
+\test{Can a casualty be deleted?}
+Click the \textit{Delete Casualty} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of memorials.
+
+\test{Are the Edit/New buttons removed when logged out?}
+For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Casualty} button next to the title should no longer be displayed. Click on a memorial and click on any casualty. There should be no \textit{Edit} button next to their name.
+
+\section{Article}\label{sec:article}
+\section{Meta}\label{sec:meta}
+\section{Search}\label{sec:search}
+\section{Other}\label{sec:other}
+
+some text
+
+\end{document}

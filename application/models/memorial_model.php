@@ -22,10 +22,10 @@ class Memorial_model extends CI_Model {
     * Returns all the data about all memorials, with lat and lon
     */
     public function getMemorialsWithCoords() {
-            $sql = "SELECT cl.id, cl.name, cl.lat, cl.lon, COUNT(c.commemoration_location_id) AS casualties FROM commemoration_location cl
-                    LEFT JOIN commemoration_location_casualty c ON c.commemoration_location_id = cl.id                    
+            $sql = "SELECT cl.id, cl.name, cl.lat, cl.lon,
+                    (SELECT COUNT(c.casualty_id) FROM commemoration_location_casualty c WHERE c.commemoration_location_id = cl.id) AS casualties
+                    FROM commemoration_location cl                   
                     WHERE lat IS NOT NULL AND lon IS NOT NULL
-                    GROUP BY c.commemoration_location_id
             ";
             $query = $this->db->query($sql);
             return $query->result();
@@ -100,15 +100,16 @@ class Memorial_model extends CI_Model {
     * Gets the list of memorials
     */
     public function getMemorialList($mainSection) {
-            $sql = "SELECT cl.id, cl.name, COUNT(c.commemoration_location_id) AS casualties FROM commemoration_location cl
-                LEFT JOIN commemoration_location_casualty c ON c.commemoration_location_id = cl.id
+            $sql = "SELECT cl.id, cl.name, 
+                (SELECT COUNT(c.casualty_id) FROM commemoration_location_casualty c WHERE c.commemoration_location_id = cl.id) AS casualties
+                FROM commemoration_location cl
             ";
             if($mainSection) {
                 $sql .= " WHERE mainOrder IS NOT NULL AND mainOrder > 0";
             } else {
                  $sql .= " WHERE mainOrder IS NULL OR mainOrder = 0";
             } 
-            $sql .="   GROUP BY c.commemoration_location_id
+            $sql .="
                 ORDER BY mainOrder
             ";
             $query = $this->db->query($sql);
