@@ -13,7 +13,7 @@ class Place_model extends CI_Model {
 	*      List all Places
 	*/
 	public function getAll() {
-		$sql = "SELECT * FROM Place c;";
+		$sql = "SELECT * FROM place c;";
 		$query = $this->db->query($sql);
 		return $query->result();  
 	}
@@ -23,7 +23,7 @@ class Place_model extends CI_Model {
 	*      List all Places
 	*/
 	public function getPlace($id) {
-		$sql = "SELECT * FROM Place w WHERE w.id=?;";
+		$sql = "SELECT * FROM place w WHERE w.id=?;";
 		$query = $this->db->query($sql, array($id));
 		return $query->result();  
 	}

@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{wasysym}
+\usepackage{hyperref}
 
 \newcounter{Test}
 \newcommand{\test}[1]{%
@@ -14,6 +15,9 @@
 \begin{document}
 
 \maketitle
+
+TODO:
+"Is an invalid ? displayed gracefully?" for Viewing and editing of memorials, casualties, articles, meta pages.
 
 \tableofcontents
 \newpage
@@ -273,6 +277,10 @@ Click this \textit{Delete Memorial} button. A pop-up warning should be displayed
 \test{Can a memorial be deleted?}
 Click the \textit{Delete Memorial} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of memorials, with the newly deleted memorial missing. Any casualties who were commemorated here have had that piece of data removed.
 
+\test{Is an invalid memorial page displayed gracefully?}
+
+\test{Is an invalid edit page for a memorial displayed gracefully?}
+
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Memorial} button next to the title should no longer be displayed. Click on a memorial. There should be no \textit{Edit} button next to the title.
 
@@ -352,7 +360,7 @@ Return to the edit page of a given casualty. Ensure that the \texttt{Unsure Deta
 Return to the edit page of a given casualty. Ensure that the \texttt{Unsure Details} field is set to \texttt{No}. Click \textit{Save and return to casualty}. There should now be no message displayed at the top of the \textit{Casualty Details} hidden table for this casualty.
 
 \test{Does a casualty have a delete button?}
-Create a new casualty using the process described earlier. This memorial will now get added to a memorial. Click the memorial and select the casualty from the filter buttons. When the casualty's page loads, click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Casualty}.
+Create a new casualty using the process described earlier. This casualty will now get added to a memorial. Click the memorial and select the casualty from the filter buttons. When the casualty's page loads, click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Casualty}.
 
 \test{Can a deletion be stopped?}
 Click this \textit{Delete Casualty} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
@@ -360,11 +368,117 @@ Click this \textit{Delete Casualty} button. A pop-up warning should be displayed
 \test{Can a casualty be deleted?}
 Click the \textit{Delete Casualty} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of memorials.
 
+\test{Is an invalid casualty page displayed gracefully?}
+
+\test{Is an invalid edit page for a casualty displayed gracefully?}
+
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Casualty} button next to the title should no longer be displayed. Click on a memorial and click on any casualty. There should be no \textit{Edit} button next to their name.
 
-\section{Article}\label{sec:article}
+\section{Articles}\label{sec:article}
+This section is the ``Information Index'' on the previous site, the shorter name fitting more nicely into the evenly spaced menu bar. Information that was on other areas of the site (e.g. the article about the Dover War Memorial) should be classed as an article, but won't belong in one of the groups that existed on the previous site. Log in to the site if you have not already done so.
+
+\test{Is the article list displayed?}
+Return to the article list by clicking on the \textit{Articles} button on either menu bar. There should be a title, a small piece of text, and several sections with lists of articles.
+
+\test{Is the article list displayed correctly?}
+Each section of the article list should have at least one entry. There should be no sections without entries, as these are not shown.
+
+\test{Is an article displayed correctly?}
+Click on an article's name, for example \texttt{Zeebrugge}. The page should load the article. The title will be at the top, with the main section of the article displayed below. The posted date should be in small text at the bottom.
+
+\test{Is there an Add button?}
+Return to the article list, either by clicking back on your browser, or using the \textit{Articles} button in either the top or bottom menu bars. Next to the title, there should be a \textit{New} button.
+
+\test{Is there a New page?}
+Click this button. There should now be a page displayed entitled \texttt{New Article}. Enter details in the relevant boxes. Do not worry about the narrative buttons at present, these will be tested in Section~\ref{sec:other}. Make sure that this article has a category.
+
+\test{Has the article been added?}
+When editing is complete, click the \textit{Save article} button at the foot of the page. The page should reload to the list of articles.
+
+\test{Has the article been added correctly?}
+Click on the name of the recently added article, which should be in the correct section. The article should load with the correct title, narrative and date entered.
+
+\test{Does the New page stop invalid values? (1)}
+Return to the article list, either by clicking back on your browser, or using the \textit{Article} button in either the top or bottom menu bars. Click the \textit{New} button again to be taken to the page entitled \texttt{New Article}. Without entering anything, click the \textit{Save article} button. The page should not reload and should instead highlight the family name and narrative boxes, displaying \texttt{This field is required} below them.
+
+\test{Does the New page stop invalid values? (2)}
+Enter some text in the \texttt{Title} field, but leaving the \texttt{Content} field blank. Click the \textit{Save article} button. The page again should not reload but instead highlight only the narrative box.
+
+\test{Does the New page stop invalid values? (3)}
+Remove the text from the \texttt{Title} field and instead add text into the \texttt{Content} field. Click the \textit{Save article} button. The page again should not reload but instead highlight only the title box.
+
+\test{Is there an edit page?}
+Return to the article list, either by clicking back on your browser, or using the \textit{Article} button in either the top or bottom menu bars, and click on the name of an article. Next to the title of the article, is an \textit{Edit} button. Click this. A page should load that is similar to the new page seen earlier, except with some fields now complete.
+
+\test{Has the edit been saved?}
+Change some of the details and when complete, click \textit{Save article}. The page should return to the list of articles
+
+\test{Has the edit been saved correctly?}
+Click on the name of the article that has just been edited. The article will now load, displaying the article's title and content, with the changes shown.
+
+\test{Does the View button work correctly?}
+Click on the button labelled \textit{Edit} next to the article's title. The edit page should load. When it has, click the \textit{View} button. This should load the page for the article that was being edited.
+
+\test{Is an invalid article page displayed gracefully?}
+
+\test{Is an invalid edit page for an article displayed gracefully?}
+
+\test{Does an article have a delete button?}
+Create a new article using the process described earlier. Click the title of the newly created article. When the article's page loads, click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Article}.
+
+\test{Can a deletion be stopped?}
+Click this \textit{Delete Article} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
+
+\test{Can a casualty be deleted?}
+Click the \textit{Delete Article} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of articles.
+
+\test{Are the Edit/New buttons removed when logged out?}
+For the following tests, you will need to be logged out. Navigate back to the Articles section. The \textit{New} button next to the title should no longer be displayed. Click on an article. There should be no \textit{Edit} button next to the article title.
+
 \section{Meta}\label{sec:meta}
+Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact, Home page) or 2) Sections of Text (e.g. at the top of the Articles list). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the Home page, Contact Us, etc. These have all been added into the site already.
+
+It is not possible to delete a meta page. There is a good reason for this. If a page was created that is no longer needed, simply remove any links to that page. If a page was accidentally deleted that was integral to the site (the Home page, for instance), that would be a disaster. I can't imagine that these pages will need to be created or edited much, if ever.
+
+Tests in this section may require URLs to be entered. Log in to the site if you have not already done so.
+
+\test{Is the list of Meta Pages displayed correctly?}
+
+\test{Is a meta page displayed correctly? (1)}
+From the list
+
+\test{Is a meta page displayed correctly? (2)}
+In situ
+
+\test{Is there an Add button?}
+
+\test{Is there a New button?}
+
+\test{Has the meta page been added?}
+
+\test{Has the meta page been added correctly?}
+
+\test{Does the New page stop invalid values? (1)}
+\test{Does the New page stop invalid values? (2)}
+\test{Does the New page stop invalid values? (3)}
+
+\test{Is there an edit button? (1)}
+
+\test{Is there an edit button? (2)}
+
+\test{Is there an edit page?}
+
+\test{Has the edit been saved correctly?}
+
+\test{Is an invalid meta page displayed gracefully?}
+
+\test{Is an invalid edit page for a meta page displayed gracefully?}
+
+\test{Are the Edit/New buttons removed when logged out (1)?}
+
+\test{Are the Edit buttons removed when logged out (2)?}
+
 \section{Search}\label{sec:search}
 \section{Other}\label{sec:other}
 

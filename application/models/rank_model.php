@@ -13,7 +13,7 @@ class Rank_model extends CI_Model {
 	*      List all Ranks
 	*/
 	public function getAll() {
-		$sql = "SELECT * FROM Rank c;";
+		$sql = "SELECT * FROM rank c;";
 		$query = $this->db->query($sql);
 		return $query->result();  
 	}
@@ -23,7 +23,7 @@ class Rank_model extends CI_Model {
 	*      List all Ranks
 	*/
 	public function getRank($id) {
-		$sql = "SELECT * FROM Rank w WHERE w.id=?;";
+		$sql = "SELECT * FROM rank w WHERE w.id=?;";
 		$query = $this->db->query($sql, array($id));
 		return $query->result();  
 	}

@@ -13,7 +13,7 @@ class Relation_model extends CI_Model {
 	*      List all Relations
 	*/
 	public function getAll() {
-		$sql = "SELECT * FROM Relation c;";
+		$sql = "SELECT * FROM relation c;";
 		$query = $this->db->query($sql);
 		return $query->result();  
 	}
@@ -23,7 +23,7 @@ class Relation_model extends CI_Model {
 	*      List all Relations
 	*/
 	public function getRelation($id) {
-		$sql = "SELECT * FROM Relation w WHERE w.id=?;";
+		$sql = "SELECT * FROM relation w WHERE w.id=?;";
 		$query = $this->db->query($sql, array($id));
 		return $query->result();  
 	}

@@ -13,7 +13,7 @@ class Service_Country_model extends CI_Model {
 	*      List all Service_Countrys
 	*/
 	public function getAll() {
-		$sql = "SELECT * FROM Service_Country c;";
+		$sql = "SELECT * FROM service_country c;";
 		$query = $this->db->query($sql);
 		return $query->result();  
 	}
@@ -23,7 +23,7 @@ class Service_Country_model extends CI_Model {
 	*      List all Service_Countrys
 	*/
 	public function getService_Country($id) {
-		$sql = "SELECT * FROM Service_Country w WHERE w.id=?;";
+		$sql = "SELECT * FROM service_country w WHERE w.id=?;";
 		$query = $this->db->query($sql, array($id));
 		return $query->result();  
 	}
