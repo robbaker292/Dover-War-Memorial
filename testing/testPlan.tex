@@ -16,9 +16,6 @@
 
 \maketitle
 
-TODO:
-"Is an invalid ? displayed gracefully?" for Viewing and editing of memorials, casualties, articles, meta pages.
-
 \tableofcontents
 \newpage
 
@@ -151,8 +148,8 @@ Next to the title of this site update, there should be a button labelled \textit
 \test{Has the edit been saved?}
 Return to the edit page, by clicking the \textit{Edit} button next to the title of this site update. Change some of the details and when complete, click \textit{Save update}. The list of updates for 2017 should now be displayed and the changes to the recently edited site update should be shown.
 
-\test{Is an invalid site update displayed gracefully?}
-Return to the list of updates for 2017, by going Back in your browser, or clicking the \textit{Latest News} button in either menu bar. Displayed next to each news item should be a \textit{Edit}. Click on this button for the site update created earlier. The URL should be similar to \texttt{/siteUpdate/edit/11}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. Instead of loading site number \texttt{5000} (as it does not exist), the list of site updates for 2017 should be displayed instead. This will occur in normal action if someone has a link to a deleted site update, or has incorrectly typed a link, or is trying to mess about.
+\test{Is an invalid site update edit page displayed gracefully?}
+Return to the list of updates for 2017, by going Back in your browser, or clicking the \textit{Latest News} button in either menu bar. Displayed next to each news item should be a \textit{Edit}. Click on this button for the site update created earlier. The URL should be similar to \texttt{/siteUpdate/edit/11}. Change the number after \texttt{edit} to something very large, e.g. \texttt{5000}. Instead of loading site number \texttt{5000} (as it does not exist), the list of site updates for 2017 should be displayed instead. This will occur in normal action if someone has a link to a deleted site update, or has incorrectly typed a link, or is trying to mess about.
 
 \test{Does a Site Update have a delete button?}
 Create a new site update using the process described earlier. This update should now appear on the list of those in 2017. Click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Site Update}.
@@ -278,8 +275,10 @@ Click this \textit{Delete Memorial} button. A pop-up warning should be displayed
 Click the \textit{Delete Memorial} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of memorials, with the newly deleted memorial missing. Any casualties who were commemorated here have had that piece of data removed.
 
 \test{Is an invalid memorial page displayed gracefully?}
+Navigate back to the list of memorials and click on any memorial. The URL should be similar to \texttt{memorial/view/1/Dover+War+Memorial}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. It does not matter about the last section of the address, this can actually be anything. Instead of loading memorial number \texttt{5000} (as it does not exist), the home page should be displayed instead. This will occur in normal action if someone has a link to a deleted memorial, or has incorrectly typed a link, or is trying to mess about.
 
 \test{Is an invalid edit page for a memorial displayed gracefully?}
+Navigate back to the list of memorials and click on any memorial. Then, click the \textit{Edit} button on that memorial. The URL should be similar to \texttt{memorial/edit/1}. Change the number after \texttt{edit} to something very large, e.g. \texttt{5000}. Instead of loading the edit page for memorial number \texttt{5000} (as it does not exist), the list of memorials should be displayed instead.
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Memorial} button next to the title should no longer be displayed. Click on a memorial. There should be no \textit{Edit} button next to the title.
@@ -369,8 +368,10 @@ Click this \textit{Delete Casualty} button. A pop-up warning should be displayed
 Click the \textit{Delete Casualty} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of memorials.
 
 \test{Is an invalid casualty page displayed gracefully?}
+Navigate back to the list of casualties and click on any casualty. The URL should be similar to \texttt{casualty/view/1/Frank-Aaamith}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. It does not matter about the last section of the address, this can actually be anything. Instead of loading casualty number \texttt{5000} (as it does not exist), the home page should be displayed instead. This will occur in normal action if someone has a link to a deleted casualty, or has incorrectly typed a link, or is trying to mess about.
 
 \test{Is an invalid edit page for a casualty displayed gracefully?}
+Navigate back to the list of casualties and click on any casualty. Then, click the \textit{Edit} button on that casualty. The URL should be similar to \texttt{casualty/edit/1}. Change the number after \texttt{edit} to something very large, e.g. \texttt{5000}. Instead of loading the edit page for casualty number \texttt{5000} (as it does not exist), the home page should be displayed instead.
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Casualty} button next to the title should no longer be displayed. Click on a memorial and click on any casualty. There should be no \textit{Edit} button next to their name.
@@ -421,8 +422,10 @@ Click on the name of the article that has just been edited. The article will now
 Click on the button labelled \textit{Edit} next to the article's title. The edit page should load. When it has, click the \textit{View} button. This should load the page for the article that was being edited.
 
 \test{Is an invalid article page displayed gracefully?}
+Navigate back to the list of articles and click on any article. The URL should be similar to \texttt{article/view/1/Zeebrugge}. Change the number after \texttt{view} to something very large, e.g. \texttt{5000}. It does not matter about the last section of the address, this can actually be anything. Instead of loading article number \texttt{5000} (as it does not exist), the home page should be displayed instead. This will occur in normal action if someone has a link to a deleted article, or has incorrectly typed a link, or is trying to mess about.
 
 \test{Is an invalid edit page for an article displayed gracefully?}
+Navigate back to the list of articles and click on any article. Then, click the \textit{Edit} button on that article. The URL should be similar to \texttt{article/edit/1}. Change the number after \texttt{edit} to something very large, e.g. \texttt{5000}. Instead of loading the edit page for article number \texttt{5000} (as it does not exist), the list of articles should be displayed instead.
 
 \test{Does an article have a delete button?}
 Create a new article using the process described earlier. Click the title of the newly created article. When the article's page loads, click the \textit{Edit} button next to its title to be taken to the edit page. In the top right corner, a button in red should read \textit{Delete Article}.
@@ -437,7 +440,7 @@ Click the \textit{Delete Article} button. A pop-up warning should be displayed. 
 For the following tests, you will need to be logged out. Navigate back to the Articles section. The \textit{New} button next to the title should no longer be displayed. Click on an article. There should be no \textit{Edit} button next to the article title.
 
 \section{Meta}\label{sec:meta}
-Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact, Home page) or 2) Sections of Text (e.g. at the top of the Articles list). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the Home page, Contact Us, etc. These have all been added into the site already.
+Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact) or 2) Sections of Text (e.g. at the top of the Articles list or the Home page). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the Home page, Contact Us, etc. These have all been added into the site already.
 
 It is not possible to delete a meta page. There is a good reason for this. If a page was created that is no longer needed, simply remove any links to that page. If a page was accidentally deleted that was integral to the site (the Home page, for instance), that would be a disaster. I can't imagine that these pages will need to be created or edited much, if ever.
 
@@ -480,8 +483,93 @@ In situ
 \test{Are the Edit buttons removed when logged out (2)?}
 
 \section{Search}\label{sec:search}
+
+\test{text and category}
+\test{text and multiple categories}
+\test{text and no category}
+\test{category and no text}
+\test{pagination}
+\test{no results}
+\test{search: given name}
+\test{search: middle name}
+\test{search: family name}
+\test{search: civilian}
+\test{search: gender}
+\test{search: dob}
+\test{search: dod}
+\test{search: war}
+\test{search: final resting place}
+\test{search: rank}
+\test{search: service country}
+\test{search: place of birth}
+\test{search: last known address}
+\test{search: last known address year}
+\test{search: commemoration location}
+\test{search: regiment}
+\test{search: service numbers}
+
+\test{casualty data display search: given name}
+\test{casualty data display search: middle name}
+\test{casualty data display search: family name}
+\test{casualty data display search: civilian}
+\test{casualty data display search: gender}
+\test{casualty data display search: dob}
+\test{casualty data display search: dod}
+\test{casualty data display search: war}
+\test{casualty data display search: final resting place}
+\test{casualty data display search: rank}
+\test{casualty data display search: service country}
+\test{casualty data display search: place of birth}
+\test{casualty data display search: last known address}
+\test{casualty data display search: last known address year}
+\test{casualty data display search: commemoration location}
+\test{casualty data display search: regiment}
+\test{casualty data display search: service numbers}
+
 \section{Other}\label{sec:other}
 
-some text
+\test{list: place}
+\test{add: place}
+\test{add correctly 1: place}
+\test{add correctly 2: place}
+
+\test{list: rank}
+\test{add: rank}
+\test{add correctly 1: rank}
+\test{add correctly 2: rank}
+
+\test{list: regiment}
+\test{add: regiment}
+\test{add correctly 1: regiment}
+\test{add correctly 2: regiment}
+
+\test{list: relation}
+\test{add: relation}
+\test{add correctly 1: relation}
+\test{add correctly 2: relation}
+
+\test{list: servicecountry}
+\test{add: servicecountry}
+\test{add correctly 1: servicecountry}
+\test{add correctly 2: servicecountry}
+
+\test{list: war}
+\test{add: war}
+\test{add correctly 1: war}
+\test{add correctly 2: war}
+
+\test{narrative bold}
+\test{narrative preview}
+\test{narrative italic}
+\test{narrative header}
+\test{narrative link}
+\test{narrative bullet}
+\test{narrative numbered}
+\test{narrative quote}
+\test{narrative picL}
+\test{narrative picC}
+\test{narrative picR}
+\test{narrative maximise}
+\test{narrative help}
 
 \end{document}
