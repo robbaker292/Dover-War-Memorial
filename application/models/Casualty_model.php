@@ -275,4 +275,13 @@ class Casualty_model extends CI_Model {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
     }
+
+    /*
+    * Returns basic data about the casualties that died today
+    */
+    public function getCasualtyToday() {
+        $sql = "SELECT *, (YEAR(NOW()) - YEAR(date_of_death)) AS age FROM casualty c WHERE MONTH(NOW())=MONTH(date_of_death) AND DAY(NOW())=DAY(date_of_death)";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }

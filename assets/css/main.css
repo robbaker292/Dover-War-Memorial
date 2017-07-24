@@ -156,3 +156,14 @@ a.toggler .fa:after {
 .flag {
   max-height: 1.2em;
 }
+
+.snippet {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 8em; /* Fallback for non-webkit */
+  margin: 0 auto;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

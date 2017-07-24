@@ -26,14 +26,22 @@ class Meta extends CI_Controller {
 		$this->load->model('meta_model');
 		$meta_data = $this->meta_model->getMeta("home");
 
+		$this->load->model('siteUpdate_model');
+		$update_data = $this->siteUpdate_model->getLastUpdate();
+
+		$this->load->model('casualty_model');
+		$casualty_data = $this->casualty_model->getCasualtyToday();
+
 		$data = array(
 			'meta_data' => $meta_data[0],
+			'update_data' => $update_data[0],
+			'casualty_data' => $casualty_data,
 			'loggedIn' => $loggedIn
 		);
 
 		$this->load->view('header', array(
 			"title" => "Dover War Memorial Project"));
-		$this->load->view('meta_content_view', $data);
+		$this->load->view('meta_home_view', $data);
 		$this->load->view('footer');
 	}
 
@@ -41,6 +49,7 @@ class Meta extends CI_Controller {
 	*	Displays the meta page
 	*/
 	public function view($id) {
+
 		//is the user logged in
 		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
 

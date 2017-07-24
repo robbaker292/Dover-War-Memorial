@@ -112,4 +112,13 @@ class SiteUpdate_model extends CI_Model {
         }
     }
 
+    /*
+    * Returns the most recent update
+    */
+    public function getLastUpdate() {
+            $sql = "SELECT * FROM site_update WHERE date<NOW() ORDER BY date DESC LIMIT 1";
+            $query = $this->db->query($sql);
+            return $query->result();
+    }
+
 }
