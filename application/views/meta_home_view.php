@@ -48,7 +48,7 @@ $(document).ready( function() {
 
 	<div class="col-md-6">
 		<div class="panel panel-primary">
-			<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Commeorated Today</h4></div>
+			<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Casualties Commemorated Today</h4></div>
 			<?php
 				if(count($casualty_data) == 0) {
 					?>

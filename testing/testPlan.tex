@@ -86,10 +86,10 @@ Enter the username and/or password and click \textit{Login}. The page should red
 Underneath the top menu bar another row should have appeared. It should indicate the currently logged in user, an admin button, and a button to logout (in red). The \textit{Login} button on the bottom bar should now be replaced by a \textit{Logout} button, also in red.
 
 \test{Does the admin button work?}
-Click the \textit{Admin} button in the middle left of the top bar. It should redirect to a page entitled \texttt{Admin}, which has very little content at present.
+Click the \textit{Admin Help} button in the middle left of the top bar. It should redirect to a page entitled \texttt{Admin Help}, which has very little content at present.
 
 \test{Does the meta pages button work?}
-Click the \textit{Meta Pages} button in the middle right of the top bar. It should redirect to a page entitled \texttt{Meta Pages}, which has very little content at present.
+Click the \textit{Meta Pages} button in the middle right of the top bar. It should redirect to a page entitled \texttt{Meta Pages}, which contains the .
 
 \test{Does the Logout button work? (Top)}
 Click the \textit{Logout} button on the right of the top bar. It should redirect back to the home page and the admin bar should now have disappeared.
@@ -416,8 +416,11 @@ Enter some text in the \texttt{Title} field, but leaving the \texttt{Content} fi
 \test{Does the New page stop invalid values? (3)}
 Remove the text from the \texttt{Title} field and instead add text into the \texttt{Content} field. Click the \textit{Save article} button. The page again should not reload but instead highlight only the title box.
 
+\test{Is there an edit button?}
+Return to the article list, either by clicking back on your browser, or using the \textit{Article} button in either the top or bottom menu bars, and click on the name of an article. Next to the title of the article, is an \textit{Edit} button.
+
 \test{Is there an edit page?}
-Return to the article list, either by clicking back on your browser, or using the \textit{Article} button in either the top or bottom menu bars, and click on the name of an article. Next to the title of the article, is an \textit{Edit} button. Click this. A page should load that is similar to the new page seen earlier, except with some fields now complete.
+Click this \textit{Edit} button. A page should load that is similar to the new page seen earlier, except with some fields now complete.
 
 \test{Has the edit been saved?}
 Change some of the details and when complete, click \textit{Save article}. The page should return to the list of articles
@@ -493,20 +496,34 @@ Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} bu
 Click one of the meta pages on the bottom list. This should display the meta page. On this page, next to the title should be a button entitled \textit{Edit}.
 
 \test{Is there an edit page?}
+Click this \textit{Edit} button. A page should load that is similar to the new page seen earlier, except with some fields now complete.
+
+\test{Has the edit been saved?}
+Change some of the details (content is a good idea) and when complete, click \textit{Save meta page}. The page should return to the list of meta pages.
 
 \test{Has the edit been saved correctly? (1)}
+The changed text should now be displayed at the top of this page.
 
 \test{Has the edit been saved correctly? (2)}
+Click on the name of the changed meta page on the list at the bottom. The meta page should load with the changed details.
 
 \test{Is an invalid meta page displayed gracefully?}
+Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. Click on any meta page. The URL should be similar to \texttt{meta/viewFull/admin}. The last word will be the unique ID of the page. Change this to a value that has not already been used. Instead of loading this page that does not exist, the home page should be shown instead.
 
 \test{Is an invalid edit page for a meta page displayed gracefully?}
+Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. Click on any meta page, followed by the \textit{Edit} button. The URL should be similar to \texttt{meta/edit/admin}. The last word will be the unique ID of the page. Change this to a value that has not already been used. Instead of loading the edit page for a meta page that does not exist, the home page should be shown instead.
 
-\test{Are the Edit/New buttons removed when logged out (1)?}
+\test{Are the Edit buttons removed when logged out?}
+For the following tests, you will need to be logged out. Navigate to the home page, by using the \textit{Home} button on either menu bar. There should be no \textit{Edit} button displayed next to the title page.
 
-\test{Are the Edit buttons removed when logged out (2)?}
+\test{Is the meta page list visible when logged out?}
+Navigate to \texttt{meta/listAll}. The page should not load as before and instead redirect to the home page.
 
 \section{Search}\label{sec:search}
+
+The searching capabilities of the site have dramatically improved. There are three main ways of searching: by text, by data and from a casualty. The first allows specific pieces of text to be found in a casualty's narrative, an article, site update or memorial. The second way allows for the searching of a specific piece of data, for example all those who were in the Army. The third way is from the data list on a casualty. Clicking on a link there will create a search based on that piece of data.
+
+You do not need to be logged in to perform these tests.
 
 \test{text and category}
 \test{text and multiple categories}
