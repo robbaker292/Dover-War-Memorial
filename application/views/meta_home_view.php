@@ -50,21 +50,29 @@ $(document).ready( function() {
 		<div class="panel panel-primary">
 			<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Commeorated Today</h4></div>
 			<?php
-				echo "<table class=\"table table-striped table-hover \" id=\"casualtyTable\">";
-				echo "<tr><th>Name</th><th>Date of Death</th><th>Age</th></tr>";
-				foreach ($casualty_data as $data) {
-					echo "<tr class=\"clickableRow\" data-url=\"".base_url()."/casualty/view/1\" >";
-					echo "<td><a href=\"".base_url()."casualty/view/".$data->id."\">";
-					echo $data->given_name." ".$data->family_name;
-					echo "</a></td><td>";
-					echo $data->date_of_death;
-					echo "</td><td>";
-					echo $data->age;
-					echo "</td>";
-					echo "</tr>";
+				if(count($casualty_data) == 0) {
+					?>
+					<div class="panel-body">
+					No casualties commemorated on this date
+					</div>
+					<?php
+				} else {
+					echo "<table class=\"table table-striped table-hover \" id=\"casualtyTable\">";
+					echo "<tr><th>Name</th><th>Date of Death</th><th>Age</th></tr>";
+					foreach ($casualty_data as $data) {
+						echo "<tr class=\"clickableRow\" data-url=\"".base_url()."/casualty/view/1\" >";
+						echo "<td><a href=\"".base_url()."casualty/view/".$data->id."\">";
+						echo $data->given_name." ".$data->family_name;
+						echo "</a></td><td>";
+						echo $data->date_of_death;
+						echo "</td><td>";
+						echo $data->age;
+						echo "</td>";
+						echo "</tr>";
+					}
+					echo "</table>";
 				}
-				echo "</table>";
-			?>
+				?>
 		</div>
 	</div>
 </div>
