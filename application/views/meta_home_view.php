@@ -58,7 +58,7 @@ $(document).ready( function() {
 					<?php
 				} else {
 					echo "<table class=\"table table-striped table-hover \" id=\"casualtyTable\">";
-					echo "<tr><th>Name</th><th>Date of Death</th><th>Age</th></tr>";
+					echo "<tr><th>Name</th><th>Date of Death</th><th>Died</th></tr>";
 					foreach ($casualty_data as $data) {
 						echo "<tr class=\"clickableRow\" data-url=\"".base_url()."/casualty/view/1\" >";
 						echo "<td><a href=\"".base_url()."casualty/view/".$data->id."\">";
@@ -66,7 +66,7 @@ $(document).ready( function() {
 						echo "</a></td><td>";
 						echo $data->date_of_death;
 						echo "</td><td>";
-						echo $data->age;
+						echo $data->age." years ago";
 						echo "</td>";
 						echo "</tr>";
 					}
