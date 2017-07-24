@@ -102,7 +102,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ?>
 			<div class="btn-group btn-group-justified">
                 <a href="<?php echo base_url(); ?>" class="btn btn-primary disabled"><h4 class="panel-title"><i class="fa fa-key" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logged in as:</span> <?php echo $_SESSION['user']; ?></h4></a>
-                <a href="<?php echo base_url(); ?>meta/view/admin" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Admin</span></h4></a>
+                <a href="<?php echo base_url(); ?>meta/listAll" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Config &amp; Meta Pages</span></h4></a>
+                <a href="<?php echo base_url(); ?>meta/view/admin" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Admin Help</span></h4></a>
                 <a href="<?php echo base_url(); ?>user/logout" class="btn btn-danger"><h4 class="panel-title"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logout</span></h4></a>
             </div>
             <?php

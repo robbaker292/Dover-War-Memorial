@@ -86,7 +86,10 @@ Enter the username and/or password and click \textit{Login}. The page should red
 Underneath the top menu bar another row should have appeared. It should indicate the currently logged in user, an admin button, and a button to logout (in red). The \textit{Login} button on the bottom bar should now be replaced by a \textit{Logout} button, also in red.
 
 \test{Does the admin button work?}
-Click the \textit{Admin} button in the middle of the top bar. It should redirect to a page entitled \texttt{Admin}, which has very little content at present.
+Click the \textit{Admin} button in the middle left of the top bar. It should redirect to a page entitled \texttt{Admin}, which has very little content at present.
+
+\test{Does the meta pages button work?}
+Click the \textit{Meta Pages} button in the middle right of the top bar. It should redirect to a page entitled \texttt{Meta Pages}, which has very little content at present.
 
 \test{Does the Logout button work? (Top)}
 Click the \textit{Logout} button on the right of the top bar. It should redirect back to the home page and the admin bar should now have disappeared.
@@ -186,6 +189,10 @@ Click this \textit{Delete} button. A pop-up warning should be displayed. Click \
 
 \test{Can a site update be deleted?}
 Click the \textit{Delete} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. Not that this only removes the change log entry, not the edit, nor the item in question. The page should reload with that change log item removed.
+
+\test{Are site updates with posted dates in the future hidden in the main list?}
+
+\test{Are site updates with posted dates in the future shown in the future list?}
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Latest News section. The \textit{New} button next to the title and \textit{Edit} buttons next to each title should no longer be displayed.
@@ -439,6 +446,12 @@ Click the \textit{Delete Article} button. A pop-up warning should be displayed. 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Articles section. The \textit{New} button next to the title should no longer be displayed. Click on an article. There should be no \textit{Edit} button next to the article title.
 
+\test{Is the most recent news item displayed on the home page?}
+Create a site update news item using the method described above. Ensure that the date makes it the most recent news item (but not in the future). Return to the home page by using the \textit{Home} buttons on either menu bar. This newly created site update should appear in the area at the bottom left on the page.
+
+\test{Are the deaths today displayed on the home page?}
+Create a casualty using the method described above. Ensure the \texttt{Date of Death} is set to today's day and month, but in a previous year. Return to the home page by using the \textit{Home} buttons on either menu bar. The list of \texttt{Casualties commemorated today} section in the bottom right should now have this casualty listed along with their age. Clicking on the name of the casualty should load their casualty page.
+
 \section{Meta}\label{sec:meta}
 Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact) or 2) Sections of Text (e.g. at the top of the Articles list or the Home page). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the Home page, Contact Us, etc. These have all been added into the site already.
 
@@ -447,32 +460,43 @@ It is not possible to delete a meta page. There is a good reason for this. If a 
 Tests in this section may require URLs to be entered. Log in to the site if you have not already done so.
 
 \test{Is the list of Meta Pages displayed correctly?}
+Navigate to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. The list of Meta pages should load. Their should be a small narrative section, followed by two lists. This page allows the editing of various information used in several places on the site (e.g. the list of Wars), as well as displaying the list of other meta pages. The top list will be tested later in Section~\ref{sec:other}.
 
 \test{Is a meta page displayed correctly? (1)}
-From the list
+From the bottom list, click on \texttt{contactUs}. This should display the Contact Us page, with a small panel at the bottom indicating where this page is used.
 
 \test{Is a meta page displayed correctly? (2)}
-In situ
+Navigate to the \textit{About \& Contact Us} page by using the buttons on either the top and bottom menu bars. The Contact Us page should load in a similar manner to the previous test, without the explanation panel.
 
 \test{Is there an Add button?}
+Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. Next to the title (\texttt{Meta Pages}), there should be a button labelled \textit{New}.
 
-\test{Is there a New button?}
+\test{Is there a New page?}
+Click this button. There should now be a page displayed entitled \texttt{New Meta Page}. Enter details in the relevant boxes. The \texttt{ID} field should have a value that does not match any of the other meta pages. Do not worry about the narrative buttons at present, these will be tested in Section~\ref{sec:other}. The \texttt{What's changed} section can be left empty - in normal operation any ``internal'' pages should never have this field changed, otherwise it will appear in the change log.
 
 \test{Has the meta page been added?}
+When editing is complete, click the \textit{Save meta page} button at the foot of the page. The page should reload to the list of meta pages.
 
 \test{Has the meta page been added correctly?}
+Click on the newly added meta page on the bottom list. The page should load with the created meta page, and the various details as entered.
 
 \test{Does the New page stop invalid values? (1)}
+Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. Click the \textit{New} button again to be taken to the page entitled \texttt{New Meta Page}. Without entering anything, click the \textit{Save meta page} button. The page should not reload and should instead highlight the \texttt{ID}, \texttt{Title}, \texttt{Content} and \texttt{Where is this page used?} fields, displaying \texttt{This field is required} below each one. 
+
 \test{Does the New page stop invalid values? (2)}
-\test{Does the New page stop invalid values? (3)}
+Enter some text in the \texttt{Content} box, leaving the other still empty. Click the \textit{Save meta page} button. The page should again not reload but still highlight the \texttt{ID}, \texttt{Title} and \texttt{Where is this page used?} fields.
 
 \test{Is there an edit button? (1)}
+Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. The piece of text at the top of the \texttt{Meta Pages} link is itself a meta page. This page should have a button displayed below \textit{Edit This Text}.
 
 \test{Is there an edit button? (2)}
+Click one of the meta pages on the bottom list. This should display the meta page. On this page, next to the title should be a button entitled \textit{Edit}.
 
 \test{Is there an edit page?}
 
-\test{Has the edit been saved correctly?}
+\test{Has the edit been saved correctly? (1)}
+
+\test{Has the edit been saved correctly? (2)}
 
 \test{Is an invalid meta page displayed gracefully?}
 
@@ -530,8 +554,8 @@ In situ
 
 \test{list: place}
 \test{add: place}
-\test{add correctly 1: place}
-\test{add correctly 2: place}
+\test{add correctly 1: place (in the meta page list)}
+\test{add correctly 2: place (in the search page)}
 
 \test{list: rank}
 \test{add: rank}
