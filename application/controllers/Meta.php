@@ -192,10 +192,22 @@ class Meta extends CI_Controller {
 			$meta_data = $this->meta_model->listMeta();
 			$meta = $this->meta_model->getMeta("metaList");
 
+			$this->load->model('casualty_model');
+			$casualty_data = $this->casualty_model->getCasualtyNoMemorial();
+
+			$this->load->model('article_model');
+			$article_data = $this->article_model->getArticlesNoCategory();
+
+			$this->load->model('siteUpdate_model');
+			$update_data = $this->siteUpdate_model->getFutureUpdates();
+
 			$data = array(
 				'meta_data' => $meta_data,
 				'meta' => $meta[0],
-				'loggedIn' => $loggedIn
+				'loggedIn' => $loggedIn,
+				'casualty_data' => $casualty_data,
+				'article_data' => $article_data,
+				'update_data' => $update_data
 			);
 
 			$this->load->view('header', array(

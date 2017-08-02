@@ -87,4 +87,13 @@ class Article_model extends CI_Model {
         }
     }
 
+    /*
+    * Returns a list of articles in no category
+    */
+    public function getArticlesNoCategory() {
+        $sql = "SELECT id, title, posted_date FROM article a WHERE category_id IS NULL";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
 }

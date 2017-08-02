@@ -292,4 +292,13 @@ class Casualty_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+
+    /*
+    * Returns basic data about the casualties that have no memorial
+    */
+    public function getCasualtyNoMemorial() {
+        $sql = "SELECT * FROM casualty c LEFT JOIN commemoration_location_casualty clc ON c.id = clc.casualty_id WHERE clc.casualty_id IS NULL";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }

@@ -60,7 +60,7 @@ $(document).ready( function() {
 					echo "<table class=\"table table-striped table-hover \" id=\"casualtyTable\">";
 					echo "<tr><th>Name</th><th>Date of Death</th><th>Died</th></tr>";
 					foreach ($casualty_data as $data) {
-						echo "<tr class=\"clickableRow\" data-url=\"".base_url()."/casualty/view/1\" >";
+						echo "<tr class=\"clickableRow\" data-url=\"".base_url()."/casualty/view/".$data->id."\" >";
 						echo "<td><a href=\"".base_url()."casualty/view/".$data->id."\">";
 						echo $data->given_name." ".$data->family_name;
 						echo "</a></td><td>";
