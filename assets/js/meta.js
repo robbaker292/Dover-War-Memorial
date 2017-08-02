@@ -12,7 +12,7 @@ $(document).ready( function() {
             data: basicForm,
             success: function(data) {
                 //console.log(data);
-                window.location.href = "../";
+                window.location.href = "../listAll";
             	//location.reload();
             },
             error: function(data) {
@@ -29,6 +29,7 @@ $(document).ready( function() {
     $("#basicForm").validate({
         rules: {
             id : "required",
+            title: "required",
             content: "required",
             whereUsed: "required"
         },

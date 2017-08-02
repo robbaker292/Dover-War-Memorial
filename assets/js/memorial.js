@@ -28,8 +28,8 @@ $(document).ready( function() {
     */
     $("#basicForm").validate({
         rules: {
-            title: "required",
-            content: "required"
+            name: "required",
+            narrative: "required"
         },
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
