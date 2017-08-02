@@ -68,15 +68,18 @@ $Parsedown = new ParsedownExtra();
 	echo "<div class=\"hidden\" id=\"lat\">".$memorial_data->lat."</div>"; 
 	echo "<div class=\"hidden\" id=\"lon\">".$memorial_data->lon."</div>"; 
 ?>
-	<div id="info">
-		<div id="map" class="pull-right"></div>
-		<div id="narrative">
-		<?php
+	<div class="row">
+		<div class="col-md-7">
+			<div id="narrative"><?php
 
-			echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $memorial_data->narrative));
-		?>
+				echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $memorial_data->narrative));
+			?>
+			<h4>Location: <?php echo $memorial_data->location ?></h4>
+			</div>
 		</div>
-		<h4>Location: <?php echo $memorial_data->location ?></h4>	
+		<div class="col-md-5">
+			<div id="map"></div>
+		</div>	
 	</div>
 
 <div class="panel panel-primary">
