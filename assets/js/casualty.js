@@ -11,13 +11,17 @@ $(document).ready( function() {
     $("#saveRelations").click(function() {
         var id = $("#id").val();
         var basicForm = $("#relationForm").serialize();
-        //console.log(basicForm);
+        console.log(basicForm);
+        if(basicForm == "") {
+            //for when no relations are selected
+            basicForm = "relations%5B%5D&relationType%5B%5D";
+        }
         $.ajax({
             type: "POST",
             url: "../doUpdateRelations/"+id,
             data: basicForm,
-            success: function(data) {
-                //console.log(data);
+            success: function(res) {
+                //console.log(res);
                 location.reload();
             },
             error: function(data) {

@@ -235,7 +235,7 @@ class Casualty_model extends CI_Model {
     *   Handles the updating of relations
     */
     public function updateRelations($id, $data) {
-        var_dump($data);
+        //var_dump($data);
 
         $sql = "DELETE FROM casualty_relation WHERE casualty_id_senior=? OR casualty_id_junior=?";
         $this->db->query($sql, array($id, $id));
@@ -243,24 +243,32 @@ class Casualty_model extends CI_Model {
         
         $queryArr = array();
         $params = array();
-        for($i = 0; $i < count($data["relations"]); $i++) {
-            $relation = $data["relations"][$i];
-            $type = $data["relationType"][$i];
-            $params[] = $id;
-            $params[] = $relation;
-            $params[] = $type;
-            $queryArr[] = "(?,?,?)";
+        if(isset($data["relations"]) && isset($data["relationType"])) {
+            for($i = 0; $i < count($data["relations"]); $i++) {
+                $relation = $data["relations"][$i];
+                $type = $data["relationType"][$i];
+
+                if($relation == "" || $type == "") {
+                    continue;
+                }
+                $params[] = $id;
+                $params[] = $relation;
+                $params[] = $type;
+                $queryArr[] = "(?,?,?)";
+            }
         }
-        $sql = "INSERT INTO casualty_relation VALUES ".implode(", ", $queryArr);
+        if(count($queryArr) > 0) {
+            $sql = "INSERT INTO casualty_relation VALUES ".implode(", ", $queryArr);
 
-        $result = $this->db->query($sql, $params);
-
-        if($result) {
-            return array('area' => 'serivceNumber', 'type'=>'success', 'message'=>'Save completed');
+            $result = $this->db->query($sql, $params);
+            if($result) {
+                return array('area' => 'casualty_relation', 'type'=>'success', 'message'=>'Save completed');
+            } else {
+                return array('area' => 'casualty_relation', 'type'=>'failure', 'message'=>'Database error');     
+            }
         } else {
-            return array('area' => 'serivceNumber', 'type'=>'failure', 'message'=>'Database error');     
+             return array('area' => 'casualty_relation', 'type'=>'success', 'message'=>'Save completed');
         }
-
     }
 
     /**

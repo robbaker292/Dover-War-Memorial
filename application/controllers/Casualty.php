@@ -310,6 +310,8 @@ class Casualty extends CI_Controller {
 			$basicForm = $this->input->post();
 			if(count($basicForm) > 0) {
 
+				//var_dump($basicForm);
+
 				$this->load->model('casualty_model');
 
 				//update casualty
