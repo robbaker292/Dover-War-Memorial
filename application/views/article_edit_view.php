@@ -5,6 +5,7 @@ include APPPATH . 'third_party/Parsedown.php';
 include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
 
+if (!$new) {
 ?>
 <script>
 $(document).on("click", ".btn-delete", function(e) {
@@ -31,6 +32,8 @@ $(document).on("click", ".btn-delete", function(e) {
 });
 </script>
 	<?php
+}
+
 	if ($new) {
 		echo "<h2>New Article</h2>";
 	} else {		

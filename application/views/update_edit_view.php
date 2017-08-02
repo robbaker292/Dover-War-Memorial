@@ -6,6 +6,7 @@ include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
 
 //var_dump($update);
+if (!$new) {
 ?>
 <script>
 $(document).on("click", ".btn-delete", function(e) {
@@ -32,6 +33,7 @@ $(document).on("click", ".btn-delete", function(e) {
 });
 </script>
 	<?php
+}
 	if ($new) {
 		echo "<h2>New Update</h2>";
 	} else {		

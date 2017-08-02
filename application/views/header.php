@@ -10,8 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/font-awesome.min.css">
-
- <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
@@ -75,9 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<header class="container">
 		<div class="col-md-12">
 			<h1>Dover War Memorial Project</h1>
-			<!--
-			<h2><small>Welcome to <span class="dwmp">Dover's Virtual War Memorial</span></small></h2>
-			-->
 			<div class="hidden-xs">
 				<table id="patrons">
 					<tr><td colspan="2"><small>Patrons:</small></td></tr>
