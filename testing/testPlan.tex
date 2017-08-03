@@ -2,12 +2,14 @@
 \usepackage{wasysym} 
 \usepackage{hyperref}
 
+\renewcommand{\familydefault}{\sfdefault}
+
 \newcounter{Test}
 \newcommand{\test}[1]{%
 \stepcounter{Test}%
 \paragraph{\Circle\ Test \theTest} \textbf{#1} }
 
-\title{Dover War Memorial Project - Testing}
+\title{\textbf{Dover War Memorial Project - Testing}}
 \date{}
 \author{}
 %%%%% document start
@@ -23,7 +25,7 @@
 This document lists all the testing that must be taken place to ensure the site is bug free. I have done all these tests myself (and indeed found a number of bugs when doing so), but having been so closely involved in the design and construction of the site, someone else must also complete this. It will also allow you to spot any processes that you may find unusual, tricky, annoying or just incorrect. Any comments along the way on the actual processes, as well as the design and styling, are of great use. It is you, after all, who will be both using and maintaining the site. \smiley
 
 \section{Notes}
-Buttons on screen are labelled in \textit{italics}, with text to be entered or displayed in \texttt{monospace}. Errors in links display a default 404 error page. This will be changed, but doing so would affect the Wedding website, so I haven't done that yet.
+Buttons on screen are labelled in \textit{italics}, with text to be entered or displayed in \texttt{monospace}. Errors in links display a default 404 error page. This will be changed, but doing so would affect the Wedding website, so I haven't done that yet. The little circles before each test are for ticking to help see what is complete and what is not.
 
 \section{Navigation}
 
@@ -388,11 +390,13 @@ Navigate back to the list of casualties and click on any casualty. The URL shoul
 Navigate back to the list of casualties and click on any casualty. Then, click the \textit{Edit} button on that casualty. The URL should be similar to \texttt{casualty/edit/1}. Change the number after \texttt{edit} to something very large, e.g. \texttt{5000}. Instead of loading the edit page for casualty number \texttt{5000} (as it does not exist), the home page should be displayed instead.
 
 \test{Is a casualty with no commemoration location displayed in the correct list?}
+Create a new casualty using the method described earlier, ensuring that the casualty has no commemoration location set. Navigate to the config page by clicking the \textit{Config \& Meta pages} link in the top menu bar. From this, there should be a list entitled \texttt{Casualties With No Memorial}. In this list, the newly created casualty should be shown.
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Casualty} button next to the title should no longer be displayed. Click on a memorial and click on any casualty. There should be no \textit{Edit} button next to their name.
 
 \test{Is the list of recently uploaded casualties visible when logged out?}
+Ensure that you are logged out for this test. Navigate to \texttt{casualty/uploaded}. The page should not load and instead, the home page should be shown.
 
 \section{Articles}\label{sec:article}
 This section is the ``Information Index'' on the previous site, the shorter name fitting more nicely into the evenly spaced menu bar. Information that was on other areas of the site (e.g. the article about the Dover War Memorial) should be classed as an article, but won't belong in one of the groups that existed on the previous site. Log in to the site if you have not already done so.
@@ -458,12 +462,13 @@ Click this \textit{Delete Article} button. A pop-up warning should be displayed.
 Click the \textit{Delete Article} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of articles.
 
 \test{Is an article with no category displayed in the correct list?}
+Create a new article, but assign it no category. Then navigate to the config page by clicking the \textit{Config \& Meta pages} link on the top menu bar. In the section entitled \texttt{Articles With No Category}, the newly created article should be shown.
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Articles section. The \textit{New} button next to the title should no longer be displayed. Click on an article. There should be no \textit{Edit} button next to the article title.
 
 \section{Meta}\label{sec:meta}
-Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact) or 2) Sections of Text (e.g. at the top of the Articles list or the Home page). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the Home page, Contact Us, etc. These have all been added into the site already.
+Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact) or 2) Sections of Text (e.g. at the top of the Articles list or the Home page). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the top of the Home page, Contact Us, etc. These have all been added into the site already.
 
 It is not possible to delete a meta page. There is a good reason for this. If a page was created that is no longer needed, simply remove any links to that page. If a page was accidentally deleted that was integral to the site (the Home page, for instance), that would be a disaster. I can't imagine that these pages will need to be created or edited much, if ever.
 
@@ -536,94 +541,284 @@ Navigate to \texttt{meta/listAll}. The page should not load as before and instea
 
 The searching capabilities of the site have dramatically improved. There are three main ways of searching: by text, by data and from a casualty. The first allows specific pieces of text to be found in a casualty's narrative, an article, site update or memorial. The second way allows for the searching of a specific piece of data, for example all those who were in the Army. The third way is from the data list on a casualty. Clicking on a link there will create a search based on that piece of data.
 
-You do not need to be logged in to perform these tests.
+You do not need to be logged in to perform these tests. The first block of tests require that you are on the search page. Navigate here using the \textit{Search} link on either the top or bottom menu bar. 
 
-\test{text and category}
-\test{text and multiple categories}
-\test{text and no category}
-\test{category and no text}
-\test{pagination}
-\test{no results}
-\test{search: given name}
-\test{search: middle name}
-\test{search: family name}
-\test{search: civilian}
-\test{search: gender}
-\test{search: dob}
-\test{search: dod}
-\test{search: war}
-\test{search: final resting place}
-\test{search: rank}
-\test{search: service country}
-\test{search: place of birth}
-\test{search: last known address}
-\test{search: last known address year}
-\test{search: commemoration location}
-\test{search: regiment}
-\test{search: service numbers}
+\test{Does the search work for text and a category?}
+In the first box, enter the search term \texttt{Zeebrugge} and in the second box, select \texttt{Casualty}. Then, click \textit{Search}. This should load a section further down the page entitled \textit{Search results}, with one result, a \texttt{F H Sole}.
 
-\test{casualty data display search: given name}
-\test{casualty data display search: middle name}
-\test{casualty data display search: family name}
-\test{casualty data display search: civilian}
-\test{casualty data display search: gender}
-\test{casualty data display search: dob}
-\test{casualty data display search: dod}
-\test{casualty data display search: war}
-\test{casualty data display search: final resting place}
-\test{casualty data display search: rank}
-\test{casualty data display search: service country}
-\test{casualty data display search: place of birth}
-\test{casualty data display search: last known address}
-\test{casualty data display search: last known address year}
-\test{casualty data display search: commemoration location}
-\test{casualty data display search: regiment}
-\test{casualty data display search: service numbers}
+\test{Are the search results displayed correctly?}
+The \texttt{Content} column for the first result should show a section of the particular narrative with the search term highlighted. Clicking on the casualty's name should load up the casualty page for \texttt{F H Sole}.
 
-\section{Other}\label{sec:other}
+\test{Does the search work for text and multiple categories?}
+Return to the search page. Again in the first box, type in \texttt{Zeebrugge}. In the second, select \texttt{Casualty} and \texttt{Article} and click \textit{Search}. Two results should be displayed, the casualty previously mentioned and an article entitled \texttt{Zeebrugge}.
 
-\test{list: place}
-\test{add: place}
-\test{add correctly 1: place (in the meta page list)}
-\test{add correctly 2: place (in the search page)}
+\test{Does the search page gracefully handle text but no category?}
+Keep the same text in the first box, but deselect all options in the second and click \textit{Search}. The page should reload with all options empty.
 
-\test{list: rank}
-\test{add: rank}
-\test{add correctly 1: rank}
-\test{add correctly 2: rank}
+\test{Does the search page gracefully handle a category but no text?}
+This time, enter no text but select a category and click \textit{Search}. Again, the page should reload with all options empty.
 
-\test{list: regiment}
-\test{add: regiment}
-\test{add correctly 1: regiment}
-\test{add correctly 2: regiment}
+\test{Does the pagination work correctly?}
+Return to the search page if needed. In the first box, enter \texttt{Dover} and select \texttt{Casualty} in the second. Click \textit{Search}. Many results should be displayed towards the bottom of the screen, along with a list of page numbers. Click one of these. A different set of results should be shown.
 
-\test{list: relation}
-\test{add: relation}
-\test{add correctly 1: relation}
-\test{add correctly 2: relation}
+\test{Does the search page gracefully handle having no results?}
+In the first box, type a search term that will not be found. This could be a mash of letters, but leave the second as \texttt{Casualty}. Click \textit{Search}. Where the results have been displayed previously, instead should be a messaging stating that no results have been found.
 
-\test{list: servicecountry}
-\test{add: servicecountry}
-\test{add correctly 1: servicecountry}
-\test{add correctly 2: servicecountry}
+\test{Does the data search work for a casualty's Given Name?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. To load the data search, click the area entitled \textit{Search Casualty by data}. In the \texttt{Given Name} field, type \texttt{Albert} and click \textit{Search at the bottom of this section}. One result should be shown, a casualty named \texttt{Albert Henry Samways}.
 
-\test{list: war}
-\test{add: war}
-\test{add correctly 1: war}
-\test{add correctly 2: war}
+\test{Does the data search work for a casualty's Middle Name?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, in the \texttt{Middle Names} field, type \texttt{Henry} and click \textit{Search} at the bottom of the page. Again, one result should be shown and again it should be \texttt{Albert Henry Samways}.
 
-\test{narrative bold}
-\test{narrative preview}
-\test{narrative italic}
-\test{narrative header}
-\test{narrative link}
-\test{narrative bullet}
-\test{narrative numbered}
-\test{narrative quote}
-\test{narrative picL}
-\test{narrative picC}
-\test{narrative picR}
-\test{narrative maximise}
-\test{narrative help}
+\test{Does the data search work for a casualty's Family Name?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, in the \texttt{Family Name} field, type \texttt{Thompson} and click \textit{Search} at the bottom of the page. Several results should be shown, all of whom should have the surname \texttt{Thompson}.
+
+\test{Does the data search work for a casualty's Civilian status?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{No} in the \texttt{Civilian} box and click \textit{Search}. Many results will be returned.
+
+\test{Does the data search work for a casualty's Gender?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{Male} in the \texttt{Gender} box and click \textit{Search}. Many results will be returned.
+
+\test{Does the data search work for a casualty's Date of Birth}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, in the \texttt{Date of Birth} field, enter \texttt{1898-10-17} box and click \textit{Search}. This will return at least one result, a casualty called \texttt{Frederick Thompson}.
+
+\test{Does the data search work for a casualty's Date of Death}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, in the \texttt{Date of Death} field, enter \texttt{1915-02-03} box and click \textit{Search}. This will return at least one result, a casualty called \texttt{Frederick Thompson}.
+
+\test{Does the data search work for a casualty's War?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{World War I} in the \texttt{War} box and click \textit{Search}. Many casualties will be returned.
+
+\test{Does the data search work for a casualty's Final Resting Place?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{Dover Cemetery} in the \texttt{Final Resting Place} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Rank?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{Private} in the \texttt{Rank} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Service Country?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{United Kingdom} in the \texttt{Service Country} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Place of Birth}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{Dover Hospital} in the \texttt{Place of Birth} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Last Known Address?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{23 London Road} in the \texttt{Last Known Address} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Last Known Address Year?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, type \texttt{1911} in the \texttt{Last Known Address Year} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Commemoration Location?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{Dover War Memorial} in the \texttt{Commemoration Location} box and click \textit{Search}. Many casualties will be returned.
+
+\test{Does the data search work for a casualty's Regiment / Service?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select \texttt{Army} in the \texttt{Regiment/Service} box and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the data search work for a casualty's Service Numbers?}
+Load a blank search page by clicking the \textit{Search} button on either the top of bottom menu bars. In the data section, select any of the \texttt{Service Numbers} and click \textit{Search}. At least one casualty will be returned.
+
+\test{Does the casualty data link to the correct search page? (Given Name)}
+Data can also be search from a casualty. Navigate to the casualty called \texttt{Frank Aaamith}, as this testing entry has all the data fields supplied. Under the data section of this casualty, click on the given name. This should load the search page, showing other casualties with the same given name.
+
+\test{Does the casualty data link to the correct search page? (Middle names)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the middle name. This should load the search page, showing other casualties with the same middle names.
+
+\test{Does the casualty data link to the correct search page? (Family Name)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the family name. This should load the search page, showing other casualties with the same family name.
+
+\test{Does the casualty data link to the correct search page? (Civilian)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the civilian status. This should load the search page, showing other casualties with the same civilian status.
+
+\test{Does the casualty data link to the correct search page? (Gender)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the gender. This should load the search page, showing other casualties with the same gender.
+
+\test{Does the casualty data link to the correct search page? (Date of Birth)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Date of Birth. This should load the search page, showing other casualties with the same Date of Birth.
+
+\test{Does the casualty data link to the correct search page? (Date of Death)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Date of Death. This should load the search page, showing other casualties with the same Date of Death.
+
+\test{Does the casualty data link to the correct search page? (War)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the War. This should load the search page, showing other casualties with the same War.
+
+\test{Does the casualty data link to the correct search page? (Final Resting Place)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Final Resting Place. This should load the search page, showing other casualties with the same Final Resting Place.
+
+\test{Does the casualty data link to the correct search page? (Rank)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Rank. This should load the search page, showing other casualties with the same Rank.
+
+\test{Does the casualty data link to the correct search page? (Service Country)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Service Country. This should load the search page, showing other casualties with the same Service Country.
+
+\test{Does the casualty data link to the correct search page? (Place of Birth)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Place of Birth. This should load the search page, showing other casualties with the same Place of Birth.
+
+\test{Does the casualty data link to the correct search page? (Last Known Address)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Last Known Address. This should load the search page, showing other casualties with the same Last Known Address.
+
+\test{Does the casualty data link to the correct search page? (Last Known Address Year)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Last Known Address Year. This should load the search page, showing other casualties with the same Last Known Address Year.
+
+\test{Does the casualty data link to the correct search page? (Commemoration Location)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Commemoration Location. This should load the search page, showing other casualties with the same Commemoration Location.
+
+\test{Does the casualty data link to the correct search page? (Regiment / Service)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on the Regiment / Service. This should load the search page, showing other casualties with the same Regiment / Service.
+
+\test{Does the casualty data link to the correct search page? (Service Numbers)}
+Navigate back to the casualty named \texttt{Frank Aaamith}. Under the data section of this casualty, click on a Service Number. This should load the search page, showing other casualties with the same Service Number.
+
+\section{Other Tests}\label{sec:other}
+
+There are other tests that are required. For example, the listing, editing and deletion of places, ranks, etc. Other tests involve the buttons to create narratives with various styling. The styling is created using a system called Markdown that allows much easier notation than HTML, which also not potentially breaking other sections of the page if incorrect. Having buttons to edit the style should make it easier than modifying any code.
+
+If you are not logged in, do so now.
+
+\test{Is the list of Places displayed correctly?}
+Navigate to the list of Places by clicking on the \textit{Config \& Meta Pages} link on the top menu bar and clicking on \textit{List All} next to \texttt{Place}. A list of Places should be displayed.
+
+\test{Can a Place be added?}
+Next to the title, there should be an \textit{New} button. Click on this. Enter a name, latitude and longitude and click on \textit{Save place}.
+
+\test{Has the Place been added correctly? (1)}
+The list of places should reload with the newly created place.
+
+\test{Has the Place been added correctly? (2)}
+Navigate to the search page using the \textit{Search} button on either the top or bottom menu bar. In the data section, view the options for the \texttt{Final Resting Place} field. The newly created Place should be displayed in this list.
+
+\test{Can a Place be edited?}
+Navigate back to the list of Places using the method described above. Click the \textit{Edit} button. Change the \texttt{Name} field and click \textit{Save place} button. The list of Places should be displayed and the newly edited Place should display its new Name.
+
+\test{Can a Place be deleted?}
+Click the \textit{Edit} button to the newly created Place. The edit page should load. In the top right corner, click the \textit{Delete Place} button. Confirm you wish to delete the Place. The list of Places should be displayed again, with the newly deleted Place not displayed.
+
+\test{Is the list of Ranks displayed correctly?}
+Navigate to the list of Ranks by clicking on the \textit{Config \& Meta Pages} link on the top menu bar and clicking on \textit{List All} next to \texttt{Rank}. A list of Ranks should be displayed.
+
+\test{Can a Rank be added?}
+Next to the title, there should be an \textit{New} button. Click on this. Enter a name and click on \textit{Save Rank}.
+
+\test{Has the Rank been added correctly? (1)}
+The list of Ranks should reload with the newly created place.
+
+\test{Has the Rank been added correctly? (2)}
+Navigate to the search page using the \textit{Search} button on either the top or bottom menu bar. In the data section, view the options for the \texttt{Rank} field. The newly created Rank should be displayed in this list.
+
+\test{Can a Rank be edited?}
+Navigate back to the list of Ranks using the method described above. Click the \textit{Edit} button. Change the \texttt{Name} field and click \textit{Save Rank} button. The list of Ranks should be displayed and the newly edited Place should display its new Name.
+
+\test{Can a Rank be deleted?}
+Click the \textit{Edit} button to the newly created Rank. The edit page should load. In the top right corner, click the \textit{Delete Rank} button. Confirm you wish to delete the Rank. The list of Ranks should be displayed again, with the newly deleted Rank not displayed.
+
+\test{Is the list of Regiment / Services displayed correctly?}
+Navigate to the list of Regiment / Services by clicking on the \textit{Config \& Meta Pages} link on the top menu bar and clicking on \textit{List All} next to \texttt{Regiment / Service}. A list of Regiment / Services should be displayed.
+
+\test{Can a Regiment / Service be added?}
+Next to the title, there should be an \textit{New} button. Click on this. Enter a name and click on \textit{Save Regiment / Service}.
+
+\test{Has the Regiment / Service been added correctly? (1)}
+The list of Regiment / Services should reload with the newly created place.
+
+\test{Has the Regiment / Service been added correctly? (2)}
+Navigate to the search page using the \textit{Search} button on either the top or bottom menu bar. In the data section, view the options for the \texttt{Regiment / Service} field. The newly created Regiment / Service should be displayed in this list.
+
+\test{Can a Regiment / Service be edited?}
+Navigate back to the list of Regiment / Services using the method described above. Click the \textit{Edit} button. Change the \texttt{Name} field and click \textit{Save Regiment / Service} button. The list of Regiment / Services should be displayed and the newly edited Place should display its new Name.
+
+\test{Can a Regiment / Service be deleted?}
+Click the \textit{Edit} button to the newly created Regiment / Service. The edit page should load. In the top right corner, click the \textit{Delete Regiment / Service} button. Confirm you wish to delete the Regiment / Service. The list of Regiment / Services should be displayed again, with the newly deleted Regiment / Service not displayed.
+
+\test{Is the list of Relation Types displayed correctly?}
+Navigate to the list of Relation Types by clicking on the \textit{Config \& Meta Pages} link on the top menu bar and clicking on \textit{List All} next to \texttt{Relation Type}. A list of Relation Types should be displayed.
+
+\test{Can a Relation Type be added?}
+Next to the title, there should be an \textit{New} button. Click on this. Enter a name and click on \textit{Save Relation Type}.
+
+\test{Has the Relation Type been added correctly? (1)}
+The list of Relation Types should reload with the newly created place.
+
+\test{Has the Relation Type been added correctly? (2)}
+Navigate to the search page using the \textit{Search} button on either the top or bottom menu bar. In the data section, view the options for the \texttt{Relation Type} field. The newly created Relation Type should be displayed in this list.
+
+\test{Can a Relation Type be edited?}
+Navigate back to the list of Relation Types using the method described above. Click the \textit{Edit} button. Change the \texttt{Name} field and click \textit{Save Relation Type} button. The list of Relation Types should be displayed and the newly edited Place should display its new Name.
+
+\test{Can a Relation Type be deleted?}
+Click the \textit{Edit} button to the newly created Relation Type. The edit page should load. In the top right corner, click the \textit{Delete Relation Type} button. Confirm you wish to delete the Relation Type. The list of Relation Types should be displayed again, with the newly deleted Relation Type not displayed.
+
+\test{Is the list of Service Countrys displayed correctly?}
+Navigate to the list of Service Countrys by clicking on the \textit{Config \& Meta Pages} link on the top menu bar and clicking on \textit{List All} next to \texttt{Service Country}. A list of Service Countrys should be displayed.
+
+\test{Can a Service Country be added?}
+Next to the title, there should be an \textit{New} button. Click on this. Enter an ID and a name and click on \textit{Save Service Country}. The ID must be an ISO3166-alpha 2 country code, but if a historical country, use any codes between QM-QZ and XA-XZ. All countries should already be added.
+
+\test{Has the Service Country been added correctly? (1)}
+The list of Service Countrys should reload with the newly created place.
+
+\test{Has the Service Country been added correctly? (2)}
+Navigate to the search page using the \textit{Search} button on either the top or bottom menu bar. In the data section, view the options for the \texttt{Service Country} field. The newly created Service Country should be displayed in this list.
+
+\test{Can a Service Country be edited?}
+Navigate back to the list of Service Countrys using the method described above. Click the \textit{Edit} button. Change the \texttt{Name} field and click \textit{Save Service Country} button. The list of Service Countrys should be displayed and the newly edited Place should display its new Name.
+
+\test{Can a Service Country be deleted?}
+Click the \textit{Edit} button to the newly created Service Country. The edit page should load. In the top right corner, click the \textit{Delete Service Country} button. Confirm you wish to delete the Service Country. The list of Service Countrys should be displayed again, with the newly deleted Service Country not displayed.
+
+\test{Is the list of Wars displayed correctly?}
+Navigate to the list of Wars by clicking on the \textit{Config \& Meta Pages} link on the top menu bar and clicking on \textit{List All} next to \texttt{War}. A list of Wars should be displayed.
+
+\test{Can a War be added?}
+Next to the title, there should be an \textit{New} button. Click on this. Enter a name and click on \textit{Save War}.
+
+\test{Has the War been added correctly? (1)}
+The list of Wars should reload with the newly created place.
+
+\test{Has the War been added correctly? (2)}
+Navigate to the search page using the \textit{Search} button on either the top or bottom menu bar. In the data section, view the options for the \texttt{War} field. The newly created War should be displayed in this list.
+
+\test{Can a War be edited?}
+Navigate back to the list of Wars using the method described above. Click the \textit{Edit} button. Change the \texttt{Name} field and click \textit{Save War} button. The list of Wars should be displayed and the newly edited Place should display its new Name.
+
+\test{Can a War be deleted?}
+Click the \textit{Edit} button to the newly created War. The edit page should load. In the top right corner, click the \textit{Delete War} button. Confirm you wish to delete the War. The list of Wars should be displayed again, with the newly deleted War not displayed.
+
+\test{Can narrative text be made bold?}
+The following tests ensure that styling can be applied to narrative sections of the site. Navigate to the page to create a new site update. This will be the area tested - the narrative editing tools are shared across the site.
+
+Enter some text into the box. Highlight this text and click on the \textit{B} button. The text should be surrounded by \texttt{\**\**}.
+
+\test{Can narrative text be previewed?}
+Click the \textit{Preview Below} button. The text entered should be displayed below and in bold type.
+
+\test{Can narrative text be made italicised?}
+Delete the text currently in the narrative area and type some other text in. Highlight this and click the \textit{I} button. The text should be surrounded by \texttt{\textunderscore}. Click the \textit{Preview Below} button. The text entered should be displayed below and in italics.
+
+\test{Can narrative text be made into a header?}
+Delete the text currently in the narrative area and type some other text in. Highlight this and click the \textit{H} button. The text should be prefixed by \texttt{\#\#\#}. Click the \textit{Preview Below} button. The text entered should be displayed below and in the header style.
+
+\test{Can a link be added to narrative text?}
+Delete the text currently in the narrative area and type some other text in. Highlight this text and click the link button. Type the link into the box that appears and click \textit{OK}. The text now becomes a link. Click the \textit{Preview Below} button. The text entered should be displayed below and as a link.
+
+\test{Can a bullet point list be added to narrative text?}
+Delete the text currently in the narrative area and type some other text in over several lines. Highlight this text and click the bullet list button. The text should be prefixed by \texttt{-}. Click the \textit{Preview Below} button. The text entered should be displayed below and as a bullet point list.
+
+\test{Can a numbered list be added to narrative text?}
+Delete the text currently in the narrative area and type some other text in over several lines. Highlight this text and click the bullet list button. The text should be prefixed by \texttt{1.}. Click the \textit{Preview Below} button. The text entered should be displayed below and as a numbered list.
+
+\test{Can a quote be added to narrative text?}
+Delete the text currently in the narrative area and type some other text in. Highlight this and click the \textit{``} button. The text should be prefixed by \texttt{\textgreater}. Click the \textit{Preview Below} button. The text entered should be displayed below and in the quotation style.
+
+\test{Can a picture be added to narrative text? (Left)}
+Delete the text currently in the narrative area. Click the \textit{Left} button. In the window that appears, type \texttt{SurnamesS/SamwaysAH.gif} and click \textit{OK}. In the next window, provide a description of that picture and click \textit{OK}. The code for a picture should be added. Click the \textit{Preview Below} button. The preview area should show the picture aligned to the left. Hover over the picture to show the description provided.
+
+\test{Can a picture be added to narrative text? (Center)}
+Delete the text currently in the narrative area. Click the \textit{Center} button. In the window that appears, type \texttt{SurnamesS/SamwaysAH.gif} and click \textit{OK}. In the next window, provide a description of that picture and click \textit{OK}. The code for a picture should be added. Click the \textit{Preview Below} button. The preview area should show the picture aligned in the middle. Hover over the picture to show the description provided.
+
+\test{Can a picture be added to narrative text? (Right)}
+Delete the text currently in the narrative area. Click the \textit{Right} button. In the window that appears, type \texttt{SurnamesS/SamwaysAH.gif} and click \textit{OK}. In the next window, provide a description of that picture and click \textit{OK}. The code for a picture should be added. Click the \textit{Preview Below} button. The preview area should show the picture aligned to the right. Hover over the picture to show the description provided.
+
+\test{Can the narrative area be maximised?}
+In the top right corner, of the narrative area, there should be a button to maximise the narrative window. Click this, and the page should be replaces with a large text area. Clicking the button again should return the narrative window to its normal size.
+
+\test{Does the narrative help page load correctly?}
+Slightly below the narrative window, there should be a link that indicates help is available for Markdown. Clicking on this should load a new tab with a help page on how to use the narrative area.
 
 \end{document}
