@@ -1,12 +1,11 @@
 \documentclass[12pt]{article}
-
-\usepackage{wasysym}
+\usepackage{wasysym} 
 \usepackage{hyperref}
 
 \newcounter{Test}
 \newcommand{\test}[1]{%
 \stepcounter{Test}%
-\paragraph{Test \theTest} \textbf{#1} }
+\paragraph{\Circle\ Test \theTest} \textbf{#1} }
 
 \title{Dover War Memorial Project - Testing}
 \date{}
@@ -21,7 +20,7 @@
 
 \section{Introduction}
 
-This document lists all the testing that must be taken place to ensure the site is bug free. I have done all these tests myself, but having been so closely involved in the design and construction of the site, someone else must also complete this. It will also allow you to spot any processes that you may find unusual, tricky, annoying or just incorrect. Any comments along the way on the actual processes, as well as the design and styling, are of great use. It is, after all, you who will be both using and maintaining the site. \smiley
+This document lists all the testing that must be taken place to ensure the site is bug free. I have done all these tests myself (and indeed found a number of bugs when doing so), but having been so closely involved in the design and construction of the site, someone else must also complete this. It will also allow you to spot any processes that you may find unusual, tricky, annoying or just incorrect. Any comments along the way on the actual processes, as well as the design and styling, are of great use. It is you, after all, who will be both using and maintaining the site. \smiley
 
 \section{Notes}
 Buttons on screen are labelled in \textit{italics}, with text to be entered or displayed in \texttt{monospace}. Errors in links display a default 404 error page. This will be changed, but doing so would affect the Wedding website, so I haven't done that yet.
@@ -30,7 +29,7 @@ Buttons on screen are labelled in \textit{italics}, with text to be entered or d
 
 These tests should ensure that the navigation is working as intended. If it is not, then the other tests might be a bit difficult(/annoying). These tests only need to be completed once, as the code is shared between all pages.
 
-Navigate to \texttt{http://www.baker-wedding.org.uk/Dover-War-Memorial}. Note that the capitals are correct - this is a testing location, and on the real site, the link will be the same as before.
+Navigate to \texttt{http://www.baker-wedding.org.uk/Dover-War-Memorial}. Note that the capitals are correct - this is a testing location, and on the real site, the address will be the same as before.
 \test {Does the home page load correctly?}
 Upon loading, the home page should be displayed. This will have the main title, followed by patrons, the top bar, the main blurb for the home page (contained within the pieces of paper effect), the bottom bar and copyright notice.
 
@@ -191,8 +190,10 @@ Click this \textit{Delete} button. A pop-up warning should be displayed. Click \
 Click the \textit{Delete} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. Not that this only removes the change log entry, not the edit, nor the item in question. The page should reload with that change log item removed.
 
 \test{Are site updates with posted dates in the future hidden in the main list?}
+Using the method described earlier, create a new site update, ensuring that the posted date is some time in the future. Navigate back to the list of site updates. This newly created update should not be visible in the main list.
 
 \test{Are site updates with posted dates in the future shown in the future list?}
+Navigate to the main config page by using the \textit{Config \& Meta Pages} link in the top bar. There will be more tests on this page in Section~\ref{sec:meta}. Navigate down to the list entitled \texttt{Future Site Updates}. The newly created site update should be visible here.
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Latest News section. The \textit{New} button next to the title and \textit{Edit} buttons next to each title should no longer be displayed.
@@ -357,7 +358,13 @@ Click on the button labelled \textit{View} next to the casualty's name in the ti
 Return to the edit page of a given casualty. Ensure that the \texttt{Recently Imported} field is set to \texttt{Yes}. Click \textit{Save and return to casualty}. The casualty page will load. Clicking on the \textit{Casualty Details} hidden table will show the casualty's details. Displayed at the top of this table is a message informing the user that some details may not yet have been added.
 
 \test{Does changing the \texttt{Recently Imported} field affect the display? (2)}
+Using the \textit{Config \& Meta Pages} link on the top bar, find the \textit{View All} button further down the page in the section entitled \texttt{Recently Uploaded Casualties}. Click this button. There should be a list shown which contains the casualty that has just been modified.
+
+\test{Does changing the \texttt{Recently Imported} field affect the display? (3)}
 Return to the edit page of a given casualty. Ensure that the \texttt{Recently Imported} field is set to \texttt{No}. Click \textit{Save and return to casualty}. There should now be no message displayed at the top of the  \textit{Casualty Details} hidden table for this casualty.
+
+\test{Does changing the \texttt{Recently Imported} field affect the display? (4)}
+Return to the list of recently imported casualties, by using the \textit{Config \& Meta Pages} link on the top bar, find the \textit{View All} button further down the page in the section entitled \texttt{Recently Uploaded Casualties}. Click this button. The list should no longer contain the casualty that was just modified.
 
 \test{Does changing the \texttt{Unsure Details} field affect the display? (1)}
 Return to the edit page of a given casualty. Ensure that the \texttt{Unsure Details} field is set to \texttt{Yes}. Click \textit{Save and return to casualty}. The casualty page will load. Clicking on the \textit{Casualty Details} hidden table will show the casualty's details. Displayed at the top of this table is a message informing the user that some details may be unknown. This replacing the previous method of placing an asterisk next to a surname.
@@ -380,8 +387,12 @@ Navigate back to the list of casualties and click on any casualty. The URL shoul
 \test{Is an invalid edit page for a casualty displayed gracefully?}
 Navigate back to the list of casualties and click on any casualty. Then, click the \textit{Edit} button on that casualty. The URL should be similar to \texttt{casualty/edit/1}. Change the number after \texttt{edit} to something very large, e.g. \texttt{5000}. Instead of loading the edit page for casualty number \texttt{5000} (as it does not exist), the home page should be displayed instead.
 
+\test{Is a casualty with no commemoration location displayed in the correct list?}
+
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Casualty Index section. The \textit{New Casualty} button next to the title should no longer be displayed. Click on a memorial and click on any casualty. There should be no \textit{Edit} button next to their name.
+
+\test{Is the list of recently uploaded casualties visible when logged out?}
 
 \section{Articles}\label{sec:article}
 This section is the ``Information Index'' on the previous site, the shorter name fitting more nicely into the evenly spaced menu bar. Information that was on other areas of the site (e.g. the article about the Dover War Memorial) should be classed as an article, but won't belong in one of the groups that existed on the previous site. Log in to the site if you have not already done so.
@@ -443,17 +454,13 @@ Create a new article using the process described earlier. Click the title of the
 \test{Can a deletion be stopped?}
 Click this \textit{Delete Article} button. A pop-up warning should be displayed. Click \textit{Cancel}. The popup should be removed.
 
-\test{Can a casualty be deleted?}
+\test{Can an article be deleted?}
 Click the \textit{Delete Article} button. A pop-up warning should be displayed. This time, click \textit{Delete}. All deletions cannot be undone. The page should redirect to the list of articles.
+
+\test{Is an article with no category displayed in the correct list?}
 
 \test{Are the Edit/New buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate back to the Articles section. The \textit{New} button next to the title should no longer be displayed. Click on an article. There should be no \textit{Edit} button next to the article title.
-
-\test{Is the most recent news item displayed on the home page?}
-Create a site update news item using the method described above. Ensure that the date makes it the most recent news item (but not in the future). Return to the home page by using the \textit{Home} buttons on either menu bar. This newly created site update should appear in the area at the bottom left on the page.
-
-\test{Are the deaths today displayed on the home page?}
-Create a casualty using the method described above. Ensure the \texttt{Date of Death} is set to today's day and month, but in a previous year. Return to the home page by using the \textit{Home} buttons on either menu bar. The list of \texttt{Casualties commemorated today} section in the bottom right should now have this casualty listed along with their age. Clicking on the name of the casualty should load their casualty page.
 
 \section{Meta}\label{sec:meta}
 Meta pages are the ``other'' pages of the site. These come in two varieties: 1) Standalone pages (e.g. Contact) or 2) Sections of Text (e.g. at the top of the Articles list or the Home page). The idea of these is that is allows you to create (or edit) pages that do not fit into any other category and link to these as needed. It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the Home page, Contact Us, etc. These have all been added into the site already.
@@ -512,6 +519,12 @@ Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} bu
 
 \test{Is an invalid edit page for a meta page displayed gracefully?}
 Return back to the list of Meta Pages, by clicking on the \textit{Meta Pages} button on the top menu bar. Click on any meta page, followed by the \textit{Edit} button. The URL should be similar to \texttt{meta/edit/admin}. The last word will be the unique ID of the page. Change this to a value that has not already been used. Instead of loading the edit page for a meta page that does not exist, the home page should be shown instead.
+
+\test{Is the most recent news item displayed on the home page?}
+Create a site update news item using the method described above. Ensure that the date makes it the most recent news item (but not in the future). Return to the home page by using the \textit{Home} buttons on either menu bar. This newly created site update should appear in the area at the bottom left on the page.
+
+\test{Are the deaths today displayed on the home page?}
+Create a casualty using the method described above. Ensure the \texttt{Date of Death} is set to today's day and month, but in a previous year. Return to the home page by using the \textit{Home} buttons on either menu bar. The list of \texttt{Casualties commemorated today} section in the bottom right should now have this casualty listed along with their age. Clicking on the name of the casualty should load their casualty page.
 
 \test{Are the Edit buttons removed when logged out?}
 For the following tests, you will need to be logged out. Navigate to the home page, by using the \textit{Home} button on either menu bar. There should be no \textit{Edit} button displayed next to the title page.
