@@ -301,4 +301,13 @@ class Casualty_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+
+    /*
+    * Returns basic data about the casualties that recently been imported
+    */
+    public function getCasualtyRecentlyImported() {
+        $sql = "SELECT * FROM casualty c WHERE c.recently_uploaded = 1";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }

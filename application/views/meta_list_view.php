@@ -65,6 +65,12 @@ $Parsedown = new ParsedownExtra();
 	</table>
 </div>
 <div class="panel panel-primary">
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Recently Uploaded Casualties</h4></div>
+	<div class="panel-body">
+	<a href="<?php echo base_url() ?>casualty/uploaded" class="btn btn-primary btn-md" role="button"><i class="fa fa-users" aria-hidden="true"></i> View All</a>
+	</div>
+</div>
+<div class="panel panel-primary">
 	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Casualties With No Memorial</h4></div>
 	<?php
 		if(count($casualty_data) == 0) {

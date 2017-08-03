@@ -402,4 +402,29 @@ echo "
 		}
 	}
 
+	/**
+	*	Shows recently imported casualties
+	*/
+	public function uploaded() {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+
+		if($loggedIn) {
+			$this->load->model('casualty_model');
+			$casualty_data = $this->casualty_model->getCasualtyRecentlyImported();
+
+			$data = array(
+				'casualty_data' => $casualty_data,
+				"loggedIn" => $loggedIn
+			);
+
+			$this->load->view('header', array(
+				"title" => "Recently Imported Casualties - Dover War Memorial Project"));
+			$this->load->view('casualty_new_view', $data);
+			$this->load->view('footer');
+		} else {
+			redirect();
+		}
+	}
+
 }
