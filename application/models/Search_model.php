@@ -95,7 +95,7 @@ class Search_model extends CI_Model {
             }
         }
 
-        $sql = "SELECT \"casualty\" AS type, c.id, CONCAT(c.given_name, \" \", c.middle_names, \" \", c.family_name) AS title, c.narrative AS content FROM casualty c ";
+        $sql = "SELECT DISTINCT \"casualty\" AS type, c.id, CONCAT(c.given_name, \" \", c.middle_names, \" \", c.family_name) AS title, c.narrative AS content FROM casualty c ";
         $sql .= " LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id LEFT JOIN commemoration_location ON clc.commemoration_location_id = commemoration_location.id ";
         $sql .= " LEFT JOIN regiment_service_casualty rsc ON rsc.casualty_id = c.id LEFT JOIN regiment_service ON rsc.regiment_service_id=regiment_service.id ";
         $sql .= " LEFT JOIN service_number ON service_number.casualty_id = c.id ";
