@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{wasysym} 
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -18,11 +19,10 @@
 
 \maketitle
 
+This document acts as a user guide for someone who will be also performing administration functions (i.e. it's not for the general public). It will identify features of each page, and how to perform all the actions required to maintain and update the website.
+
 \tableofcontents
 
-\section{Introduction}
-
-This document acts as a user guide for someone who will be also performing administration functions (i.e. it's not for the general public). It will identify features of each page, and how to perform all the actions required to maintain and update the website.
 
 \section{Home Page \& Login}
 
@@ -39,6 +39,7 @@ Other areas on the page are the latest news article (\marker{8}), the list of ca
 	\caption{Home Page}\label{fig:home}
 \end{figure}
 
+\newpage
 \FloatBarrier
 \subsection{Login}\label{ssec:login}
 This page (Figure~\ref{fig:login}) allows the user to login to the site to make various changes. \marker{1}\ is where the username must be entered with \marker{2}\ being the password field. \marker{3}\ submits this information.
@@ -49,6 +50,7 @@ This page (Figure~\ref{fig:login}) allows the user to login to the site to make 
 	\caption{Login Page}\label{fig:login}
 \end{figure}
 
+\newpage
 \FloatBarrier
 \subsection{Home Page after Login}
 Once a user has logged in, menu bars change. The top menu bar gains another row, with the login button on the bottom bar being replaced with a logout button, as can be seen in Figure~\ref{fig:home_login}. \marker{1}\ shows the currently logged in user, \marker{2}\ navigates to the config page (Section~\ref{sec:config}) and \marker{3}\ the admin help page (where this document is stored). \marker{4}\ and \marker{5}\ allow the user to logout. \marker{6} allows the user to edit the narrative text. These appear in numerous places across the site.
