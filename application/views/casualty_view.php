@@ -162,13 +162,14 @@ $Parsedown = new ParsedownExtra();
 			echo "</td></tr>";
 		}
 
-		foreach ($commemorations as $data) {
+		foreach ($commemorations as $data) {		
 			echo "<tr>";
 			echo "<th>";
 			echo "Commemoration Location";
 			echo "</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/commemoration_location=".$data->id."/1\">";
 			echo $data->name;
-			echo "</td>";
+			echo "</a></td>";
 			echo "</tr>";
 		}
 		foreach ($regiment_data as $data) {
@@ -176,8 +177,9 @@ $Parsedown = new ParsedownExtra();
 			echo "<th>";
 			echo "Regiment / Service";
 			echo "</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/regiment_service=".$data->id."/1\">";
 			echo $data->name;
-			echo "</td>";
+			echo "</a></td>";
 			echo "</tr>";
 		}
 		foreach ($service_numbers as $data) {
@@ -185,6 +187,7 @@ $Parsedown = new ParsedownExtra();
 			echo "<th>";
 			echo "Service Number";
 			echo "</th><td>";
+			echo "<a href=\"".base_url()."search/index/data/data/service_numbers=".$data->service_number."/1\">";
 			echo $data->service_number;
 			echo "</td>";
 			echo "</tr>";
