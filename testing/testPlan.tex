@@ -1,7 +1,20 @@
 \documentclass[12pt]{article}
-\usepackage[margin=1.5cm]{geometry}
+\usepackage[
+  top=0.4cm,
+  bottom=1.7cm,
+  left=1.7cm,
+  right=1.7cm,
+  includehead,includefoot,
+  heightrounded, % to avoid spurious underfull messages
+]{geometry} 
 \usepackage{wasysym} 
 \usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\cfoot{\thepage}
+\pagestyle{fancy}
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -10,7 +23,7 @@
 \stepcounter{Test}%
 \paragraph{\Circle\ Test \theTest} \textbf{#1} }
 
-\title{\textbf{Dover War Memorial Project - Testing}}
+\title{\vspace{-1cm}\textbf{Dover War Memorial Project - Testing}\vspace{-1cm}}
 \date{}
 \author{}
 %%%%% document start
