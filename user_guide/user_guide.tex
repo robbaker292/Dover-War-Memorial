@@ -10,6 +10,13 @@
 \usepackage{wasysym} 
 \usepackage{hyperref}
 
+%delete the below to remove the numbering split by chapter
+\usepackage{chngcntr}
+\usepackage{caption}
+\usepackage{subcaption}
+%\counterwithin{figure}{section}
+%\captionsetup[figure]{labelfont=bf,textfont=bf}
+
 \usepackage{fancyhdr}
 \fancyhf{} % clear all header and footers
 \renewcommand{\headrulewidth}{0pt} % remove the header rule
@@ -23,8 +30,34 @@
 \usepackage{epstopdf}
 \usepackage{color}
 
+%change the font
 \renewcommand{\familydefault}{\sfdefault}
+
+%creates the marker command
 \newcommand{\marker}[1]{Marker \color{red}\textbf{#1}\color{black}}
+
+%% Handles the info and warning boxes
+\usepackage{mdframed}
+\newmdenv[
+	linewidth=2pt,
+	leftmargin=0.3cm,
+	rightmargin=0.3cm,
+	leftline=false,
+	rightline=false,
+	linecolor=red,
+	frametitle={\lightning\ Warning!},
+	frametitlefont=\color{red}\bfseries
+]{warningBox}
+\newmdenv[
+	linewidth=2pt,
+	leftmargin=0.3cm,
+	rightmargin=0.3cm,
+	leftline=false,
+	rightline=false,
+	linecolor=blue,
+	frametitle={\checked\ Note},
+	frametitlefont=\color{blue}\bfseries
+]{infoBox}
 
 \title{\vspace{-1cm}\textbf{Dover War Memorial Project - User Guide}\vspace{-1cm}}
 \date{}
@@ -34,9 +67,21 @@
 
 \maketitle
 
-This document acts as a user guide for someone who will be also performing administration functions (i.e. it's not for the general public). It will identify features of each page, and how to perform all the actions required to maintain and update the website. Buttons on screen are labelled in \textit{italics}, with text to be entered or displayed in \texttt{monospace}.
+This document acts as a user guide for someone who will be also performing administration functions (i.e. it's not for the general public). It will identify features of each page, and how to perform all the actions required to maintain and update the website.
 
 \tableofcontents
+
+\section{Notes}
+Buttons on screen are labelled in \textit{italics}, with text to be entered or displayed in \texttt{monospace}. Any \textit{Edit}, \textit{Add} or \textit{Delete} buttons in screenshots are not displayed if the user is not logged in.
+
+\begin{infoBox}
+Some information may be of interest and is displayed in this type of box.
+\end{infoBox}
+
+\begin{warningBox}
+More serious information may be displayed in a box similar to this.
+\end{warningBox}
+
 \newpage
 
 \section{Navigation \& Login}
@@ -55,6 +100,10 @@ Figure~\ref{fig:home} shows the home page as viewed when not logged in. \marker{
 \FloatBarrier
 \subsection{How do I login?}\label{ssec:login}
 To login, click the \textit{Login} button on the bottom menu bar (see \marker{7}\ on Figure~\ref{fig:home}). The login page is then loaded (Figure~\ref{fig:login}), which allows the user to login to the site to make various changes. \marker{1}\ is where the username must be entered with \marker{2}\ being the password field. \marker{3}\ submits this information.
+
+\begin{warningBox}
+There is no way of resetting your username or password, so ensure that you remember it
+\end{warningBox}
 
 \begin{figure}[h]
   \centering
@@ -80,15 +129,90 @@ This section of the site contains two areas: Latest News, and a Change Log. The 
 
 The Change Log is a list of all the changes on the site (or rather, all the changes when you have entered a description of the change). This allows those visitors who wish to know what exactly is changing and when the ability to do so. It's also quite useful to show that the site is ``fresh'' and being regularly updates.
 
-Navigate to Site Update section, by clicking the \textit{Latest News} link in either menu bar.
+\subsection{How do I view a List of Updates?}\label{ssec:view_updates}
 
-\subsection{How do I view a List of Updates?}
-\subsection{How do I view a particular Update?}
-\subsection{How do I Add or Edit an Update?}
-\subsection{How do I delete an Update?}
-\subsection{How do I view a List of Changes?}
-\subsection{How do I delete an Change Log item?}
+Navigate to Site Update section, by clicking the \textit{Latest News} link in either menu bar. A list of this year's updates will show, in a similar fashion to Figure~\ref{fig:view_updates}.
 
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_updates.png}
+	\caption{List of Site Updates}\label{fig:view_updates}
+\end{figure}
+
+\marker{1}\ indicates which year's updates are being shown, with \marker{2}\ providing a link to the change log, described in Section~\ref{ssec:changeLog}. Each update is displayed below that, with \marker{3}\ showing the title (and allowing the user to view an individual update, as in Section~\ref{ssec:view_update}), \marker{4}\ the content of that update and \marker{5}\ the date the site update was posted. \marker{6}\ shows a list of previous years and the number of site updates from those years. Clicking on a year will load the updates from the respective year. \marker{7}\ and \marker{8}\ allow the creation and editing of a site update, which is described in Section~\ref{ssec:edit_update}.
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a particular Update?}\label{ssec:view_update}
+To view a particular update, click on the title of any update on the list of updates (\marker{3}\ in Figure~\ref{fig:view_updates}). A page will load similar to Figure~\ref{fig:view_update}. \marker{1}\ shows the title, \marker{2}\ the content of the update and \marker{3}\ the date the site update was posted. \marker{4}\ allows the user to return to the list of site updates for that year, while \marker{5} allows the user to edit this update, as described in Section~\ref{ssec:edit_update}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_update.png}
+	\caption{Example of a Site Update}\label{fig:view_update}
+\end{figure}
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add or Edit an Update?}\label{ssec:edit_update}
+To create a new site update, use the \textit{Add} button on the list of updates (\marker{8} of Figure~\ref{fig:view_updates}. To edit an update, click the \textit{Edit} button next to the title of the update, either on the list of updates (\marker{7} on Figure~\ref{fig:view_updates}) or the page of a particular update (\marker{5} on Figure~\ref{fig:view_update}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\ref{fig:edit_update}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_update.png}
+	\caption{Example of Editing a Site Update}\label{fig:edit_update}
+\end{figure}
+
+\marker{1}\ allows the editing of the title of the site update, while \marker{2}\ allows the editing of the main content of the update. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{3}\ shows the date this update was posted on. It is possible to set this in the future - if this is done, the update will not appear in list of updates until this date (for example, you could create a Christmas message that appears on the 25th December, without needing to log on then). A list of future updates is described in Section~\ref{ssec:config}. \marker{4}\ will show a slightly different background is this is a ``family update'' in a similar manner to the existing site. \marker{5}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{6}\ saves this update, while \marker{7}\ returns to view this update, discarding any changes. \marker{8}\ allows the deletion of an update and is described in Section~\ref{ssec:delete_update}.
+
+\begin{infoBox}
+The \texttt{title}, \texttt{content} and \texttt{date posted} fields must all be complete before the site update can be saved
+\end{infoBox}
+
+\FloatBarrier
+\subsection{How do I delete an Update?}\label{ssec:delete_update}
+To delete an update, navigate to its edit page, as described in Section~\ref{fig:edit_update}. Using the \textit{Delete Site Update} button (\marker{8}\ in Figure~\ref{fig:edit_update}), will display a warning message similar to Figure~\ref{fig:delete_update}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the site update.
+
+\begin{warningBox}
+Deletions cannot be undone
+\end{warningBox}
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/delete_update.png}
+	\caption{Deleting a Site Update}\label{fig:delete_update}
+\end{figure}
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a List of Changes?}\label{ssec:changeLog}
+To view the change log, navigate to the list of site updates (see Section~\ref{ssec:view_updates}) and click on the \textit{View change log} button, as shown by \marker{2}\ in Figure~\ref{fig:view_updates}. A page should load similar to Figure~\ref{fig:view_changes}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_changes.png}
+	\caption{View the Change Log}\label{fig:view_changes}
+\end{figure}
+
+\marker{1}\ allows the user to return to the list of site updates (see Section~\ref{ssec:view_updates}). The table shown by \marker{2}\ lists the date of the change, the type of change, and the description entered. \marker{3} allows the quick navigation to the item changed, while \marker{4}\ allows the deletion of a change log item (see Section~\ref{ssec:delete_change}). \marker{5}\ indicates a summary of previous years' change log items, allowing a user to view a list of changes in the past.
+
+\newpage
+\FloatBarrier
+\subsection{How do I delete an Change Log item?}\label{ssec:delete_change}
+Navigate to the change log as described in Section~\ref{ssec:changeLog}. Next to the item in question, press the delete button (\marker{4} in Figure~\ref{fig:view_changes}). A panel should appear similar to Figure~\ref{fig:delete_change}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the change log entry.
+
+\begin{warningBox}
+Deletions cannot be undone
+\end{warningBox}
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/delete_change.png}
+	\caption{Deleting a Change Log Entry}\label{fig:delete_change}
+\end{figure}
+
+\newpage
+\FloatBarrier
 \section{Casualty Index}\label{sec:casualtyIndex}
 casualties
 \subsection{How do I view a List of all Memorials?}
@@ -117,7 +241,7 @@ Search
 
 \section{Config \& Meta Pages}\label{sec:config}
 Config
-\subsection{How do I view the config page?}
+\subsection{How do I view the config page?}\label{ssec:config}
 \subsection{How do I view a list of Places?}
 \subsection{How do I Add, Edit or Delete a Place?}
 \subsection{How do I view a list of Ranks?}
@@ -134,6 +258,6 @@ Config
 
 \section{Others}
 Others
-\subsection{How do I use the Narrative Buttons?}
+\subsection{How do I use the Narrative Buttons?}\label{ssec:narrative}
 
 \end{document}
