@@ -57,7 +57,7 @@ function sampleContent($text, $term) {
 				<div class="form-group">
 					<label class="control-label col-sm-1" for="options">In</label>
 					<div class="col-sm-3">
-						<select class="form-control selectpicker" id="options" name="options[]" data-live-search="true" multiple data-selected-text-format="count > 2">
+						<select class="form-control selectpicker" id="options" name="options[]" data-live-search="true" multiple data-selected-text-format="count > 2" data-container="body">
 							<option value="casualty" <?php if($results && in_array("casualty", $options)) { echo "selected"; }?>>Casualty</option>
 							<option value="article" <?php if($results && in_array("article", $options)) { echo "selected"; }?>>Article</option>
 							<option value="site_update" <?php if($results && in_array("site_update", $options)) { echo "selected"; }?>>Update</option>
@@ -136,7 +136,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="war">War:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="war" name="war" data-live-search="true">
+							<select class="form-control selectpicker" id="war" name="war" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["war"])) {	
@@ -161,7 +161,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="final_resting_place">Final Resting Place:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="final_resting_place" name="final_resting_place" data-live-search="true">
+							<select class="form-control selectpicker" id="final_resting_place" name="final_resting_place" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["final_resting_place"])) {	
@@ -185,7 +185,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="rank_at_death">Rank at death:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="rank_at_death" name="rank_at_death" data-live-search="true">
+							<select class="form-control selectpicker" id="rank_at_death" name="rank_at_death" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["rank_at_death"])) {	
@@ -209,7 +209,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="service_country">Service Country:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="service_country" name="service_country" data-live-search="true">
+							<select class="form-control selectpicker" id="service_country" name="service_country" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["service_country"])) {	
@@ -233,7 +233,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="place_of_birth">Place of Birth:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="place_of_birth" name="place_of_birth" data-live-search="true">
+							<select class="form-control selectpicker" id="place_of_birth" name="place_of_birth" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["place_of_birth"])) {	
@@ -257,7 +257,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="last_known_address">Last Known Address:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="last_known_address" name="last_known_address" data-live-search="true">
+							<select class="form-control selectpicker" id="last_known_address" name="last_known_address" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["last_known_address"])) {	
@@ -288,7 +288,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="commemoration_location">Commemoration Location:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="commemoration_location" name="commemoration_location" data-live-search="true">
+							<select class="form-control selectpicker" id="commemoration_location" name="commemoration_location" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["commemoration_location.id"])) {	
@@ -312,7 +312,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="regiment_service">Regiment / Service:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="regiment_service" name="regiment_service" data-live-search="true">
+							<select class="form-control selectpicker" id="regiment_service" name="regiment_service" data-container="body" data-live-search="true">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["regiment_service"])) {	
@@ -336,7 +336,7 @@ function sampleContent($text, $term) {
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="service_numbers">Current Service Numbers:</label>
 						<div class="col-sm-9">
-							<select class="form-control selectpicker" id="service_numbers" name="service_numbers" data-live-search="true">
+							<select class="form-control selectpicker" id="service_numbers" name="service_numbers" data-live-search="true" data-container="body">
 								<?php
 								echo "<option value=\"\"";
 								if($results || !isset($data["service_numbers"])) {	
