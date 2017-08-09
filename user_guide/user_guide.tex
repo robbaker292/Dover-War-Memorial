@@ -156,7 +156,7 @@ To view a particular update, click on the title of any update on the list of upd
 \newpage
 \FloatBarrier
 \subsection{How do I Add or Edit an Update?}\label{ssec:edit_update}
-To create a new site update, use the \textit{Add} button on the list of updates (\marker{8} of Figure~\ref{fig:view_updates}. To edit an update, click the \textit{Edit} button next to the title of the update, either on the list of updates (\marker{7} on Figure~\ref{fig:view_updates}) or the page of a particular update (\marker{5} on Figure~\ref{fig:view_update}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\ref{fig:edit_update}.
+To create a new site update, use the \textit{Add} button on the list of updates (\marker{8}\ of Figure~\ref{fig:view_updates}. To edit an update, click the \textit{Edit} button next to the title of the update, either on the list of updates (\marker{7}\ on Figure~\ref{fig:view_updates}) or the page of a particular update (\marker{5}\ on Figure~\ref{fig:view_update}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\ref{fig:edit_update}.
 
 \begin{figure}[h]
   \centering
@@ -164,7 +164,7 @@ To create a new site update, use the \textit{Add} button on the list of updates 
 	\caption{Example of Editing a Site Update}\label{fig:edit_update}
 \end{figure}
 
-\marker{1}\ allows the editing of the title of the site update, while \marker{2}\ allows the editing of the main content of the update. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{3}\ shows the date this update was posted on. It is possible to set this in the future - if this is done, the update will not appear in list of updates until this date (for example, you could create a Christmas message that appears on the 25th December, without needing to log on then). A list of future updates is described in Section~\ref{ssec:config}. \marker{4}\ will show a slightly different background is this is a ``family update'' in a similar manner to the existing site. \marker{5}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{6}\ saves this update, while \marker{7}\ returns to view this update, discarding any changes. \marker{8}\ allows the deletion of an update and is described in Section~\ref{ssec:delete_update}.
+\marker{1}\ allows the editing of the title of the site update, while \marker{2}\ allows the editing of the main content of the update. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{3}\ shows the date this update was posted on. It is possible to set this in the future - if this is done, the update will not appear in list of updates until this date (for example, you could create a Christmas message that appears on the 25th December, without needing to log on then). A list of future updates is described in Section~\ref{ssec:config}. \marker{4}\ will show a slightly different background is this is a ``family update'' in a similar manner to the existing site. \marker{5}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{6}\ saves this update, while \marker{7}\ returns to view this update, discarding any changes. \marker{8}\ allows the deletion of an update and is described in Section~\ref{ssec:delete_update}. The \textit{View} and \textit{Delete} buttons are not shown if this is a new memorial.
 
 \begin{infoBox}
 The \texttt{title}, \texttt{content} and \texttt{date posted} fields must all be complete before the site update can be saved
@@ -172,7 +172,7 @@ The \texttt{title}, \texttt{content} and \texttt{date posted} fields must all be
 
 \FloatBarrier
 \subsection{How do I delete an Update?}\label{ssec:delete_update}
-To delete an update, navigate to its edit page, as described in Section~\ref{fig:edit_update}. Using the \textit{Delete Site Update} button (\marker{8}\ in Figure~\ref{fig:edit_update}), will display a warning message similar to Figure~\ref{fig:delete_update}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the site update.
+To delete an update, navigate to its edit page, as described in Section~\ref{ssec:edit_update}. Using the \textit{Delete Site Update} button (\marker{8}\ in Figure~\ref{fig:edit_update}), will display a warning message similar to Figure~\ref{fig:delete_update}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the site update.
 
 \begin{warningBox}
 Deletions cannot be undone
@@ -215,12 +215,93 @@ Deletions cannot be undone
 \newpage
 \FloatBarrier
 \section{Casualty Index}\label{sec:casualtyIndex}
-casualties
-\subsection{How do I view a List of all Memorials?}
+
+The casualty index is the main section of the site, and therefore has a lot of details associated with it. Casualties are grouped into one or more memorials, with a few main ones shown in more prominence on the main memorial list (the same ones that are shown on the old site). Lists of casualties are displayed on each memorial's page. There is also a memorial map, which shows the various memorials on a interactive map. A casualty as the same narrative before, along with their pictures, as well as a section full of data - used to create the relational and searchable database.
+
+\subsection{How do I view a List of all Memorials?}\label{ssec:view_memorials}
+Navigate to the list of memorials by clicking the \textit{Casualty Index} button on the top or bottom menu bar. A page should load similar to Figure~\ref{fig:view_memorials}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_memorials.png}
+	\caption{View the List of Memorials}\label{fig:view_memorials}
+\end{figure}
+
+\marker{1}\ shows the title of the page, while \marker{2}\ provides some narrative content (which can be edited using \marker{8}). \marker{3}\ links to the memorial map, while the list of memorials are indicated by \marker{4}\. the name of the memorial and the number of casualties are shown. \marker{5}\ allows the user to also view the other memorials, which are displayed in the same way. \marker{6}\ and \marker{7}\ allow the creation of a new memorial and casualty respectively.
+
+\newpage
+\FloatBarrier
 \subsection{How do I view the Memorial Map?}
+To view the memorial map, navigate to the list of memorials (see Section~\ref{ssec:view_memorials}) and click on the \textit{Memorial Map} button, as shown by \marker{3}\ in Figure~\ref{fig:view_memorials}. A page should load similar to Figure~\ref{fig:view_map}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_map.png}
+	\caption{View the Memorial Map}\label{fig:view_map}
+\end{figure}
+
+The main map window is shown in \marker{1}\ with some navigation buttons displayed in \marker{2}. The map uses standard navigation features: dragging, scrolling, etc. Clicking on a black pin, as indicated by \marker{3}, will show a panel below (\marker{4}) detailing the name and number of casualties at that memorial.
+\begin{infoBox}
+Only memorials with latitude and longitude information are displayed on this map, and by default, it will centre on Dover.
+\end{infoBox}
+
+\newpage
+\FloatBarrier
 \subsection{How do I view a particular Memorial?}
-\subsection{How do I Add or Edit a Memorial?}
-\subsection{How do I delete a Memorial?}
+To view the memorial map, navigate to the list of memorials (see Section~\ref{ssec:view_memorials}) and click on the name of any memorial. A page will load similar to Figure~\ref{fig:view_memorial}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_memorial.png}
+	\caption{View a particular memorial}\label{fig:view_memorial}
+\end{figure}
+
+\marker{1}\ gives the title of the memorial, while \marker{2}\ displays the narrative content, editable using the button indicated by \marker{8}. A text description of the location is shown by \marker{3}\ (for example, if the memorial is a book, or perhaps a grave reference number), with a map shown by \marker{4}. \marker{5}\ allows the user to filter casualties by the two World Wars, or by all wars, while \marker{6}\ allows the filtering by surname. The list of filtered casualties is indicated by \marker{7} and navigates to that casualty's particular page.
+
+\begin{infoBox}
+If no latitude or longitude has been set then the map is not displayed.
+\end{infoBox}
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add or Edit a Memorial?}\label{ssec:edit_memorial}
+To create a new memorial, use the \textit{New Memorial} button on the list of memorials (\marker{6}\ of Figure~\ref{fig:view_memorials}). To edit an update, click the \textit{Edit} button next to the title of the memorial on the page of a particular memorial (\marker{8}\ on Figure~\ref{fig:view_memorial}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\ref{fig:edit_memorial}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_memorial.png}
+	\caption{Editing a Memorial}\label{fig:edit_memorial}
+\end{figure}
+
+\marker{1}\ indicates the name of the memorial, with \marker{2}\ indicating the narrative content. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{4}\ indicates the text description of the location of the memorial, while \marker{4}\ and \marker{5}\ contain the latitude and longitude (as decimal numbers). 
+
+\begin{infoBox}
+On Google Maps, right click and select \textit{What's here?}. At the bottom of the screen, the latitude and longitude of the clicked location is shown.
+\end{infoBox}
+
+\marker{6}\ indicates the order in which this memorial should appear in the main list of memorials. If this memorial should not appear in the main list, then leave this blank. The lower a number, the higher it will be displayed on the list. \marker{7}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{8}\ saves this memorial, while \marker{9}\ returns to view this memorial, discarding any changes. \marker{10}\ allows the deletion of an update and is described in Section~\ref{ssec:delete_memorial}. The \textit{View} and \textit{Delete} buttons are not shown if this is a new memorial.
+
+\begin{infoBox}
+The \texttt{name} and \texttt{content} fields must all be complete before the site update can be saved
+\end{infoBox}
+
+\FloatBarrier
+\subsection{How do I delete a Memorial?}\label{ssec:delete_memorial}
+To delete a memorial, navigate to its edit page, as described in Section~\ref{ssec:edit_memorial}. Using the \textit{Delete Memorial} button (\marker{10}\ in Figure~\ref{fig:edit_memorial}), will display a warning message similar to Figure~\ref{fig:delete_memorial}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the memorial.
+
+\begin{warningBox}
+Any casualties with this memorial will have it removed. This may mean some casualties have no memorial and therefore will be displayed in a list as described in Section~\ref{ssec:config}.\\
+Deletions cannot be undone
+\end{warningBox}
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/delete_memorial.png}
+	\caption{Deleting a Site Update}\label{fig:delete_memorial}
+\end{figure}
+
+\newpage
+\FloatBarrier
 \subsection{How do I view a Casualty?}
 \subsection{How do I view a Casualty's Data?}
 \subsection{How do I Add or Edit a Casualty?}
