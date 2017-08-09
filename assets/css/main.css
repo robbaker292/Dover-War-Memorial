@@ -158,12 +158,17 @@ a.toggler .fa:after {
 }
 
 .snippet {
-  display: block; /* Fallback for non-webkit */
-  display: -webkit-box;
-  height: 8em; /* Fallback for non-webkit */
-  margin: 0 auto;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    position:relative;
+    max-height:8em;
+    overflow:hidden;
+}
+
+.snippet:after {
+    content:"";
+    position:absolute;
+    top:4.5em;
+    left:0;
+    height:4em;
+    width:100%;
+    background: linear-gradient(rgba(255,255,255,0), #FFFFFF);
 }
