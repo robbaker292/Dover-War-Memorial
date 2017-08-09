@@ -167,7 +167,7 @@ $Parsedown = new ParsedownExtra();
 			echo "<th>";
 			echo "Commemoration Location";
 			echo "</th><td>";
-			echo "<a href=\"".base_url()."search/index/data/data/commemoration_location=".$data->id."/1\">";
+			echo "<a href=\"".base_url()."memorial/view/".$data->id."\">";
 			echo $data->name;
 			echo "</a></td>";
 			echo "</tr>";
