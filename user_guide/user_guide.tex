@@ -299,7 +299,7 @@ Deletions cannot be undone
 \begin{figure}[h]
   \centering
  \includegraphics[width=.9\textwidth]{pics/delete_memorial.png}
-	\caption{Deleting a Site Update}\label{fig:delete_memorial}
+	\caption{Deleting a Memorial}\label{fig:delete_memorial}
 \end{figure}
 
 \newpage
@@ -363,13 +363,56 @@ The \texttt{name} and \texttt{content} fields must all be complete before the si
 \newpage
 \FloatBarrier
 \subsection{How do I delete a Casualty?}\label{ssec:delete_casualty}
+To delete a casualty, navigate to its edit page, as described in Section~\ref{ssec:edit_casualty}. Using the \textit{Delete Casualty} button (\marker{35}\ in Figure~\ref{fig:edit_casualty}), will display a warning message similar to Figure~\ref{fig:delete_casualty}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the casualty.
 
+\begin{warningBox}
+Deletions cannot be undone
+\end{warningBox}
 
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/delete_casualty.png}
+	\caption{Deleting a Casualty}\label{fig:delete_casualty}
+\end{figure}
+
+\newpage
+\FloatBarrier
 \section{Articles}\label{sec:articles}
-articles
-\subsection{How do I view the list of Articles?}
-\subsection{How do I view a particular Article?}
-\subsection{How do I Add or Edit an Article?}
+The articles section is the same as the Information Index on the old site. The renaming is mainly because ``Information Index'' doesn't fit into the menu bars, and is a bit snappier.
+
+Information that was on other areas of the site (e.g. the article about the Dover War Memorial, Donate, etc) should be classed as an article, but won't belong in one of the groups that existed on the previous site, and therefore won't be listed on the main Articles page. There is a separate list (see Section~\ref{ssec:config}) of Articles which do not belong in any category.
+
+\subsection{How do I view the list of Articles?}\label{ssec:view_articles}
+Navigate to the list of articles by clicking the \textit{Articles} button on the top or bottom menu bar. A page should load similar to Figure~\ref{fig:view_articles}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_articles.png}
+	\caption{View List of Articles}\label{fig:view_articles}
+\end{figure}
+
+\marker{1}\ is the title of the page - this one says Information Index. \marker{2}\ contains some narrative about the list of articles, while \marker{3}\ allows the user to edit this text. \marker{4}\ indicates the title of each category, while \marker{5} shows the list of articles in each category.
+
+\begin{infoBox}
+If there are no articles in a category, it is not shown.
+\end{infoBox}
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a particular Article?}\label{ssec:view_article}
+To view a particular article, click on the title of that article in the list of articles (see Section~\ref{ssec:view_articles}). A page will load similar to Figure~\ref{fig:view_article}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_article.png}
+	\caption{View a particular Article}\label{fig:view_article}
+\end{figure}
+
+\marker{1}\ indicates the title of the article, while \marker{2}\ indicates the narrative content. \marker{3}\ shows the date the article was posted, while \marker{4}\ indicates a button to edit the article (see Section~\ref{ssec:edit_article}).
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add or Edit an Article?}\label{ssec:edit_article}
 \subsection{How do I delete an Article?}
 
 \section{Search}\label{sec:search}
@@ -398,5 +441,6 @@ Config
 \section{Others}
 Others
 \subsection{How do I use the Narrative Buttons?}\label{ssec:narrative}
+\subsection{How does it look on mobile?}\label{ssec:mobile}
 
 \end{document}
