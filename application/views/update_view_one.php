@@ -21,7 +21,9 @@ $Parsedown = new ParsedownExtra();
 
 ?>
 <div id="update">
-		<p><?php echo $Parsedown->text($update->content); ?></p>
+ <div id="narrative">
+                <p><?php echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $update->content)); ?></p>
+                </div>
 		<h6><small>Posted:&nbsp;<?php echo $update->date; ?></small></h6>
 </div>
 <?php echo "<a href=\"".base_url()."siteUpdate/".$update->year."\" class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\" aria-hidden=\"true\"></i> Return to all ".$update->year." updates</a>"; ?>
