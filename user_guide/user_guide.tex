@@ -60,6 +60,8 @@
 	frametitlefont=\color{blue}\bfseries
 ]{infoBox}
 
+\newcommand{\myref}[1]{\ref{#1} {\scriptsize(Page \pageref{#1})}} 
+
 \title{\vspace{-1cm}\textbf{Dover War Memorial Project - User Guide}\vspace{-1cm}}
 \date{}
 \author{}
@@ -89,7 +91,7 @@ More serious information may be displayed in a box similar to this.
 There are two main menu bars on the site. These are displayed on every single page, with the top bar gaining an extra row when logged in. The text disappears when viewed on mobile, for space reasons. The home page contains the same content as before, along with some dynamic data: a summary of the most recent news article and the names of any casualties that died on this day.
 
 \subsection{What does the Home Page do?}
-Figure~\ref{fig:home} shows the home page as viewed when not logged in. \marker{1}\ links back to the home page, \marker{2}\ navigates to the Latest News area (Section~\ref{sec:siteUpdate}), \marker{3}\ to the Casualty Index (Section~\ref{sec:casualtyIndex}), \marker{4}\ to the Articles area (Section~\ref{sec:articles}), \marker{5}\ the Search area (Section~\ref{sec:search}) and \marker{6}\ to the Contact Us page. At the bottom of the page, these links are reproduced, with the addition of \marker{7}, which navigates to the Login page (Section~\ref{ssec:login}). Other areas on the page are the latest news article (\marker{8}), the list of casualties who died today (\marker{9}) and the main narrative (\marker{10}).
+Figure~\myref{fig:home} shows the home page as viewed when not logged in. \marker{1}\ links back to the home page, \marker{2}\ navigates to the Latest News area (Section~\myref{sec:siteUpdate}), \marker{3}\ to the Casualty Index (Section~\myref{sec:casualtyIndex}), \marker{4}\ to the Articles area (Section~\myref{sec:articles}), \marker{5}\ the Search area (Section~\myref{sec:search}) and \marker{6}\ to the Contact Us page. At the bottom of the page, these links are reproduced, with the addition of \marker{7}, which navigates to the Login page (Section~\myref{ssec:login}). Other areas on the page are the latest news article (\marker{8}), the list of casualties who died today (\marker{9}) and the main narrative (\marker{10}).
 
 \begin{figure}[h]
   \centering
@@ -100,7 +102,7 @@ Figure~\ref{fig:home} shows the home page as viewed when not logged in. \marker{
 \newpage
 \FloatBarrier
 \subsection{How do I login?}\label{ssec:login}
-To login, click the \textit{Login} button on the bottom menu bar (see \marker{7}\ on Figure~\ref{fig:home}). The login page is then loaded (Figure~\ref{fig:login}), which allows the user to login to the site to make various changes. \marker{1}\ is where the username must be entered with \marker{2}\ being the password field. \marker{3}\ submits this information.
+To login, click the \textit{Login} button on the bottom menu bar (see \marker{7}\ on Figure~\myref{fig:home}). The login page is then loaded (Figure~\myref{fig:login}), which allows the user to login to the site to make various changes. \marker{1}\ is where the username must be entered with \marker{2}\ being the password field. \marker{3}\ submits this information.
 
 \begin{warningBox}
 There is no way of resetting your username or password, so ensure that you remember it
@@ -115,7 +117,7 @@ There is no way of resetting your username or password, so ensure that you remem
 \newpage
 \FloatBarrier
 \subsection{How does the Home Page look after Login?}
-Once a user has logged in, menu bars change. The top menu bar gains another row, with the login button on the bottom bar being replaced with a logout button, as can be seen in Figure~\ref{fig:home_login}. \marker{1}\ shows the currently logged in user, \marker{2}\ navigates to the config page (Section~\ref{sec:config}) and \marker{3}\ the admin help page (where this document is stored). \marker{4}\ and \marker{5}\ allow the user to logout. \marker{6} allows the user to edit the narrative text. These appear in numerous places across the site.
+Once a user has logged in, menu bars change. The top menu bar gains another row, with the login button on the bottom bar being replaced with a logout button, as can be seen in Figure~\myref{fig:home_login}. \marker{1}\ shows the currently logged in user, \marker{2}\ navigates to the config page (Section~\myref{sec:config}) and \marker{3}\ the admin help page (where this document is stored). \marker{4}\ and \marker{5}\ allow the user to logout. \marker{6} allows the user to edit the narrative text. These appear in numerous places across the site.
 
 \begin{figure}[h]
   \centering
@@ -132,7 +134,7 @@ The Change Log is a list of all the changes on the site (or rather, all the chan
 
 \subsection{How do I view a List of Updates?}\label{ssec:view_updates}
 
-Navigate to Site Update section, by clicking the \textit{Latest News} link in either menu bar. A list of this year's updates will show, in a similar fashion to Figure~\ref{fig:view_updates}.
+Navigate to Site Update section, by clicking the \textit{Latest News} link in either menu bar. A list of this year's updates will show, in a similar fashion to Figure~\myref{fig:view_updates}.
 
 \begin{figure}[h]
   \centering
@@ -140,12 +142,12 @@ Navigate to Site Update section, by clicking the \textit{Latest News} link in ei
 	\caption{List of Site Updates}\label{fig:view_updates}
 \end{figure}
 
-\marker{1}\ indicates which year's updates are being shown, with \marker{2}\ providing a link to the change log, described in Section~\ref{ssec:changeLog}. Each update is displayed below that, with \marker{3}\ showing the title (and allowing the user to view an individual update, as in Section~\ref{ssec:view_update}), \marker{4}\ the content of that update and \marker{5}\ the date the site update was posted. \marker{6}\ shows a list of previous years and the number of site updates from those years. Clicking on a year will load the updates from the respective year. \marker{7}\ and \marker{8}\ allow the creation and editing of a site update, which is described in Section~\ref{ssec:edit_update}.
+\marker{1}\ indicates which year's updates are being shown, with \marker{2}\ providing a link to the change log, described in Section~\myref{ssec:changeLog}. Each update is displayed below that, with \marker{3}\ showing the title (and allowing the user to view an individual update, as in Section~\myref{ssec:view_update}), \marker{4}\ the content of that update and \marker{5}\ the date the site update was posted. \marker{6}\ shows a list of previous years and the number of site updates from those years. Clicking on a year will load the updates from the respective year. \marker{7}\ and \marker{8}\ allow the creation and editing of a site update, which is described in Section~\myref{ssec:edit_update}.
 
 \newpage
 \FloatBarrier
 \subsection{How do I view a particular Update?}\label{ssec:view_update}
-To view a particular update, click on the title of any update on the list of updates (\marker{3}\ in Figure~\ref{fig:view_updates}). A page will load similar to Figure~\ref{fig:view_update}. \marker{1}\ shows the title, \marker{2}\ the content of the update and \marker{3}\ the date the site update was posted. \marker{4}\ allows the user to return to the list of site updates for that year, while \marker{5} allows the user to edit this update, as described in Section~\ref{ssec:edit_update}.
+To view a particular update, click on the title of any update on the list of updates (\marker{3}\ in Figure~\myref{fig:view_updates}). A page will load similar to Figure~\myref{fig:view_update}. \marker{1}\ shows the title, \marker{2}\ the content of the update and \marker{3}\ the date the site update was posted. \marker{4}\ allows the user to return to the list of site updates for that year, while \marker{5} allows the user to edit this update, as described in Section~\myref{ssec:edit_update}.
 
 \begin{figure}[h]
   \centering
@@ -156,7 +158,7 @@ To view a particular update, click on the title of any update on the list of upd
 \newpage
 \FloatBarrier
 \subsection{How do I Add or Edit an Update?}\label{ssec:edit_update}
-To create a new site update, use the \textit{Add} button on the list of updates (\marker{8}\ of Figure~\ref{fig:view_updates}. To edit an update, click the \textit{Edit} button next to the title of the update, either on the list of updates (\marker{7}\ on Figure~\ref{fig:view_updates}) or the page of a particular update (\marker{5}\ on Figure~\ref{fig:view_update}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\ref{fig:edit_update}.
+To create a new site update, use the \textit{Add} button on the list of updates (\marker{8}\ of Figure~\myref{fig:view_updates}. To edit an update, click the \textit{Edit} button next to the title of the update, either on the list of updates (\marker{7}\ on Figure~\myref{fig:view_updates}) or the page of a particular update (\marker{5}\ on Figure~\myref{fig:view_update}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\myref{fig:edit_update}.
 
 \begin{figure}[h]
   \centering
@@ -164,17 +166,17 @@ To create a new site update, use the \textit{Add} button on the list of updates 
 	\caption{Example of Editing a Site Update}\label{fig:edit_update}
 \end{figure}
 
-\marker{1}\ allows the editing of the title of the site update, while \marker{2}\ allows the editing of the main content of the update. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{3}\ shows the date this update was posted on. It is possible to set this in the future - if this is done, the update will not appear in list of updates until this date (for example, you could create a Christmas message that appears on the 25th December, without needing to log on then). A list of future updates is described in Section~\ref{ssec:config}.
+\marker{1}\ allows the editing of the title of the site update, while \marker{2}\ allows the editing of the main content of the update. An explanation of the buttons around this area is described in Section~\myref{ssec:narrative}. \marker{3}\ shows the date this update was posted on. It is possible to set this in the future - if this is done, the update will not appear in list of updates until this date (for example, you could create a Christmas message that appears on the 25th December, without needing to log on then). A list of future updates is described in Section~\myref{ssec:config}.
 
 \begin{infoBox}
 The \texttt{title}, \texttt{content} and \texttt{date posted} fields must all be complete before the site update can be saved
 \end{infoBox}
 
-\marker{4}\ will show a slightly different background is this is a ``family update'' in a similar manner to the existing site. \marker{5}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{6}\ saves this update, while \marker{7}\ returns to view this update, discarding any changes. \marker{8}\ allows the deletion of an update and is described in Section~\ref{ssec:delete_update}. The \textit{View} and \textit{Delete} buttons are not shown if this is a new memorial.
+\marker{4}\ will show a slightly different background is this is a ``family update'' in a similar manner to the existing site. \marker{5}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{6}\ saves this update, while \marker{7}\ returns to view this update, discarding any changes. \marker{8}\ allows the deletion of an update and is described in Section~\myref{ssec:delete_update}. The \textit{View} and \textit{Delete} buttons are not shown if this is a new memorial.
 
 \FloatBarrier
 \subsection{How do I delete an Update?}\label{ssec:delete_update}
-To delete an update, navigate to its edit page, as described in Section~\ref{ssec:edit_update}. Using the \textit{Delete Site Update} button (\marker{8}\ in Figure~\ref{fig:edit_update}), will display a warning message similar to Figure~\ref{fig:delete_update}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the site update.
+To delete an update, navigate to its edit page, as described in Section~\myref{ssec:edit_update}. Using the \textit{Delete Site Update} button (\marker{8}\ in Figure~\myref{fig:edit_update}), will display a warning message similar to Figure~\myref{fig:delete_update}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the site update.
 
 \begin{warningBox}
 Deletions cannot be undone
@@ -189,7 +191,7 @@ Deletions cannot be undone
 \newpage
 \FloatBarrier
 \subsection{How do I view a List of Changes?}\label{ssec:changeLog}
-To view the change log, navigate to the list of site updates (see Section~\ref{ssec:view_updates}) and click on the \textit{View change log} button, as shown by \marker{2}\ in Figure~\ref{fig:view_updates}. A page should load similar to Figure~\ref{fig:view_changes}.
+To view the change log, navigate to the list of site updates (see Section~\myref{ssec:view_updates}) and click on the \textit{View change log} button, as shown by \marker{2}\ in Figure~\myref{fig:view_updates}. A page should load similar to Figure~\myref{fig:view_changes}.
 
 \begin{figure}[h]
   \centering
@@ -197,12 +199,12 @@ To view the change log, navigate to the list of site updates (see Section~\ref{s
 	\caption{View the Change Log}\label{fig:view_changes}
 \end{figure}
 
-\marker{1}\ allows the user to return to the list of site updates (see Section~\ref{ssec:view_updates}). The table shown by \marker{2}\ lists the date of the change, the type of change, and the description entered. \marker{3} allows the quick navigation to the item changed, while \marker{4}\ allows the deletion of a change log item (see Section~\ref{ssec:delete_change}). \marker{5}\ indicates a summary of previous years' change log items, allowing a user to view a list of changes in the past.
+\marker{1}\ allows the user to return to the list of site updates (see Section~\myref{ssec:view_updates}). The table shown by \marker{2}\ lists the date of the change, the type of change, and the description entered. \marker{3} allows the quick navigation to the item changed, while \marker{4}\ allows the deletion of a change log item (see Section~\myref{ssec:delete_change}). \marker{5}\ indicates a summary of previous years' change log items, allowing a user to view a list of changes in the past.
 
 \newpage
 \FloatBarrier
 \subsection{How do I delete an Change Log item?}\label{ssec:delete_change}
-Navigate to the change log as described in Section~\ref{ssec:changeLog}. Next to the item in question, press the delete button (\marker{4} in Figure~\ref{fig:view_changes}). A panel should appear similar to Figure~\ref{fig:delete_change}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the change log entry.
+Navigate to the change log as described in Section~\myref{ssec:changeLog}. Next to the item in question, press the delete button (\marker{4} in Figure~\myref{fig:view_changes}). A panel should appear similar to Figure~\myref{fig:delete_change}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the change log entry.
 
 \begin{warningBox}
 Deletions cannot be undone
@@ -221,7 +223,7 @@ Deletions cannot be undone
 The casualty index is the main section of the site, and therefore has a lot of details associated with it. Casualties are grouped into one or more memorials, with a few main ones shown in more prominence on the main memorial list (the same ones that are shown on the old site). Lists of casualties are displayed on each memorial's page. There is also a memorial map, which shows the various memorials on a interactive map. A casualty as the same narrative before, along with their pictures, as well as a section full of data - used to create the relational and searchable database.
 
 \subsection{How do I view a List of all Memorials?}\label{ssec:view_memorials}
-Navigate to the list of memorials by clicking the \textit{Casualty Index} button on the top or bottom menu bar. A page should load similar to Figure~\ref{fig:view_memorials}.
+Navigate to the list of memorials by clicking the \textit{Casualty Index} button on the top or bottom menu bar. A page should load similar to Figure~\myref{fig:view_memorials}.
 
 \begin{figure}[h]
   \centering
@@ -234,7 +236,7 @@ Navigate to the list of memorials by clicking the \textit{Casualty Index} button
 \newpage
 \FloatBarrier
 \subsection{How do I view the Memorial Map?}
-To view the memorial map, navigate to the list of memorials (see Section~\ref{ssec:view_memorials}) and click on the \textit{Memorial Map} button, as shown by \marker{3}\ in Figure~\ref{fig:view_memorials}. A page should load similar to Figure~\ref{fig:view_map}.
+To view the memorial map, navigate to the list of memorials (see Section~\myref{ssec:view_memorials}) and click on the \textit{Memorial Map} button, as shown by \marker{3}\ in Figure~\myref{fig:view_memorials}. A page should load similar to Figure~\myref{fig:view_map}.
 
 \begin{figure}[h]
   \centering
@@ -250,7 +252,7 @@ Only memorials with latitude and longitude information are displayed on this map
 \newpage
 \FloatBarrier
 \subsection{How do I view a particular Memorial?}
-To view the memorial map, navigate to the list of memorials (see Section~\ref{ssec:view_memorials}) and click on the name of any memorial. A page will load similar to Figure~\ref{fig:view_memorial}.
+To view the memorial map, navigate to the list of memorials (see Section~\myref{ssec:view_memorials}) and click on the name of any memorial. A page will load similar to Figure~\myref{fig:view_memorial}.
 
 \begin{figure}[h]
   \centering
@@ -267,7 +269,7 @@ If no latitude or longitude has been set then the map is not displayed.
 \newpage
 \FloatBarrier
 \subsection{How do I Add or Edit a Memorial?}\label{ssec:edit_memorial}
-To create a new memorial, use the \textit{New Memorial} button on the list of memorials (\marker{6}\ of Figure~\ref{fig:view_memorials}). To edit an update, click the \textit{Edit} button next to the title of the memorial on the page of a particular memorial (\marker{8}\ on Figure~\ref{fig:view_memorial}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\ref{fig:edit_memorial}.
+To create a new memorial, use the \textit{New Memorial} button on the list of memorials (\marker{6}\ of Figure~\myref{fig:view_memorials}). To edit an update, click the \textit{Edit} button next to the title of the memorial on the page of a particular memorial (\marker{8}\ on Figure~\myref{fig:view_memorial}). Both methods will load a similar page, with the difference being that an Edit page will have boxes filled with data, as can be seen in Figure~\myref{fig:edit_memorial}.
 
 \begin{figure}[h]
   \centering
@@ -275,13 +277,13 @@ To create a new memorial, use the \textit{New Memorial} button on the list of me
 	\caption{Editing a Memorial}\label{fig:edit_memorial}
 \end{figure}
 
-\marker{1}\ indicates the name of the memorial, with \marker{2}\ indicating the narrative content. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{4}\ indicates the text description of the location of the memorial, while \marker{4}\ and \marker{5}\ contain the latitude and longitude (as decimal numbers). 
+\marker{1}\ indicates the name of the memorial, with \marker{2}\ indicating the narrative content. An explanation of the buttons around this area is described in Section~\myref{ssec:narrative}. \marker{4}\ indicates the text description of the location of the memorial, while \marker{4}\ and \marker{5}\ contain the latitude and longitude (as decimal numbers). 
 
 \begin{infoBox}
 On Google Maps, right click and select \textit{What's here?}. At the bottom of the screen, the latitude and longitude of the clicked location is shown.
 \end{infoBox}
 
-\marker{6}\ indicates the order in which this memorial should appear in the main list of memorials. If this memorial should not appear in the main list, then leave this blank. The lower a number, the higher it will be displayed on the list. \marker{7}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{8}\ saves this memorial, while \marker{9}\ returns to view this memorial, discarding any changes. \marker{10}\ allows the deletion of an update and is described in Section~\ref{ssec:delete_memorial}. The \textit{View} and \textit{Delete} buttons are not shown if this is a new memorial.
+\marker{6}\ indicates the order in which this memorial should appear in the main list of memorials. If this memorial should not appear in the main list, then leave this blank. The lower a number, the higher it will be displayed on the list. \marker{7}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{8}\ saves this memorial, while \marker{9}\ returns to view this memorial, discarding any changes. \marker{10}\ allows the deletion of an update and is described in Section~\myref{ssec:delete_memorial}. The \textit{View} and \textit{Delete} buttons are not shown if this is a new memorial.
 
 \begin{infoBox}
 The \texttt{name} and \texttt{content} fields must all be complete before the site update can be saved
@@ -289,10 +291,10 @@ The \texttt{name} and \texttt{content} fields must all be complete before the si
 
 \FloatBarrier
 \subsection{How do I delete a Memorial?}\label{ssec:delete_memorial}
-To delete a memorial, navigate to its edit page, as described in Section~\ref{ssec:edit_memorial}. Using the \textit{Delete Memorial} button (\marker{10}\ in Figure~\ref{fig:edit_memorial}), will display a warning message similar to Figure~\ref{fig:delete_memorial}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the memorial.
+To delete a memorial, navigate to its edit page, as described in Section~\myref{ssec:edit_memorial}. Using the \textit{Delete Memorial} button (\marker{10}\ in Figure~\myref{fig:edit_memorial}), will display a warning message similar to Figure~\myref{fig:delete_memorial}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the memorial.
 
 \begin{warningBox}
-Any casualties with this memorial will have it removed. This may mean some casualties have no memorial and therefore will be displayed in a list as described in Section~\ref{ssec:config}.\\
+Any casualties with this memorial will have it removed. This may mean some casualties have no memorial and therefore will be displayed in a list as described in Section~\myref{ssec:config}.\\
 Deletions cannot be undone
 \end{warningBox}
 
@@ -305,7 +307,7 @@ Deletions cannot be undone
 \newpage
 \FloatBarrier
 \subsection{How do I view a Casualty?}\label{ssec:view_casualty}
-To navigate to a particular casualty, navigate to a particular memorial and choose the casualty from the list (\marker{7}\ from Figure~\ref{fig:view_memorial}). It is also possible to arrive at a casualty from the home page if they are commemorated on this particular date. A page should load similar to Figure~\ref{fig:view_casualty}.
+To navigate to a particular casualty, navigate to a particular memorial and choose the casualty from the list (\marker{7}\ from Figure~\myref{fig:view_memorial}). It is also possible to arrive at a casualty from the home page if they are commemorated on this particular date. A page should load similar to Figure~\myref{fig:view_casualty}.
 
 \begin{figure}[h]
   \centering
@@ -313,12 +315,12 @@ To navigate to a particular casualty, navigate to a particular memorial and choo
 	\caption{Viewing a Casualty}\label{fig:view_casualty}
 \end{figure}
 
-\marker{1}\ indicates the name of this casualty (their given name and family name). \marker{2}\ indicates the main narrative section of the casualty, including any pictures. \marker{3}\ shows the data for the particular casualty, while \marker{4} indicates a button that allows the editing of this casualty (see Section~\ref{ssec:edit_casualty}).
+\marker{1}\ indicates the name of this casualty (their given name and family name). \marker{2}\ indicates the main narrative section of the casualty, including any pictures. \marker{3}\ shows the data for the particular casualty, while \marker{4} indicates a button that allows the editing of this casualty (see Section~\myref{ssec:edit_casualty}).
 
 \newpage
 \FloatBarrier
 \subsection{How do I view a Casualty's Data?}\label{ssec:view_casualty_data}
-Clicking on \marker{3}\ on Figure~\ref{fig:view_casualty} will adjust the page to show the full data of this casualty, as shown in Figure~\ref{fig:view_casualty_data}.
+Clicking on \marker{3}\ on Figure~\myref{fig:view_casualty} will adjust the page to show the full data of this casualty, as shown in Figure~\myref{fig:view_casualty_data}.
 
 \begin{figure}[h]
   \centering
@@ -336,7 +338,7 @@ Clicking on a piece of data will create a search based around it.
 \newpage
 \FloatBarrier
 \subsection{How do I Add or Edit a Casualty?}\label{ssec:edit_casualty}
-To create a new casualty, use the \textit{Add} button on the list of memorials (\marker{7}\ of Figure~\ref{fig:view_memorials}. To edit a a casualty, click the \textit{Edit} button next to the title of the update on the page of a particular casualty (\marker{4}\ on Figure~\ref{fig:view_casualty}). Both methods will load a similar page, with the differences being that an Edit page will have boxes filled with data and will not have a \textit{View} or \textit{Delete} button, as can be seen in Figures~\ref{fig:edit_casualty} and ~\ref{fig:edit_casualty2}.
+To create a new casualty, use the \textit{Add} button on the list of memorials (\marker{7}\ of Figure~\myref{fig:view_memorials}). To edit a casualty, click the \textit{Edit} button next to the name of the casualty on the page of a particular casualty (\marker{4}\ on Figure~\myref{fig:view_casualty}). Both methods will load a similar page, with the differences being that an Edit page will have boxes filled with data and will not have a \textit{View} or \textit{Delete} button, as can be seen in Figures~\myref{fig:edit_casualty} and ~\myref{fig:edit_casualty2}.
 \begin{infoBox}
 The Add page will also only display the first section until the casualty is saved.
 \end{infoBox}
@@ -346,24 +348,39 @@ The Add page will also only display the first section until the casualty is save
  \includegraphics[width=.9\textwidth]{pics/edit_casualty.png}
 	\caption{Example of Editing a Casualty (1)}\label{fig:edit_casualty}
 \end{figure}
-
+\newpage
 \begin{figure}[h]
   \centering
  \includegraphics[width=.9\textwidth]{pics/edit_casualty2.png}
 	\caption{Example of Editing a Casualty (2)}\label{fig:edit_casualty2}
 \end{figure}
 
-\marker{1}, \marker{2}\ and \marker{3}\ all indicate the full name of the given casualty, while \marker{4}\ contains the narrative content for this casualty. An explanation of the buttons around this area is described in Section~\ref{ssec:narrative}. \marker{5}\ identifies a dropdown box that allows the selection of the casualty's civilian status, while \marker{6} determines their gender. \marker{7}\ and \marker{8}\ indicate the casualty's date of birth and death. When hovering over these fields, a dropdown is possible that displays a calendar - this may not be too useful for the dates that are likely to be in these fields, however. Next, \marker{9}\ provides a dropdown with a list of potential wars this casualty may have died in, while \marker{10}\ allows the selection of their final resting place. \marker{12}\ provides another dropdown, this time for the service country, with \marker{13}\ allows for the selection of the casualty's place of birth. \marker{14}\ and \marker{15}\ allow for the selection of the Last Known Address and the year that it was known. \marker{16}\ indicates if this casualty was recently imported - if so, a message is displayed to the user informing that the data may not be complete. \marker{17}\ indicates if some details are unknown, and if so, a message is displayed to the user. This replaces the previous method of placing an asterisk next to a casualty's name.
+\marker{1}, \marker{2}\ and \marker{3}\ all indicate the full name of the given casualty, while \marker{4}\ contains the narrative content for this casualty. An explanation of the buttons around this area is described in Section~\myref{ssec:narrative}. \marker{5}\ identifies a dropdown box that allows the selection of the casualty's civilian status, while \marker{6}\ determines their gender. \marker{7}\ and \marker{8}\ indicate the casualty's date of birth and death. When hovering over these fields, a dropdown is possible that displays a calendar - this may not be too useful for the dates that are likely to be in these fields, however. Next, \marker{9}\ provides a dropdown with a list of potential wars this casualty may have died in, while \marker{10}\ allows the selection of their final resting place. \marker{12}\ provides another dropdown, this time for the service country, with \marker{13}\ allows for the selection of the casualty's place of birth. \marker{14}\ and \marker{15}\ allow for the selection of the Last Known Address and the year that it was known. \marker{16}\ indicates if this casualty was recently imported - if so, a message is displayed to the user informing that the data may not be complete. \marker{17}\ indicates if some details are unknown, and if so, a message is displayed to the user. This replaces the previous method of placing an asterisk next to a casualty's name. \marker{18}\ saves the current casualty and returns to this edit page (this must be completed when creating a new casualty for the other sections to appear), while \marker{19}\ returns to the casualty's page. \marker{34}\ returns to the casualty page without saving while \marker{35}\ deletes this casualty (as shown in Section~\myref{ssec:delete_casualty}).
 
 \begin{infoBox}
-Many dropdowns allow searching. Type to limit the results shown. \\
 The \texttt{name} and \texttt{content} fields must all be complete before the site update can be saved.
 \end{infoBox}
 
-\newpage
+\marker{20}\ allows the user to select or deselect a number of commemoration locations for this casualty, and \marker{21}\ saves this section.
+
+\marker{22}\ allows the user to select or deselect a number of Regiments (use this section for regiments, services (Army, Navy etc), ships and so on) for this casualty, and \marker{23}\ saves this section.
+
+\marker{24}\ allows the user to select or deselect a number of existing service numbers for this casualty. To add a new number to list list, type in the empty box. \marker{25}\ allows extra boxes to be added if needed. \marker{26}\ saves this section.
+
+The next section allows relation data to be added. This indicates that casualties were family members. Select a casualty using the dropdown indicated by \marker{27}\ and the relation type indicated by \marker{28}. To remove a relation, simply set both boxes to be empty. \marker{29}\ allows more relations to be added and \marker{30}\ saves this section.
+
+\marker{31}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it.
+
+\marker{33}\ saves all the sections on this page.
+
+\begin{infoBox}
+Many dropdowns allow searching. Type to limit the results shown. \\
+Clicking on a selected choice will deselect it.
+\end{infoBox}
+
 \FloatBarrier
 \subsection{How do I delete a Casualty?}\label{ssec:delete_casualty}
-To delete a casualty, navigate to its edit page, as described in Section~\ref{ssec:edit_casualty}. Using the \textit{Delete Casualty} button (\marker{35}\ in Figure~\ref{fig:edit_casualty}), will display a warning message similar to Figure~\ref{fig:delete_casualty}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the casualty.
+To delete a casualty, navigate to its edit page, as described in Section~\myref{ssec:edit_casualty}. Using the \textit{Delete Casualty} button (\marker{35}\ in Figure~\myref{fig:edit_casualty}), will display a warning message similar to Figure~\myref{fig:delete_casualty}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the casualty.
 
 \begin{warningBox}
 Deletions cannot be undone
@@ -380,10 +397,10 @@ Deletions cannot be undone
 \section{Articles}\label{sec:articles}
 The articles section is the same as the Information Index on the old site. The renaming is mainly because ``Information Index'' doesn't fit into the menu bars, and is a bit snappier.
 
-Information that was on other areas of the site (e.g. the article about the Dover War Memorial, Donate, etc) should be classed as an article, but won't belong in one of the groups that existed on the previous site, and therefore won't be listed on the main Articles page. There is a separate list (see Section~\ref{ssec:config}) of Articles which do not belong in any category.
+Information that was on other areas of the site (e.g. the article about the Dover War Memorial, Donate, etc) should be classed as an article, but won't belong in one of the groups that existed on the previous site, and therefore won't be listed on the main Articles page. There is a separate list (see Section~\myref{ssec:config}) of Articles which do not belong in any category.
 
 \subsection{How do I view the list of Articles?}\label{ssec:view_articles}
-Navigate to the list of articles by clicking the \textit{Articles} button on the top or bottom menu bar. A page should load similar to Figure~\ref{fig:view_articles}.
+Navigate to the list of articles by clicking the \textit{Articles} button on the top or bottom menu bar. A page should load similar to Figure~\myref{fig:view_articles}.
 
 \begin{figure}[h]
   \centering
@@ -400,7 +417,7 @@ If there are no articles in a category, it is not shown.
 \newpage
 \FloatBarrier
 \subsection{How do I view a particular Article?}\label{ssec:view_article}
-To view a particular article, click on the title of that article in the list of articles (see Section~\ref{ssec:view_articles}). A page will load similar to Figure~\ref{fig:view_article}.
+To view a particular article, click on the title of that article in the list of articles (see Section~\myref{ssec:view_articles}). A page will load similar to Figure~\myref{fig:view_article}.
 
 \begin{figure}[h]
   \centering
@@ -408,19 +425,108 @@ To view a particular article, click on the title of that article in the list of 
 	\caption{View a particular Article}\label{fig:view_article}
 \end{figure}
 
-\marker{1}\ indicates the title of the article, while \marker{2}\ indicates the narrative content. \marker{3}\ shows the date the article was posted, while \marker{4}\ indicates a button to edit the article (see Section~\ref{ssec:edit_article}).
+\marker{1}\ indicates the title of the article, while \marker{2}\ indicates the narrative content. \marker{3}\ shows the date the article was posted, while \marker{4}\ indicates a button to edit the article (see Section~\myref{ssec:edit_article}).
 
 \newpage
 \FloatBarrier
 \subsection{How do I Add or Edit an Article?}\label{ssec:edit_article}
-\subsection{How do I delete an Article?}
+To create a new article, use the \textit{Add} button on the list of articles (\marker{6}\ of Figure~\myref{fig:view_articles}). To edit an article, click the \textit{Edit} button next to the title of the article (\marker{4}\ on Figure~\myref{fig:view_article}). Both methods will load a similar page, with the differences being that an Edit page will have boxes filled with data and will not have a \textit{View} or \textit{Delete} button, as can be seen in Figure~\myref{fig:edit_article}.
 
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_article.png}
+	\caption{Example of Editing an Article}\label{fig:edit_article}
+\end{figure}
+
+\marker{1}\ indicates the title of the article, while \marker{2}\ contains the narrative content for this article. An explanation of the buttons around this area is described in Section~\myref{ssec:narrative}. The date the article was posted is shown by \marker{3}\ and the category by \marker{4}. If no category is specified, the article will not appear on the Information Index, but may be linked to from elsewhere. \marker{5}\ allows this edit to be recorded in the Change Log, if completed. Creating a new update, or substantially editing one, may be of interest so this field can be completed. For fixing a small typo, it is probably not worth it. \marker{6}\ saves the changes to the article, while \marker{7}\ returns to view the article with the changes unsaved. \marker{8} allows the deletion of this article, as described in Section~\myref{ssec:delete_article}.
+
+\FloatBarrier
+\subsection{How do I delete an Article?}\label{ssec:delete_article}
+
+To delete an article, navigate to its edit page, as described in Section~\myref{ssec:edit_article}. Using the \textit{Delete Article} button (\marker{8}\ in Figure~\myref{fig:edit_article}), will display a warning message similar to Figure~\myref{fig:delete_article}. Clicking on \textit{Cancel} (\marker{1}) will ignore this message, while \marker{2}\ will delete the article.
+
+\begin{warningBox}
+Deletions cannot be undone
+\end{warningBox}
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/delete_article.png}
+	\caption{Deleting an Article}\label{fig:delete_article}
+\end{figure}
+
+\newpage
+\FloatBarrier
 \section{Search}\label{sec:search}
-Search
-\subsection{How do I perform a Text Search?}
-\subsection{How do I perform a Data Search?}
-\subsection{How do I view the Search Results?}
 
+Searching is one of the big new features of the site. By having data stored and connected in a database, searching because easy, efficient and powerful. There are two main ways of searching: text and data.
+
+Text searches will find pieces of text within the narrative section of a casualty, article, site update, or memorial. Narratives are ranked according to some notion of usefulness.
+
+Data searches allow casualties to be filtered by various pieces of data, for example, all those born on a certain date. Only casualties can be searched by data. The results of this will be much improved once all casualties have had their data added.
+
+\subsection{How do I perform a Text Search?}\label{ssec:text_search}
+
+Text searches are similar to the search already available on the site. Navigate to the Search area by clicking the \textit{Search} button on either menu bar.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/text_search.png}
+	\caption{Performing a Text Search}\label{fig:text_search}
+\end{figure}
+
+\marker{1}\ indicates the area to enter the search term, \marker{2}\ allows the user to select which areas of the site to search, and \marker{3}\ performs the search. The text based search is very powerful and can perform more than simple searches. Some main tips for use are displayed below \footnote{More examples are here: \texttt{https://dev.mysql.com/doc/refman/5.7/en/fulltext-boolean.html}, although the ranking is modified to boost casualties whose names contain any of the search terms}:
+
+\begin{itemize}
+\item Search terms are case insensitive.
+\item Multiples words are treated as an ``or'' search - i.e. \texttt{dover war} will return all narratives containing \texttt{dover} or \texttt{war} or both.
+\item Placing text within quote marks will search for those terms exactly.
+\item Place a \texttt{+} in front of a word to ensure that word must be in results.
+\item Place a \texttt{-} in front of a word to ensure that word must not be in results.
+\item Place a \texttt{>} in front of a word to increase the relevance of that word.
+\item Place a \texttt{<} in front of a word to decrease the relevance of that word.
+\item Place a \texttt{*} to perform a wildcard search.  For example \texttt{Brit*} would return results for  \texttt{Britain}, \texttt{British}, and so on.
+\item Common words (called ``stop words'', for example \texttt{the}, \texttt{at}) are ignored from the search.
+\end{itemize}
+
+Details of results are displayed in Section~\myref{ssec:view_search}.
+
+\newpage
+\FloatBarrier
+\subsection{How do I perform a Data Search?}\label{ssec:data_search}
+The main new feature of the search page, is the data search. This allows a user to search for all casualties who have a particular piece of data, for example, all those born on the same date, or all those who served in the Royal Navy. To view the full list of data items, click on \marker{1}\ in Figure~\myref{fig:data_search}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/data_search.png}
+	\caption{Performing a Data Search}\label{fig:data_search}
+\end{figure}
+
+\marker{2}, \marker{3}, and \marker{4}\ allow the user to specify the name for the desired casualties. \marker{5}\ allows the specification of whether the casualties are civilians, while \marker{6}\ specifies their gender. \marker{7}\ and \marker{8}\ allow the user to specify the dates of birth and death respectively, while \marker{9}\ specifies the War. The final resting place for the casualties is shown by \marker{10}, with the rank at death being identified by \marker{11}. \marker{12}\ indicates the service country to be search, while \marker{13}\ shows the place of birth. The Last Known Address and the year of that address can be specified in \marker{14}\ and \marker{15}. \marker{16}\ allows the specification of any memorials the casualties may be commemorated on, with \marker{17}\ indicating the regiment / service and \marker{18}\ the service number. The search can be completed by clicking \marker{19}. Details of results are displayed in Section~\myref{ssec:view_search}.
+
+\newpage
+\FloatBarrier
+\subsection{How do I view the Search Results?}\label{ssec:view_search}
+Completing the either the text search (see Section~\myref{ssec:text_search}) or data search (see Section~\myref{ssec:data_search}) will display the results further down the page, as can be seen in Figure~\myref{fig:view_search}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_search.png}
+	\caption{Viewing Search Results}\label{fig:view_search}
+\end{figure}
+
+The list of numbers indicated by \marker{1}\ shows how many pages of results have been found, and which page is currently being viewed. \marker{2}\ indicates the type of result found, with \marker{3}\ showing the title of that result. Clicking this will navigate to the relevant article, memorial, casualty or site update. \marker{4}\ shows a preview of the results, with the search term highlighted.
+
+If no search results can be found, the list of results will be displayed in a similar manner to Figure~\myref{fig:no_search}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/no_search.png}
+	\caption{Viewing No Search Results}\label{fig:no_search}
+\end{figure}
+
+\newpage
+\FloatBarrier
 \section{Config \& Meta Pages}\label{sec:config}
 Config
 \subsection{How do I view the config page?}\label{ssec:config}
