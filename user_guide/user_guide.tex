@@ -10,6 +10,8 @@
 ]{geometry} 
 \usepackage{wasysym} 
 \usepackage{hyperref}
+\usepackage{pdflscape}
+{\renewcommand{\arraystretch}{2} %<- modify value to suit your needs
 
 %delete the below to remove the numbering split by chapter
 \usepackage{chngcntr}
@@ -475,7 +477,7 @@ Text searches are similar to the search already available on the site. Navigate 
 	\caption{Performing a Text Search}\label{fig:text_search}
 \end{figure}
 
-\marker{1}\ indicates the area to enter the search term, \marker{2}\ allows the user to select which areas of the site to search, and \marker{3}\ performs the search. The text based search is very powerful and can perform more than simple searches. Some main tips for use are displayed below \footnote{More examples are here: \texttt{https://dev.mysql.com/doc/refman/5.7/en/fulltext-boolean.html}, although the ranking is modified to boost casualties whose names contain any of the search terms}:
+\marker{1}\ indicates the area to enter the search term, \marker{2}\ allows the user to select which areas of the site to search, and \marker{3}\ performs the search. The text based search is very powerful and can perform more than simple searches. Some main tips for use are displayed below \footnote{More examples are here: \url{https://dev.mysql.com/doc/refman/5.7/en/fulltext-boolean.html}, although the ranking is modified to boost casualties whose names contain any of the search terms}:
 
 \begin{itemize}
 \item Search terms are case insensitive.
@@ -527,26 +529,322 @@ If no search results can be found, the list of results will be displayed in a si
 
 \newpage
 \FloatBarrier
-\section{Config \& Meta Pages}\label{sec:config}
-Config
-\subsection{How do I view the config page?}\label{ssec:config}
-\subsection{How do I view a list of Places?}
-\subsection{How do I Add, Edit or Delete a Place?}
-\subsection{How do I view a list of Ranks?}
-\subsection{How do I Add, Edit or Delete a Rank?}
-\subsection{How do I view a list of Regiment / Service?}
-\subsection{How do I Add, Edit or Delete a Regiment / Service?}
-\subsection{How do I view a list of Relation Types?}
-\subsection{How do I Add, Edit or Delete a Relation Type?}
-\subsection{How do I view a list of Service Country?}
-\subsection{How do I Add, Edit or Delete a Service Country?}
-\subsection{How do I view a list of Wars?}
-\subsection{How do I Add, Edit or Delete a War?}
-\subsection{How do I view a List of Recently Uploaded Casualties?}
+\section{Configuration \& Meta Pages}\label{sec:config}
+The configuration and meta pages section of the site is where the background changes are made to the site. Many of the items shown in this section are only viewable when logged in.
 
+Meta pages are the ``other'' pages of the site. These come in two varieties:
+\begin{enumerate}
+\item Standalone pages (e.g. Contact), or
+\item Sections of Text (e.g. at the top of the Articles list or the Home page)
+\end{enumerate}
+
+The idea of these is that is allows you to create (or edit) pages that do not fit into any other section and link to these as needed (for example, a contact page isn't really an article). It also allows the editing of narrative sections on pages that would otherwise be bland lists. There are a few meta pages that are required - for example the top of the Home page, or the Contact Us page, etc. These have all been added into the site already.
+
+\begin{infoBox}
+It is not possible to delete a meta page. There is a good reason for this. If a page was created that is no longer needed, simply remove any links to that page. If a page was accidentally deleted that was integral to the site (the Home page, for instance), that would be a disaster.
+\end{infoBox}
+
+\newpage
+\FloatBarrier
+\subsection{How do I view the config page?}\label{ssec:config}
+The config page can be viewed by clicking on the \textit{Config \& Meta Page} button on the top menu bar when logged in. It should display similar to Figure~\myref{fig:view_meta}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_meta.png}
+	\caption{Config page}\label{fig:view_meta}
+\end{figure}
+
+\marker{1}\ is a small section of narrative that describes this page and is editable using \marker{2}, while \marker{3}\ allows the user to create a new meta page.
+
+\marker{4}\ to \marker{15}\ allows the user to view a list of, or add to the list of Places, Ranks, Regiments, Relation Types, Countries and Wars (see Sections~\myref{ssec:view_place} --- \myref{ssec:edit_war}).
+
+\marker{16}\ shows a list of the current meta pages and where they are used. The list of recently uploaded casualties can be displayed using \marker{17}\ (see Section~\ref{ssec:view_uploaded}). A list of casualties with no memorial is displayed as \marker{18}\ - this should normally be empty. A list of articles with no category is indicated by \marker{19}\ and this can be used to identify those articles who are linked to elsewhere. A list of site updates that are to be displayed at a future date are shown in a list indicated by \marker{20}.
+
+\newpage
+\FloatBarrier
+\subsection{How do I edit a meta page?}
+To edit a meta page, either find the page on the list of meta pages (\marker{16}\ in Figure~\myref{fig:view_meta}) and click the \textit{Edit} button next to the title, or click the \textit{Edit this text} button that appears on the page you wish you edit. Once the edit button has been clicked, a page should load similar to Figure~\myref{fig:edit_meta}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_meta.png}
+	\caption{Editing a meta page}\label{fig:edit_meta}
+\end{figure}
+
+\marker{1}\ indicates the ID of a meta page. This is used in the web address and is a unique identifier for the page. If the page is of the standalone variety, then the title indicated in \marker{2}\ will be displayed at the top of the page. The narrative section for the meta page is indicated by \marker{3}. An explanation of the buttons around this area is described in Section~\myref{ssec:narrative}. \marker{4}\ indicates where this meta page is used - this is displayed on the list of meta pages and helps to identify those with possibly obscure titles or IDs. As usual, \marker{5}\ indicates a box to add this change into the change log. \marker{6}\ allows the user to save this meta page.
+
+\begin{warningBox}
+The ID for a meta page MUST be unique.
+\end{warningBox}
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a list of Places?} \label{ssec:view_place}
+A list of Places can be viewed by clicking on \marker{4}\ in Figure~\myref{fig:view_meta}. A page will load similar to Figure~\myref{fig:view_place}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_place.png}
+	\caption{Viewing a list of Places}\label{fig:view_place}
+\end{figure}
+
+\marker{1}\ allows the user to create a new Place. \marker{2}\ shows the ID of that place, with the name being shown in \marker{3}. \marker{4}\ allows the user to edit this Place.
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add, Edit or Delete a Place?}\label{ssec:edit_place}
+A Place can be added by clicking on \marker{5}\ on Figure~\myref{fig:view_meta}, or by clicking on \marker{1}\ in Figure~\myref{fig:view_place}. A page will load similar to Figure~\myref{fig:edit_place}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_place.png}
+	\caption{Editing a Place}\label{fig:edit_place}
+\end{figure}
+
+The name of the Place is indicated by \marker{1}, with the latitude and longitude being identified by \marker{2}\ and \marker{3}. The Place can be saved by \marker{4}\ and deleted by \marker{5}. Any casualty with this place will have it removed.
+
+\begin{warningBox}
+Deletion cannot be undone.
+\end{warningBox} 
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a list of Ranks?}\label{ssec:view_rank}
+A list of Ranks can be viewed by clicking on \marker{6}\ in Figure~\myref{fig:view_meta}. A page will load similar to Figure~\myref{fig:view_rank}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_rank.png}
+	\caption{Viewing a list of Ranks}\label{fig:view_rank}
+\end{figure}
+
+\marker{1}\ allows the user to create a new Rank. \marker{2}\ shows the ID of that rank, with the name being shown in \marker{3}. \marker{4}\ allows the user to edit this Rank.
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add, Edit or Delete a Rank?}\label{ssec:edit_rank}
+A Rank can be added by clicking on \marker{7}\ on Figure~\myref{fig:view_meta}, or by clicking on \marker{1}\ in Figure~\myref{fig:view_rank}. A page will load similar to Figure~\myref{fig:edit_rank}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_rank.png}
+	\caption{Editing a Rank}\label{fig:edit_rank}
+\end{figure}
+
+The name of the Rank is indicated by \marker{1}. The Rank can be saved by \marker{2}\ and deleted by \marker{3}. Any casualty with this rank will have it removed.
+
+\begin{warningBox}
+Deletion cannot be undone.
+\end{warningBox} 
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a list of Regiment / Service?} \label{ssec:view_regiment}
+A list of Regiments / Services can be viewed by clicking on \marker{8}\ in Figure~\myref{fig:view_meta}. A page will load similar to Figure~\myref{fig:view_regiment}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_regiment.png}
+	\caption{Viewing a list of Regiments / Services}\label{fig:view_regiment}
+\end{figure}
+
+\marker{1}\ allows the user to create a new Regiment / Service. \marker{2}\ shows the ID of that regiment, with the name being shown in \marker{3}. \marker{4}\ allows the user to edit this Regiment / Service.
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add, Edit or Delete a Regiment / Service?} \label{ssec:edit_regiment}
+A Regiment / Service can be added by clicking on \marker{9}\ on Figure~\myref{fig:view_meta}, or by clicking on \marker{1}\ in Figure~\myref{fig:view_regiment}. A page will load similar to Figure~\myref{fig:edit_regiment}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_regiment.png}
+	\caption{Editing a Regiment / Service}\label{fig:edit_regiment}
+\end{figure}
+
+The name of the Regiment / Service is indicated by \marker{1}. The Regiment / Service can be saved by \marker{2}\ and deleted by \marker{3}. Any casualty with this Regiment / Service will have it removed.
+
+\begin{warningBox}
+Deletion cannot be undone.
+\end{warningBox} 
+
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a list of Relation Types?} \label{ssec:view_relation}
+
+A list of Relation Types can be viewed by clicking on \marker{10}\ in Figure~\myref{fig:view_meta}. A page will load similar to Figure~\myref{fig:view_relation}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_relation.png}
+	\caption{Viewing a list of Relation Types}\label{fig:view_relation}
+\end{figure}
+
+\marker{1}\ allows the user to create a new Relation Type. \marker{2}\ shows the ID of that Relation Type, with the name being shown in \marker{3}. \marker{4}\ allows the user to edit this Relation Type.
+
+\begin{infoBox}
+A relation has no direction, so these types have long names to cover this.
+\end{infoBox}
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add, Edit or Delete a Relation Type?} \label{ssec:edit_relation}
+
+A Relation Type can be added by clicking on \marker{11}\ on Figure~\myref{fig:view_meta}, or by clicking on \marker{1}\ in Figure~\myref{fig:view_relation}. A page will load similar to Figure~\myref{fig:edit_relation}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_relation.png}
+	\caption{Editing a Relation Type}\label{fig:edit_relation}
+\end{figure}
+
+The name of the Relation Type is indicated by \marker{1}. The Relation Type can be saved by \marker{2}\ and deleted by \marker{3}. Any casualties with this Relation Type will have that relation removed.
+
+\begin{warningBox}
+Deletion cannot be undone.
+\end{warningBox} 
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a list of Service Countries?} \label{ssec:view_country}
+
+A list of Service Countries can be viewed by clicking on \marker{12}\ in Figure~\myref{fig:view_meta}. A page will load similar to Figure~\myref{fig:view_country}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_relation.png}
+	\caption{Viewing a list of Service Countries}\label{fig:view_country}
+\end{figure}
+
+\marker{1}\ allows the user to create a new Service Country. \marker{2}\ shows the ID of that Service Country, with the name being shown in \marker{3}. \marker{4}\ allows the user to edit this Service Country.
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add, Edit or Delete a Service Country?} \label{ssec:edit_country}
+
+A Service Country can be added by clicking on \marker{13}\ on Figure~\myref{fig:view_meta}, or by clicking on \marker{1}\ in Figure~\myref{fig:view_country}. A page will load similar to Figure~\myref{fig:edit_country}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_country.png}
+	\caption{Editing a Service Country}\label{fig:edit_country}
+\end{figure}
+
+The ID of the Service Country is specified by \marker{1} (according to ISO 3166\footnote{\url{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}}), with the name being shown by \marker{2}. The Service Country can be saved by \marker{3}\ and deleted by \marker{4}. Any casualties with this Service Country will have that data removed.
+
+\begin{warningBox}
+Deletion cannot be undone.
+\end{warningBox} 
+
+\begin{infoBox}
+A country's ID must be their two letter ISO-3166 code. If editing a historical country (e.g. Newfoundland), use any letters in the range of QM---QZ, XA---XZ. All countries needed should be already added.
+\end{infoBox}
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a list of Wars?} \label{ssec:view_war}
+A list of Wars can be viewed by clicking on \marker{14}\ in Figure~\myref{fig:view_meta}. A page will load similar to Figure~\myref{fig:view_war}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_war.png}
+	\caption{Viewing a list of Wars}\label{fig:view_war}
+\end{figure}
+
+\marker{1}\ allows the user to create a new War. \marker{2}\ shows the ID of that War, with the name being shown in \marker{3}. \marker{4}\ allows the user to edit this War.
+
+\newpage
+\FloatBarrier
+\subsection{How do I Add, Edit or Delete a War?} \label{ssec:edit_war}
+A War can be added by clicking on \marker{15}\ on Figure~\myref{fig:view_meta}, or by clicking on \marker{1}\ in Figure~\myref{fig:view_war}. A page will load similar to Figure~\myref{fig:edit_war}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/edit_war.png}
+	\caption{Editing a War}\label{fig:edit_war}
+\end{figure}
+
+The name of the War is indicated by \marker{1}. The War can be saved by \marker{2}\ and deleted by \marker{3}. Any casualties with this War will have that data removed.
+
+\begin{warningBox}
+Deletion cannot be undone.
+\end{warningBox} 
+
+\newpage
+\FloatBarrier
+\subsection{How do I view a List of Recently Imported Casualties?}\label{ssec:view_uploaded}
+A list of recently imported casualties is available by clicking the button indicated by \marker{17}\ in Figure~\myref{fig:view_meta}. Over time, this list should eventually be empty. A page will load similar to the fragment shown in Figure~\myref{fig:view_uploaded}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/view_uploaded.png}
+	\caption{Viewing the list of Recently Imported Casualties}\label{fig:view_uploaded}
+\end{figure}
+
+The name of the casualty is shown by \marker{1}, with a link to their edit page shown by \marker{2}.
+
+\newpage
+\FloatBarrier
 \section{Others}
-Others
+This section contains tasks and other features which do not fit nicely into the other categories.
+
+\subsection{How does the site look on mobile?}\label{ssec:mobile}
+The new site is responsive and will adjust its layout based on the screen size. As the size of the screen reduces, several changes occur:
+\begin{itemize}
+\item The labels on the menu bars disappear, leaving only the icons
+\item The labels on the menu bars disappear, leaving only the icons. The ``paper'' effect on the main display area is also replaced with a lozenge shape with a shadow. This reduces the wasted space on the left and right of the screen.
+\item The ``patrons'' section also disappears. This saves a huge amount of space at the top of the screen and stops the user having to scroll down to the main content.
+\item The panels on the home page that are side-by-side appear below one another. They would appear too crushed side-by-side on most mobile devices.
+\item The map on memorial pages appear below the narrative rather than next to them. This again stops horizontal scrolling or making items too squashed.
+\end{itemize}
+An example of the home page on mobile is shown as Figure~\myref{fig:mobile}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[height=.45\textheight]{pics/mobile.png}
+	\caption{Viewing the home page on a mobile phone}\label{fig:mobile}
+\end{figure}
+
+\newpage
+\FloatBarrier
 \subsection{How do I use the Narrative Buttons?}\label{ssec:narrative}
-\subsection{How does it look on mobile?}\label{ssec:mobile}
+The narrative buttons are used to create styling and to add pictures and links to the various narrative sections throughout the site. All narrative sections throughout the site operate in the same manner. Although there are buttons, the text is formatted using a language called \texttt{Markdown}. This has simpler syntax to HTML and also has the benefit of not breaking other areas of the site if invalid styling is entered. The buttons should handle most cases, but may not be great at ``undoing'' a style change. The narrative section is displayed in a similar manner to Figure~\myref{fig:markdown}.
+
+\begin{figure}[h]
+  \centering
+ \includegraphics[width=.9\textwidth]{pics/markdown.png}
+	\caption{Narrative Buttons}\label{fig:markdown}
+\end{figure}
+
+The buttons labelled \marker{1}\ to \marker{10}\ are described below in Table~\myref{tbl:markdown}.
+
+The Left, Centre and Right image buttons will ask for an address to the picture and a caption before placing the image to the left, right or middle of the text. The address asked, must be relative to the assets folder, so that is a file is in \texttt{assets/pictures/me.png}, the user should enter \texttt{me.png}. The caption provided will be displayed if the image cannot be loaded, or a user has images disabled, or is using some text-to-speech software if they have a sight problem.
+
+The link button will also ask for a address. It is fine to enter a full, absolute link in here, for example \texttt{www.doverwarmemorial.org.uk/casualty/view/3}.
+
+The editing window can be made fullscreen by clicking the button indicated by \marker{11}\ and the markdown can be previewed by \marker{12}. This preview is shown below the editing window. This help is repeated in a similar manner in the link provided by \marker{13}.
+
+\begin{landscape}
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+ & \textbf{Name}  & \textbf{Markdown}                                                                                                                                                & \textbf{Display} \\ \hline
+\marker{1}    & Bold           & \texttt{**Dover**}                                                                                                                                                        & \textbf{Dover}   \\
+\marker{2}    & Italics        & \texttt{\_Dover\_}                                                                                                                                                        & \textit{Dover}   \\
+\marker{3}    & Heading        & \texttt{\#\#\# Dover}                                                                                                                                                     &  \includegraphics[scale=0.8]{pics/heading.png}       \\
+\marker{4}    & Link           & \texttt{{[}Google{]}(http://google.com)}                                                                                                                                  &     \includegraphics[scale=0.8]{pics/link.png}             \\
+\marker{5}    & Bullet List    & \begin{tabular}[c]{@{}l@{}}\texttt{- item 1}\\\texttt{- item 2}\end{tabular}                                                                                                      &   \includegraphics[scale=0.8]{pics/list.png}   \\
+\marker{6}    & Numbered List  & \begin{tabular}[c]{@{}l@{}}\texttt{1. item 1}\\\texttt{2. item 2}\end{tabular}                                                                                                    &   \includegraphics[scale=0.8]{pics/number.png}   \\
+\marker{7}    & Quotation      & \texttt{\textgreater\ Dover}                                                                                                                                               &   \includegraphics[scale=0.8]{pics/quote.png}  \\
+\marker{8}    & Image (Left)   & \texttt{!{[}Picture of face{]}(\%asset\_url\%pictures/faces/me.png "Picture of face")\{.left\}} & See above \\
+\marker{9}    & Image (Centre) & \texttt{!{[}Picture of face{]}(\%asset\_url\%pictures/faces/me.png "Picture of face")\{.middle\}}                                             &  See above \\
+\marker{10}   & Image (Right)  & \texttt{!{[}Picture of face{]}(\%asset\_url\%pictures/faces/me.png "Picture of face")\{.right\}}                                              & See above \\
+\marker{-}   & Paragraph      & An empty line between sections of text                                                                                                                           &                 
+\end{tabular}
+\caption{Styling guide}
+\label{tbl:markdown}
+\end{table}
+\end{landscape}
 
 \end{document}
