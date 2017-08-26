@@ -6,6 +6,32 @@ $(document).ready( function() {
 	});
 
     /**
+    *   Validates the form
+    */
+    $("#basicForm").validate({
+        rules: {
+            given_name: "required",
+	    family_name: "required",
+            narrative: "required"
+        },
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'div',
+        errorClass: 'help-block error-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+
+    /**
     *  Saves the relation data
     */
     $("#saveRelations").click(function() {
@@ -37,8 +63,10 @@ $(document).ready( function() {
 	*/
 	$("#saveBasic").click(function() {
         var id = $("#id").val();
+   
+	var result = $("#basicForm").valid();
 
-        if(id == "-1") {
+        if(id == "-1" || !result) {
             return;
         }
 
@@ -61,6 +89,12 @@ $(document).ready( function() {
 	*	Saves the current casualty in the DB
 	*/
 	$("#saveReturn").click(function() {
+
+	var result = $("#basicForm").valid();
+	if(!result) {
+		return;
+	}
+
 		var basicForm = $("#basicForm").serialize();
 		$.ajax({
             type: "POST",
@@ -82,6 +116,11 @@ $(document).ready( function() {
     *   Saves the current casualty in the DB and returns to the reloaded edit page, but with the new ID
     */
     $("#saveNew").click(function() {
+	var result = $("#basicForm").valid();
+	if(!result) {
+		return;
+	}
+
         var basicForm = $("#basicForm").serialize();
         $.ajax({
             type: "POST",

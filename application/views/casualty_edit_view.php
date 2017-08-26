@@ -125,14 +125,14 @@ $(document).on("click", ".btn-delete", function(e) {
 			<div class="col-sm-9">
 				<select class="form-control selectpicker" id="war" name="war" data-live-search="true">
 					<?php
-					if($casualty_data->war == null) {
+					if(!$new && $casualty_data->war == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
 					} else {
 						echo "<option value=\"null\">Unknown</option>";
 					}
 
 					foreach($warList as $war) {
-						if($war->id == $casualty_data->war) {
+						if(!$new && $war->id == $casualty_data->war) {
 							echo "<option value=\"".$war->id."\" selected>(".$war->id.") ".$war->name."</option>";
 						} else {
 							echo "<option value=\"".$war->id."\">(".$war->id.") ".$war->name."</option>";
@@ -151,14 +151,14 @@ $(document).on("click", ".btn-delete", function(e) {
 				<select class="form-control selectpicker" id="final_resting_place" name="final_resting_place" data-live-search="true">
 					<?php
 
-					if($casualty_data->final_resting_place == null) {
+					if(!$new && $casualty_data->final_resting_place == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
 					} else {
 						echo "<option value=\"null\">Unknown</option>";
 					}
 
 					foreach($commemorationLocationList as $cL) {
-						if($cL->id == $casualty_data->final_resting_place) {
+						if(!$new && $cL->id == $casualty_data->final_resting_place) {
 							echo "<option value=\"".$cL->id."\" selected>(".$cL->id.") ".$cL->name."</option>";
 						} else {
 							echo "<option value=\"".$cL->id."\">(".$cL->id.") ".$cL->name."</option>";
@@ -175,14 +175,14 @@ $(document).on("click", ".btn-delete", function(e) {
 			<div class="col-sm-9">
 				<select class="form-control selectpicker" id="rank_at_death" name="rank_at_death" data-live-search="true">
 					<?php
-					if($casualty_data->rank_at_death == null) {
+					if(!$new &&  $casualty_data->rank_at_death == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
 					} else {
 						echo "<option value=\"null\">Unknown</option>";
 					}
 					
 					foreach($rankList as $rank) {
-						if($rank->id == $casualty_data->rank_at_death) {
+						if(!$new && $rank->id == $casualty_data->rank_at_death) {
 							echo "<option value=\"".$rank->id."\" selected>(".$rank->id.") ".$rank->name."</option>";
 						} else {
 							echo "<option value=\"".$rank->id."\">(".$rank->id.") ".$rank->name."</option>";
@@ -199,14 +199,14 @@ $(document).on("click", ".btn-delete", function(e) {
 			<div class="col-sm-9">
 				<select class="form-control selectpicker" id="service_country" name="service_country" data-live-search="true">
 					<?php
-					if($casualty_data->service_country == null) {
+					if(!$new && $casualty_data->service_country == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
 					} else {
 						echo "<option value=\"null\">Unknown</option>";
 					}
 					
 					foreach($countryList as $country) {
-						if($country->id == $casualty_data->service_country) {
+						if(!$new && $country->id == $casualty_data->service_country) {
 							echo "<option value=\"".$country->id."\" selected>(".$country->id.") ".$country->name."</option>";
 						} else {
 							echo "<option value=\"".$country->id."\">(".$country->id.") ".$country->name."</option>";
@@ -223,14 +223,14 @@ $(document).on("click", ".btn-delete", function(e) {
 			<div class="col-sm-9">
 				<select class="form-control selectpicker" id="place_of_birth" name="place_of_birth" data-live-search="true">
 					<?php
-					if($casualty_data->place_of_birth == null) {
+					if(!$new && $casualty_data->place_of_birth == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
 					} else {
 						echo "<option value=\"null\">Unknown</option>";
 					}
 					
 					foreach($placeList as $place) {
-						if($place->id == $casualty_data->place_of_birth) {
+						if(!$new && $place->id == $casualty_data->place_of_birth) {
 							echo "<option value=\"".$place->id."\" selected>(".$place->id.") ".$place->name."</option>";
 						} else {
 							echo "<option value=\"".$place->id."\">(".$place->id.") ".$place->name."</option>";
@@ -247,14 +247,14 @@ $(document).on("click", ".btn-delete", function(e) {
 			<div class="col-sm-9">
 				<select class="form-control selectpicker" id="last_known_address" name="last_known_address" data-live-search="true">
 					<?php
-					if($casualty_data->last_known_address == null) {
+					if(!$new && $casualty_data->last_known_address == null) {
 						echo "<option value=\"null\" selected>Unknown</option>";
 					} else {
 						echo "<option value=\"null\">Unknown</option>";
 					}
 					
 					foreach($placeList as $place) {
-						if($place->id == $casualty_data->last_known_address) {
+						if(!$new && $place->id == $casualty_data->last_known_address) {
 							echo "<option value=\"".$place->id."\" selected>(".$place->id.") ".$place->name."</option>";
 						} else {
 							echo "<option value=\"".$place->id."\">(".$place->id.") ".$place->name."</option>";
