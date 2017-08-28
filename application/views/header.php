@@ -57,6 +57,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					) { ?>
 			<script src="<?php echo asset_url(); ?>js/saveData.js"></script>
 
+	<?php } else if($this->uri->segment(1) == 'converter') { ?>
+			<script src="<?php echo asset_url(); ?>js/converter.js"></script>
+
 	<?php }
 
 		if($this->uri->segment(2) == 'edit' || $this->uri->segment(1) == 'search') { ?>
