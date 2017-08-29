@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
             </div>
     	<p class="small">
-    	This website uses cookies for various required functions. Copyright 2006-<?php echo date("y"); ?> &copy; Marilyn Stephenson-Knight. All Rights Reserved
+    	This website uses cookies for various required functions. Copyright 2006-<?php echo date("y"); ?> &copy; Marilyn Stephenson-Knight. All Rights Reserved. <a href="<?php echo base_url();?>meta/view/disclaimer">Disclaimer, Copyright &amp; Cookie Statement</a>.
         </p>
     </div>
 </footer>
