@@ -7,14 +7,42 @@ $(document).ready( function() {
 	var urlPrePrompt = "%asset_url%pictures/";
 	var titlePromptMessage = "Enter the title of the picture";
 	var titlePrompt = "Picture of a face by M. Smith";
+  var linkPromptMessage = "Enter the URL of the link.\ne.g. For external links, use ensure you have \"http://\" at the start.\nFor internal links, start with \"%base_url%\" to automatically create the correct start of the URL.";
+  var linkPrompt = "%base_url%article/view/1";
+  var linkTitlePromptMessage = "Enter the title of the link";
+  var linkTitlePrompt = "Another interesting article";
 
 	$("#narrative").markdown({
   		savable: false,
   		iconlibrary: "fa",
-  		hiddenButtons: ["cmdImage","cmdCode","cmdPreview"],
+  		hiddenButtons: ["cmdImage","cmdCode","cmdPreview","cmdUrl"],
   		disabledButtons: "cmdAddImage",
   		additionalButtons: [
-  			[{
+  			[
+        {
+          name : "linkGroup",
+          data : [
+            {
+              name: "cmdAddLink",
+              toggle: false,
+              disabled: false,
+              title: "Insert Link:",
+              btnText: "",
+              icon: {"fa": "fa fa-link"},
+              callback : function(e) {
+                console.log("link");
+                var link = window.prompt(linkPromptMessage,linkPrompt);
+                var title = window.prompt(linkTitlePromptMessage,linkTitlePrompt);
+
+                var outputText = "["+title+"]("+link+")\n";
+                if(link != null && title!= null) {
+                  e.replaceSelection(outputText);
+                }
+              }
+            }
+          ]
+        },
+        {
   				name: "imageGroup",
   				data: [{
   					name: "cmdAddImage",
@@ -35,7 +63,10 @@ $(document).ready( function() {
 
   						var outputText = "\n![" + title + "](" + url + " \"" + title + "\"){.left}\n";
 
-  						e.replaceSelection(outputText);
+              if(url != null && title!= null) {
+                e.replaceSelection(outputText);
+              }
+  						
   					}
   				},{
   					name: "cmdCenterImage",
@@ -49,7 +80,9 @@ $(document).ready( function() {
 
   						var outputText = "\n![" + title + "](" + url + " \"" + title + "\"){.middle}\n";
 
-  						e.replaceSelection(outputText);
+  						if(url != null && title!= null) {
+                e.replaceSelection(outputText);
+              }
   					}
   				},{
   					name: "cmdRightImage",
@@ -63,7 +96,9 @@ $(document).ready( function() {
 
   						var outputText = "\n![" + title + "](" + url + " \"" + title + "\"){.right}\n";
 
-  						e.replaceSelection(outputText);
+              if(url != null && title!= null) {
+                e.replaceSelection(outputText);
+              }
   					}
   				}]
   			}]

@@ -16,7 +16,7 @@ $Parsedown = new ParsedownExtra();
 <div id="narrative">
 <?php
 
-	echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $article_data->content));
+	echo $Parsedown->text(preprocessMarkdown($article_data->content));
 ?>
 </div>
 <h6>Posted:&nbsp;<?php echo $article_data->posted_date; ?></h6>

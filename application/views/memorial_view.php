@@ -72,7 +72,7 @@ $Parsedown = new ParsedownExtra();
 		<div class="col-md-7">
 			<div id="narrative"><?php
 
-				echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $memorial_data->narrative));
+				echo $Parsedown->text(preprocessMarkdown($memorial_data->narrative));
 			?>
 			<h4>Location: <?php echo $memorial_data->location ?></h4>
 			</div>

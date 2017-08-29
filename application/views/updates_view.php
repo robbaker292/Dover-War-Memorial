@@ -31,7 +31,7 @@ $Parsedown = new ParsedownExtra();
 		?>
 		</h3>
 		<div id="narrative">
-		<p><?php echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $update->content)); ?></p>
+		<p><?php echo $Parsedown->text(preprocessMarkdown($update->content)); ?></p>
 		</div>
 		<h6><small>Posted:&nbsp;<?php echo $update->date; ?></small></h6>
 		</div>

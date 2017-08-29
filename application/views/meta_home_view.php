@@ -27,7 +27,7 @@ $(document).ready( function() {
 	<div id="narrative">
 	<?php
 
-		echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $meta_data->content));
+		echo $Parsedown->text(preprocessMarkdown($meta_data->content));
 	?>
 	</div>
 </div>
@@ -39,7 +39,7 @@ $(document).ready( function() {
 			<div class="panel-body">
 				<h4><a href="<?php echo base_url()."siteUpdate/view/".$update_data->id; ?>"><?php echo $update_data->title; ?></a></h4>
 				<div class="snippet">
-					<?php echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $update_data->content)); ?>
+					<?php echo $Parsedown->text(preprocessMarkdown($update_data->content)); ?>
 				</div>
 				<h4><a href="<?php echo base_url()."siteUpdate/view/".$update_data->id; ?>" class="btn btn-primary btn-md" role="button"><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;Read More</a></h4>
 			</div>

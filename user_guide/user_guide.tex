@@ -819,9 +819,11 @@ The narrative buttons are used to create styling and to add pictures and links t
 
 The buttons labelled \marker{1}\ to \marker{10}\ are described below in Table~\myref{tbl:markdown}.
 
-The Left, Centre and Right image buttons will ask for an address to the picture and a caption before placing the image to the left, right or middle of the text. The address asked, must be relative to the assets folder, so that is a file is in \texttt{assets/pictures/me.png}, the user should enter \texttt{me.png}. The caption provided will be displayed if the image cannot be loaded, or a user has images disabled, or is using some text-to-speech software if they have a sight problem.
+The Left (\marker{8}), Centre (\marker{9}), and Right (\marker{10}) image buttons will ask for an address to the picture and a caption before placing the image to the left, right or middle of the text. The address asked, must be relative to the assets folder, so that is a file is in \texttt{assets/pictures/me.png}, the user should enter \texttt{me.png}. The caption provided will be displayed if the image cannot be loaded, or a user has images disabled, or is using some text-to-speech software if they have a sight problem.
 
-The link button will also ask for a address. It is fine to enter a full, absolute link in here, for example \texttt{www.doverwarmemorial.org.uk/casualty/view/3}.
+The link button (\marker{7}) will also ask for a address.
+If you wish to link to an external site, enter their full web address, including \texttt{http://} or \texttt{https://}.
+If you wish to link to another page on the site, for example article number 1, enter \texttt{\%base\_url\%article/view/1}. It is not necessary to enter the title that may be displayed in URLs (except for meta pages). Using \texttt{\%base\_url\%} ensures the links will stay accurate even if the URL of the site changes (e.g. from development to live).
 
 The editing window can be made fullscreen by clicking the button indicated by \marker{11}\ and the markdown can be previewed by \marker{12}. This preview is shown below the editing window. This help is repeated in a similar manner in the link provided by \marker{13}.
 
@@ -833,10 +835,10 @@ The editing window can be made fullscreen by clicking the button indicated by \m
 \marker{1}    & Bold           & \texttt{**Dover**}                                                                                                                                                        & \textbf{Dover}   \\
 \marker{2}    & Italics        & \texttt{\_Dover\_}                                                                                                                                                        & \textit{Dover}   \\
 \marker{3}    & Heading        & \texttt{\#\#\# Dover}                                                                                                                                                     &  \includegraphics[scale=0.8]{pics/heading.png}       \\
-\marker{4}    & Link           & \texttt{{[}Google{]}(http://google.com)}                                                                                                                                  &     \includegraphics[scale=0.8]{pics/link.png}             \\
-\marker{5}    & Bullet List    & \begin{tabular}[c]{@{}l@{}}\texttt{- item 1}\\\texttt{- item 2}\end{tabular}                                                                                                      &   \includegraphics[scale=0.8]{pics/list.png}   \\
-\marker{6}    & Numbered List  & \begin{tabular}[c]{@{}l@{}}\texttt{1. item 1}\\\texttt{2. item 2}\end{tabular}                                                                                                    &   \includegraphics[scale=0.8]{pics/number.png}   \\
-\marker{7}    & Quotation      & \texttt{\textgreater\ Dover}                                                                                                                                               &   \includegraphics[scale=0.8]{pics/quote.png}  \\
+\marker{4}    & Bullet List    & \begin{tabular}[c]{@{}l@{}}\texttt{- item 1}\\\texttt{- item 2}\end{tabular}                                                                                                      &   \includegraphics[scale=0.8]{pics/list.png}   \\
+\marker{5}    & Numbered List  & \begin{tabular}[c]{@{}l@{}}\texttt{1. item 1}\\\texttt{2. item 2}\end{tabular}                                                                                                    &   \includegraphics[scale=0.8]{pics/number.png}   \\
+\marker{6}    & Quotation      & \texttt{\textgreater\ Dover}                                                                                                                                               &   \includegraphics[scale=0.8]{pics/quote.png}  \\
+\marker{7}    & Link           & \texttt{{[}Google{]}(http://google.com)}                                                                                                                                  &     \includegraphics[scale=0.8]{pics/link.png}             \\
 \marker{8}    & Image (Left)   & \texttt{!{[}Picture of face{]}(\%asset\_url\%pictures/faces/me.png "Picture of face")\{.left\}} & See above \\
 \marker{9}    & Image (Centre) & \texttt{!{[}Picture of face{]}(\%asset\_url\%pictures/faces/me.png "Picture of face")\{.middle\}}                                             &  See above \\
 \marker{10}   & Image (Right)  & \texttt{!{[}Picture of face{]}(\%asset\_url\%pictures/faces/me.png "Picture of face")\{.right\}}                                              & See above \\

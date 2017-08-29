@@ -16,7 +16,7 @@ $Parsedown = new ParsedownExtra();
 <div id="narrative">
 <?php
 
-	echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $meta_data->content));
+	echo $Parsedown->text(preprocessMarkdown($meta_data->content));
 ?>
 </div>
 <div class="panel panel-info">

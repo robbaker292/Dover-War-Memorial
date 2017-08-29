@@ -12,7 +12,7 @@ class Meta extends CI_Controller {
 		include APPPATH . 'third_party/Parsedown.php';
 		include APPPATH . 'third_party/ParsedownExtra.php';
 		$Parsedown = new ParsedownExtra();
-		echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $raw));
+		echo $Parsedown->text(preprocessMarkdown($raw));
 	}
 
 	/**

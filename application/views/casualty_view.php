@@ -17,7 +17,7 @@ $Parsedown = new ParsedownExtra();
 	<div id="narrative">
 	<?php
 
-		echo $Parsedown->text(str_replace("%asset_url%", asset_url(), $casualty_data->narrative));
+		echo $Parsedown->text(preprocessMarkdown($casualty_data->narrative));
 	?>
 	</div>
 	<br>
