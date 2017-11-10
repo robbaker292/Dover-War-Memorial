@@ -13,7 +13,7 @@ class General_model extends CI_Model {
         *       Lists all wars
         */
         public function getWars() {
-            $sql = "SELECT * FROM war";
+            $sql = "SELECT * FROM war WHERE deleted=0";
             $query = $this->db->query($sql);
             return $query->result();
         }
@@ -22,7 +22,7 @@ class General_model extends CI_Model {
         *       Lists all regiments
         */
         public function getRegiments() {
-            $sql = "SELECT * FROM regiment_service";
+            $sql = "SELECT * FROM regiment_service WHERE deleted=0";
             $query = $this->db->query($sql);
             return $query->result();
         }
@@ -31,7 +31,7 @@ class General_model extends CI_Model {
         *       Lists all commemoration locations
         */
         public function getCommemorationLocations() {
-            $sql = "SELECT id, name FROM commemoration_location";
+            $sql = "SELECT id, name FROM commemoration_location WHERE deleted=0";
             $query = $this->db->query($sql);
             return $query->result();
         }
@@ -40,7 +40,7 @@ class General_model extends CI_Model {
         *       Lists all ranks
         */
         public function getRanks() {
-            $sql = "SELECT * FROM rank";
+            $sql = "SELECT * FROM rank WHERE deleted=0";
             $query = $this->db->query($sql);
             return $query->result();
         }
@@ -49,7 +49,7 @@ class General_model extends CI_Model {
         *       Lists all countries
         */
         public function getCountries() {
-            $sql = "SELECT * FROM service_country";
+            $sql = "SELECT * FROM service_country WHERE deleted=0";
             $query = $this->db->query($sql);
             return $query->result();
         }
@@ -58,7 +58,7 @@ class General_model extends CI_Model {
         *       Lists all places
         */
         public function getPlaces() {
-            $sql = "SELECT id, name FROM place";
+            $sql = "SELECT id, name FROM place WHERE deleted=0";
             $query = $this->db->query($sql);
             return $query->result();
         }

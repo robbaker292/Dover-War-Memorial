@@ -71,3 +71,7 @@ application/models/login_model.php
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+
+
+.htaccess-2
+.htaccess-old

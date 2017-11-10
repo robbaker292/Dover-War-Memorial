@@ -15,7 +15,7 @@ class War_model extends CI_Model {
 	public function getCasualtiesFromWar($warId) {
 		$sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, w.name FROM casualty c
 			LEFT JOIN war w ON c.war = w.id
-			WHERE w.id = ?
+			WHERE w.id = ? AND c.deleted=0
 			";
 		$query = $this->db->query($sql, array($warId));
 		return $query->result();
@@ -74,13 +74,21 @@ class War_model extends CI_Model {
     *   Deletes a war
     */
     public function deleteWar($id) {
-    	$sql = "DELETE FROM war WHERE id = ?;";
+    	$sql = "UPDATE war SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
+    }
+
+    /**
+    *   Restores a war
+    */
+    public function restoreWar($id) {
+        $sql = "UPDATE war SET deleted=0 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 
 }

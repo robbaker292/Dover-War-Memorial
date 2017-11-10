@@ -56,6 +56,12 @@ class Memorial extends CI_Controller {
 			redirect(site_url(uri_string()."/".$name));
 		}
 
+		//redirect if the item is deleted and we're logged out
+		$deleted = $memorial_data[0]->deleted;
+		if($deleted == "1" && !$loggedIn) {
+			redirect(site_url());
+		}
+
 		$this->load->view('header', array("title" => $memorial_data[0]->name." - Dover War Memorial Project"));
 
 		$data = array(
@@ -187,13 +193,31 @@ class Memorial extends CI_Controller {
 			//if the update worked
 			if($result["type"] == "success") {
 				//var_dump($result);
-				redirect("memorial/listMain");
+				redirect("memorial/view/".$id);
 			} else {
 				//output the error message :(
 				header('HTTP/1.1 500 Internal Server Error');
 	   			header('Content-Type: application/json; charset=UTF-8');
 	    		die(json_encode($result));
 			}
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
+	}
+
+	/**
+	*	Restores a memorial
+	*/
+	public function restore($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('memorial_model');
+			$result = $this->memorial_model->restoreMemorial($id);
+			redirect("memorial/view/".$id);
 		} else {
 			//return error message :(
 			header('HTTP/1.1 500 Internal Server Error');

@@ -22,7 +22,7 @@ class Article_model extends CI_Model {
     * Returns a list of articles in all categories
     */
     public function getArticlesFromCategories() {
-        $sql = "SELECT a.id, a.title, a.category_id, ac.name FROM article a JOIN article_category ac ON a.category_id = ac.id ORDER BY ac.id, a.title";
+        $sql = "SELECT a.id, a.title, a.category_id, ac.name FROM article a JOIN article_category ac ON a.category_id = ac.id WHERE a.deleted=0 ORDER BY ac.id, a.title";
         $query = $this->db->query($sql);
 
         //convert the results into a better layout
@@ -78,7 +78,7 @@ class Article_model extends CI_Model {
     *   Deletes a article
     */
     public function deleteArticle($id) {
-        $sql = "DELETE FROM article WHERE id = ?;";
+        $sql = "UPDATE article SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
@@ -91,9 +91,17 @@ class Article_model extends CI_Model {
     * Returns a list of articles in no category
     */
     public function getArticlesNoCategory() {
-        $sql = "SELECT id, title, posted_date FROM article a WHERE category_id IS NULL";
+        $sql = "SELECT id, title, posted_date FROM article a WHERE category_id IS NULL AND deleted=0";
         $query = $this->db->query($sql);
         return $query->result();
+    }
+
+    /**
+    *   Deletes a article
+    */
+    public function restoreArticle($id) {
+        $sql = "UPDATE article SET deleted=0 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 
 }

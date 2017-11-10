@@ -109,7 +109,7 @@ class Service_Country extends CI_Controller {
 		}	
 	}
 
-		/**
+	/**
 	*	Deletes a service_country
 	*/
 	public function delete($id) {
@@ -128,6 +128,24 @@ class Service_Country extends CI_Controller {
 	   			header('Content-Type: application/json; charset=UTF-8');
 	    		die(json_encode($result));
 			}
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
+	}
+
+	/**
+	*	Restores a service_country
+	*/
+	public function restore($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('service_country_model');
+			$result = $this->service_country_model->restoreService_Country($id);
+			redirect("service_country/listAll");
 		} else {
 			//return error message :(
 			header('HTTP/1.1 500 Internal Server Error');

@@ -22,7 +22,7 @@ class Search_model extends CI_Model {
                 SELECT \"casualty\" AS type, id, CONCAT(given_name, \" \", middle_names, \" \", family_name) AS title, narrative AS content,
                 (MATCH(given_name) AGAINST(? IN BOOLEAN MODE) + MATCH(family_name) AGAINST(? IN BOOLEAN MODE) + MATCH(given_name, middle_names, family_name, narrative) AGAINST(? IN BOOLEAN MODE)) as score
                 FROM casualty
-                WHERE MATCH(given_name, middle_names, family_name, narrative) AGAINST(? IN BOOLEAN MODE)
+                WHERE MATCH(given_name, middle_names, family_name, narrative) AGAINST(? IN BOOLEAN MODE) AND deleted=0
                 )";
             $count += 4;
         }
@@ -32,7 +32,7 @@ class Search_model extends CI_Model {
                 SELECT \"article\" AS type, id, title, content,
                 MATCH(title, content) AGAINST(? IN BOOLEAN MODE) as score
                 FROM article
-                WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)
+                WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE) AND deleted=0
                 )";
             $count += 2;
         }
@@ -42,7 +42,7 @@ class Search_model extends CI_Model {
                 SELECT \"siteUpdate\" AS type, id, title, content,
                 MATCH(title, content) AGAINST(? IN BOOLEAN MODE) as score
                 FROM site_update
-                WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)
+                WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE) AND deleted=0
                 )";
             $count += 2;
         }
@@ -52,7 +52,7 @@ class Search_model extends CI_Model {
                 SELECT \"memorial\" AS type, id, name AS title, narrative AS content,
                 MATCH(name, narrative) AGAINST(? IN BOOLEAN MODE) as score
                 FROM commemoration_location
-                WHERE MATCH(name, narrative) AGAINST(? IN BOOLEAN MODE)
+                WHERE MATCH(name, narrative) AGAINST(? IN BOOLEAN MODE) AND deleted=0
                 )";
             $count += 2;
         }
@@ -96,10 +96,10 @@ class Search_model extends CI_Model {
         }
 
         $sql = "SELECT DISTINCT \"casualty\" AS type, c.id, CONCAT(c.given_name, \" \", c.middle_names, \" \", c.family_name) AS title, c.narrative AS content FROM casualty c ";
-        $sql .= " LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id LEFT JOIN commemoration_location ON clc.commemoration_location_id = commemoration_location.id ";
-        $sql .= " LEFT JOIN regiment_service_casualty rsc ON rsc.casualty_id = c.id LEFT JOIN regiment_service ON rsc.regiment_service_id=regiment_service.id ";
+        $sql .= " LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id LEFT JOIN commemoration_location cm ON clc.commemoration_location_id = cm.id AND cm.deleted=0";
+        $sql .= " LEFT JOIN regiment_service_casualty rsc ON rsc.casualty_id = c.id LEFT JOIN regiment_service rs ON rsc.regiment_service_id=rs.id AND rs.deleted=0";
         $sql .= " LEFT JOIN service_number ON service_number.casualty_id = c.id ";
-        $sql .= " WHERE ";
+        $sql .= " WHERE c.deleted=0 AND";
         if(count($query) > 1) {
             $sql .= implode(" AND ", $query);
         } else {

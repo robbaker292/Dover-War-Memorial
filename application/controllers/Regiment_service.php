@@ -138,4 +138,22 @@ class Regiment_Service extends CI_Controller {
 		}
 	}
 
+	/**
+	*	Restores a regiment/service
+	*/
+	public function restore($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('regiment_service_model');
+			$result = $this->regiment_service_model->restoreRegiment_Service($id);
+			redirect("regiment_service/listAll");
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
+	}
+
 }

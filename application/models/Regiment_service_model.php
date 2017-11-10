@@ -62,13 +62,21 @@ class Regiment_Service_model extends CI_Model {
     *   Deletes a Regiment_Service
     */
     public function deleteRegiment_Service($id) {
-        $sql = "DELETE FROM regiment_service WHERE id = ?;";
+        $sql = "UPDATE regiment_service SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
+    }
+
+    /**
+    *   Restores a Regiment_Service
+    */
+    public function restoreRegiment_Service($id) {
+        $sql = "UPDATE regiment_service SET deleted=0 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 
 }

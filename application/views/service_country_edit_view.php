@@ -11,7 +11,7 @@ $(document).on("click", ".btn-delete", function(e) {
 	bootbox.confirm({ 
 		size: "large",
 		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
-		message: "This will delete the current service country.<br>All Casualties with this country will be set to have no country.<br>This CANNOT be undone",
+		message: "This will delete the current service country.<br>All Casualties with this country will be set to have no country.<br>Deletions can be restored",
 		buttons: {
 			confirm: {
 				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',

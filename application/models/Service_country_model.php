@@ -62,13 +62,21 @@ class Service_Country_model extends CI_Model {
     *   Deletes a Service_Country
     */
     public function deleteService_Country($id) {
-        $sql = "DELETE FROM service_country WHERE id = ?;";
+        $sql = "UPDATE service_country SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
+    }
+
+    /**
+    *   Restores a Service_Country
+    */
+    public function restoreService_Country($id) {
+        $sql = "UPDATE service_country SET deleted=0 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 
 

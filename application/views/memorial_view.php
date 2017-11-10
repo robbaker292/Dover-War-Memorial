@@ -6,6 +6,30 @@ include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
 ?>
 <script>
+$(document).on("click", ".btn-restore", function(e) {
+	bootbox.confirm({ 
+		size: "large",
+		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
+		message: "This will restore the current memorial.",
+		buttons: {
+			confirm: {
+				label: '<i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;&nbsp;Restore',
+				className: 'btn-success'
+			},
+			cancel: {
+				label: '<i class="fa fa-ban" aria-hidden="true"></i>&nbsp;&nbsp;Cancel',
+				className: 'btn-primary'
+			}
+		}, 
+		callback: function(result){ 
+			if(result) {
+				window.location.href = <?php echo "\"".base_url()."memorial/restore/".$memorial_data->id."\""; ?>;
+			}
+		}
+	});
+});
+</script>
+<script>
 	$(document).ready( function() {
 		/**
 		*	Create map
@@ -67,6 +91,18 @@ $Parsedown = new ParsedownExtra();
 	echo "<div class=\"hidden\" id=\"item_id\">".$item_id."</div>"; 
 	echo "<div class=\"hidden\" id=\"lat\">".$memorial_data->lat."</div>"; 
 	echo "<div class=\"hidden\" id=\"lon\">".$memorial_data->lon."</div>"; 
+?>
+<?php
+if($memorial_data->deleted=="1") {
+	?>
+		<div class="panel panel-danger">
+			<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Deleted</h4></div>
+			<div class="panel-body">
+				This memorial has been deleted and is not visible to logged out users. <a href="#" class="btn btn-success btn-md pull-right btn-restore" role="button"><i class="fa fa-recycle" aria-hidden="true"></i> Restore</a>
+			</div>
+		</div>
+	<?php
+}
 ?>
 	<div class="row">
 		<div class="col-md-7">

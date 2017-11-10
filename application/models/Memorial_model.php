@@ -25,7 +25,7 @@ class Memorial_model extends CI_Model {
             $sql = "SELECT cl.id, cl.name, cl.lat, cl.lon,
                     (SELECT COUNT(c.casualty_id) FROM commemoration_location_casualty c WHERE c.commemoration_location_id = cl.id) AS casualties
                     FROM commemoration_location cl                   
-                    WHERE lat IS NOT NULL AND lon IS NOT NULL
+                    WHERE lat IS NOT NULL AND lon IS NOT NULL ANd deleted=0
             ";
             $query = $this->db->query($sql);
             return $query->result();
@@ -38,7 +38,7 @@ class Memorial_model extends CI_Model {
             $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
                     LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
                     LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                    WHERE cl.id = ? ORDER BY c.family_name, c.given_name ASC
+                    WHERE cl.id = ? AND c.deleted=0 ORDER BY c.family_name, c.given_name ASC
             ";
             $query = $this->db->query($sql, array($memorialId));
             return $query->result();
@@ -56,7 +56,7 @@ class Memorial_model extends CI_Model {
                     $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
                         LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
                         LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE cl.id = ? AND c.family_name REGEXP '^[^A-Za-z]' ORDER BY c.family_name, c.given_name ASC
+                        WHERE cl.id = ? AND c.family_name REGEXP '^[^A-Za-z]' AND c.deleted=0 ORDER BY c.family_name, c.given_name ASC
                     ";
                     $query = $this->db->query($sql, array($memorialId));
                 } else {
@@ -64,7 +64,7 @@ class Memorial_model extends CI_Model {
                     $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
                         LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
                         LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE cl.id = ? AND c.family_name LIKE ? ORDER BY c.family_name, c.given_name ASC
+                        WHERE cl.id = ? AND c.family_name LIKE ? AND c.deleted=0 ORDER BY c.family_name, c.given_name ASC
                     ";
                     $query = $this->db->query($sql, array($memorialId, $firstLetter."%"));
                 }
@@ -74,7 +74,7 @@ class Memorial_model extends CI_Model {
                     $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
                         LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
                         LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE cl.id = ? AND c.war = ? AND c.family_name REGEXP '^[^A-Za-z]' ORDER BY c.family_name, c.given_name ASC
+                        WHERE cl.id = ? AND c.war = ? AND c.family_name REGEXP '^[^A-Za-z]' AND c.deleted=0 ORDER BY c.family_name, c.given_name ASC
                     ";
                     $query = $this->db->query($sql, array($memorialId, $warId));
 
@@ -83,7 +83,7 @@ class Memorial_model extends CI_Model {
                     $sql = "SELECT c.id, c.given_name, c.family_name, c.date_of_death, cl.name FROM casualty c
                         LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
                         LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
-                        WHERE cl.id = ? AND c.war = ? AND c.family_name LIKE ? ORDER BY c.family_name, c.given_name ASC
+                        WHERE cl.id = ? AND c.war = ? AND c.family_name LIKE ? AND c.deleted=0 ORDER BY c.family_name, c.given_name ASC
                     ";
                     $query = $this->db->query($sql, array($memorialId, $warId, $firstLetter."%"));
                 }
@@ -110,6 +110,7 @@ class Memorial_model extends CI_Model {
                  $sql .= " WHERE mainOrder IS NULL OR mainOrder = 0";
             } 
             $sql .="
+                AND cl.deleted=0
                 ORDER BY mainOrder
             ";
             $query = $this->db->query($sql);
@@ -152,13 +153,21 @@ class Memorial_model extends CI_Model {
     *   Deletes a memorial
     */
     public function deleteMemorial($id) {
-        $sql = "DELETE FROM commemoration_location WHERE id = ?;";
+        $sql = "UPDATE commemoration_location SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
+    }
+
+    /**
+    *   Restores a memorial
+    */
+    public function restoreMemorial($id) {
+        $sql = "UPDATE commemoration_location SET deleted=0 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 
 }

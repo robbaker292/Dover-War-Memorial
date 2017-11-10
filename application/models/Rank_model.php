@@ -62,13 +62,21 @@ class Rank_model extends CI_Model {
     *   Deletes a Rank
     */
     public function deleteRank($id) {
-        $sql = "DELETE FROM rank WHERE id = ?;";
+        $sql = "UPDATE rank SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
+    }
+
+    /**
+    *   Restores a Rank
+    */
+    public function restoreRank($id) {
+        $sql = "UPDATE rank SET deleted=9 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 
 }

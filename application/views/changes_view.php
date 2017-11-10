@@ -9,11 +9,11 @@ $Parsedown = new ParsedownExtra();
 ?>
 <script>
 $(document).on("click", ".btn-delete", function(e) {
-	var changeId = $(this).first().data("changeid")
+	var changeId = $(this).first().data("changeid");
 	bootbox.confirm({ 
 		size: "large",
 		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
-		message: "This will delete the current change log item.<br>This CANNOT be undone",
+		message: "This will delete the current change log item.<br>Deletions can be restored.",
 		buttons: {
 			confirm: {
 				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',
@@ -27,6 +27,30 @@ $(document).on("click", ".btn-delete", function(e) {
 		callback: function(result){ 
 			if(result) {
 				window.location.href = "<?php echo base_url()."siteUpdate/deleteChangeLog/"; ?>"+changeId;
+			}
+		}
+	});
+});
+
+$(document).on("click", ".btn-restore", function(e) {
+	var changeId = $(this).first().data("changeid");
+	bootbox.confirm({ 
+		size: "large",
+		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
+		message: "This will restore the current change log item.",
+		buttons: {
+			confirm: {
+				label: '<i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;&nbsp;Restore',
+				className: 'btn-success'
+			},
+			cancel: {
+				label: '<i class="fa fa-ban" aria-hidden="true"></i>&nbsp;&nbsp;Cancel',
+				className: 'btn-primary'
+			}
+		}, 
+		callback: function(result){ 
+			if(result) {
+				window.location.href = "<?php echo base_url()."siteUpdate/restoreChangeLog/"; ?>"+changeId;
 			}
 		}
 	});
@@ -59,7 +83,7 @@ $(document).on("click", ".btn-delete", function(e) {
 					<?php
 					if($loggedIn) {
 						?>
-					<th>Delete</th>
+					<th>Delete / <br>Restore</th>
 					<?php
 				}
 					?>
@@ -67,8 +91,17 @@ $(document).on("click", ".btn-delete", function(e) {
 
 				<?php
 				foreach ($updates as $update) {
-					?>
-					<tr>
+									
+						if($update->deleted=="1") {
+							if(!$loggedIn) {
+								continue; //skip deleted ones if not logged in
+							}
+							echo "<tr class=\"deletedChange\">";
+						} else {
+							echo "<tr>";
+						}
+						
+						?>
 						<td><?php echo $update->id ?></td>
 						<td><?php echo $update->date ?></td>
 						<td><?php echo ucfirst($update->name) ?></td>
@@ -76,9 +109,15 @@ $(document).on("click", ".btn-delete", function(e) {
 						<td><a href="<?php echo base_url().$update->name."/view/".$update->item_id; ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
 						<?php
 						if($loggedIn) {
-							?>
-							<td><a href="#" class="btn btn-danger btn-xs btn-delete" role="button" data-changeid="<?php echo $update->id ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-							<?php
+							if($update->deleted=="1") { //if change log item is already deleted, then show restore button
+								?>
+								<td><a href="#" class="btn btn-success btn-xs btn-restore" role="button" data-changeid="<?php echo $update->id ?>"><i class="fa fa-recycle" aria-hidden="true"></i></a></td>
+								<?php
+							} else {
+								?>
+								<td><a href="#" class="btn btn-danger btn-xs btn-delete" role="button" data-changeid="<?php echo $update->id ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+								<?php
+							}
 						}
 						?>
 					</tr>

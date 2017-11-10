@@ -4,14 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include APPPATH . 'third_party/Parsedown.php';
 include APPPATH . 'third_party/ParsedownExtra.php';
 $Parsedown = new ParsedownExtra();
-
+if (!$new) {
 ?>
 <script>
 $(document).on("click", ".btn-delete", function(e) {
 	bootbox.confirm({ 
 		size: "large",
 		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
-		message: "This will delete the current regiment/service.<br>All Casualties with this regiment/service have it removed.<br>This CANNOT be undone",
+		message: "This will delete the current regiment/service.<br>All Casualties with this regiment/service have it removed.<br>Deletions can be restored",
 		buttons: {
 			confirm: {
 				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',
@@ -31,6 +31,7 @@ $(document).on("click", ".btn-delete", function(e) {
 });
 </script>
 	<?php
+}
 	if ($new) {
 		echo "<h2>New Regiment Service</h2>";
 	} else {		

@@ -11,7 +11,7 @@ $(document).on("click", ".btn-delete", function(e) {
 	bootbox.confirm({ 
 		size: "large",
 		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
-		message: "This will delete the current rank.<br>All Casualties with this rank will be set to have no rank.<br>This CANNOT be undone",
+		message: "This will delete the current rank.<br>All Casualties with this rank will have this rank removed<br>Deletions can be restored",
 		buttons: {
 			confirm: {
 				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',

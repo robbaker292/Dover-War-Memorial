@@ -48,6 +48,12 @@ class Article extends CI_Controller {
 			redirect(site_url(uri_string()."/".$name));
 		}
 
+		//redirect if the item is deleted and we're logged out
+		$deleted = $article_data[0]->deleted;
+		if($deleted == "1" && !$loggedIn) {
+			redirect(site_url());
+		}
+
 		$data = array(
 			'article_data' => $article_data[0],
 			"loggedIn" => $loggedIn
@@ -167,13 +173,32 @@ class Article extends CI_Controller {
 			//if the update worked
 			if($result["type"] == "success") {
 				//var_dump($result);
-				redirect("article");
+				//redirect("article");
+				redirect(site_url("article/view/".$id));
 			} else {
 				//output the error message :(
 				header('HTTP/1.1 500 Internal Server Error');
 	   			header('Content-Type: application/json; charset=UTF-8');
 	    		die(json_encode($result));
 			}
+		} else {
+			//return error message :(
+			header('HTTP/1.1 500 Internal Server Error');
+   			header('Content-Type: application/json; charset=UTF-8');
+    		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
+		}
+	}
+
+	/**
+	*	Restores a article
+	*/
+	public function restore($id) {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$this->load->model('article_model');
+			$result = $this->article_model->restoreArticle($id);
+			redirect(site_url("article/view/".$id));
 		} else {
 			//return error message :(
 			header('HTTP/1.1 500 Internal Server Error');

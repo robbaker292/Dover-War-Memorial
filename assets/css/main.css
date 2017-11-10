@@ -172,3 +172,8 @@ a.toggler .fa:after {
     width:100%;
     background: linear-gradient(rgba(255,255,255,0), #FFFFFF);
 }
+
+.deletedChange td, .deletedItem td {
+    text-decoration: line-through;
+    color: gray;
+}

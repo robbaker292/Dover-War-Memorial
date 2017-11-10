@@ -13,16 +13,16 @@ class Casualty_model extends CI_Model {
     * Returns all the data about the given casualty
     */
     public function getCasualty($id) {
-        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, c.unsure_details, frp.name AS 'final_resting_place', frp.id AS 'frpId', r.name AS 'rank', r.id AS 'rId', w.name AS 'war', w.id AS 'wId', sc.name AS 'country', sc.id AS 'scId', pb.name AS 'place_of_birth', pb.id AS 'pbId', lka.name AS 'last_known_address', lka.id AS 'lkaId', last_known_address_year, 
+        $sql = "SELECT c.id, c.given_name, c.middle_names, c.family_name, c.narrative, c.civilian, c.gender, c.date_of_birth, c.date_of_death, c.recently_uploaded, c.unsure_details, frp.name AS 'final_resting_place', frp.id AS 'frpId', r.name AS 'rank', r.id AS 'rId', w.name AS 'war', w.id AS 'wId', sc.name AS 'country', sc.id AS 'scId', pb.name AS 'place_of_birth', pb.id AS 'pbId', lka.name AS 'last_known_address', lka.id AS 'lkaId', last_known_address_year, c.deleted,
             (SELECT flag FROM service_country_flag scf WHERE scf.country_id = sc.id AND (scf.start < c.date_of_death OR scf.start IS NULL) AND (scf.end > c.date_of_death OR scf.end IS NULL) ) AS 'flag' 
             FROM casualty c
-            LEFT JOIN commemoration_location frp ON c.final_resting_place = frp.id
-            LEFT JOIN war w ON c.war = w.id
-            LEFT JOIN rank r ON c.rank_at_death = r.id
-            LEFT JOIN service_country sc ON c.service_country = sc.id
-            LEFT JOIN service_country_flag scf ON scf.country_id = sc.id
-            LEFT JOIN place pb ON c.place_of_birth = pb.id
-            LEFT JOIN place lka ON c.last_known_address = lka.id
+            LEFT JOIN commemoration_location frp ON c.final_resting_place = frp.id AND frp.deleted=0
+            LEFT JOIN war w ON c.war = w.id AND w.deleted=0
+            LEFT JOIN rank r ON c.rank_at_death = r.id AND r.deleted=0
+            LEFT JOIN service_country sc ON c.service_country = sc.id AND sc.deleted=0
+            LEFT JOIN service_country_flag scf ON scf.country_id = sc.id AND sc.deleted=0
+            LEFT JOIN place pb ON c.place_of_birth = pb.id AND pb.deleted=0
+            LEFT JOIN place lka ON c.last_known_address = lka.id AND lka.deleted=0
             WHERE c.id = ?
         ";
         $query = $this->db->query($sql, array($id));
@@ -45,7 +45,7 @@ class Casualty_model extends CI_Model {
     public function getCommemorations($id) {
         $sql = "SELECT cl.id, cl.name FROM casualty c
             LEFT JOIN commemoration_location_casualty clc ON clc.casualty_id = c.id
-            LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id
+            LEFT JOIN commemoration_location cl ON clc.commemoration_location_id = cl.id AND cl.deleted=0
             WHERE c.id = ?
         ";
         $query = $this->db->query($sql, array($id));
@@ -58,7 +58,7 @@ class Casualty_model extends CI_Model {
     public function getRegimentService($id) {
         $sql = "SELECT rs.id, rs.name FROM casualty c
             LEFT JOIN regiment_service_casualty rsc ON c.id = rsc.casualty_id
-            LEFT JOIN regiment_service rs ON rs.id = rsc.regiment_service_id
+            LEFT JOIN regiment_service rs ON rs.id = rsc.regiment_service_id AND rs.deleted=0
             WHERE c.id = ?
         ";
         $query = $this->db->query($sql, array($id));
@@ -82,9 +82,9 @@ class Casualty_model extends CI_Model {
     */
     public function getRelations($id) {
         $sql = "(SELECT c2.id, c2.given_name, c2.family_name, r.name, r.id as 'relationType' from casualty c2 JOIN casualty_relation cr ON c2.id=cr.casualty_id_senior 
-            JOIN relation r ON r.id=cr.relation_id WHERE cr.casualty_id_junior = ?) UNION 
+            JOIN relation r ON r.id=cr.relation_id AND r.deleted=0 WHERE cr.casualty_id_junior = ? AND c2.deleted=0) UNION 
             (SELECT c2.id, c2.given_name, c2.family_name, r.name, r.id as 'relationType' from casualty c2 JOIN casualty_relation cr ON c2.id=cr.casualty_id_junior 
-            JOIN relation r ON r.id=cr.relation_id WHERE cr.casualty_id_senior = ?)";
+            JOIN relation r ON r.id=cr.relation_id AND r.deleted=0 WHERE cr.casualty_id_senior = ?  AND c2.deleted=0)";
         $query = $this->db->query($sql, array($id, $id));
         return $query->result();
     }
@@ -93,7 +93,7 @@ class Casualty_model extends CI_Model {
     * Get relation types
     */
     public function getRelationTypes() {
-        $sql = "SELECT * FROM relation";
+        $sql = "SELECT * FROM relation WHERE deleted=0";
         $query = $this->db->query($sql);
         return $query->result();        
     }
@@ -102,7 +102,7 @@ class Casualty_model extends CI_Model {
     * Get all casualties
     */
     public function getAllCasualties() {
-        $sql = "SELECT id, given_name, middle_names, family_name, date_of_birth FROM casualty";
+        $sql = "SELECT id, given_name, middle_names, family_name, date_of_birth FROM casualty WHERE deleted=0";
         $query = $this->db->query($sql);
         return $query->result();        
     }
@@ -275,7 +275,7 @@ class Casualty_model extends CI_Model {
     *   Deletes a casualty
     */
     public function deleteCasualty($id) {
-        $sql = "DELETE FROM casualty WHERE id = ?;";
+        $sql = "UPDATE casualty SET deleted=1 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
         if($result) {
             return array('area' => 'main', 'type'=>'success', 'message'=>'Delete completed');
@@ -288,7 +288,7 @@ class Casualty_model extends CI_Model {
     * Returns basic data about the casualties that died today
     */
     public function getCasualtyToday() {
-        $sql = "SELECT *, (YEAR(NOW()) - YEAR(date_of_death)) AS age FROM casualty c WHERE MONTH(NOW())=MONTH(date_of_death) AND DAY(NOW())=DAY(date_of_death)";
+        $sql = "SELECT *, (YEAR(NOW()) - YEAR(date_of_death)) AS age FROM casualty c WHERE MONTH(NOW())=MONTH(date_of_death) AND DAY(NOW())=DAY(date_of_death) AND deleted=0";
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -297,7 +297,7 @@ class Casualty_model extends CI_Model {
     * Returns basic data about the casualties that have no memorial
     */
     public function getCasualtyNoMemorial() {
-        $sql = "SELECT * FROM casualty c LEFT JOIN commemoration_location_casualty clc ON c.id = clc.casualty_id WHERE clc.casualty_id IS NULL";
+        $sql = "SELECT * FROM casualty c LEFT JOIN commemoration_location_casualty clc ON c.id = clc.casualty_id WHERE clc.casualty_id IS NULL ANd deleted=0";
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -306,8 +306,16 @@ class Casualty_model extends CI_Model {
     * Returns basic data about the casualties that recently been imported
     */
     public function getCasualtyRecentlyImported() {
-        $sql = "SELECT * FROM casualty c WHERE c.recently_uploaded = 1";
+        $sql = "SELECT * FROM casualty c WHERE c.recently_uploaded = 1 AND deleted=0";
         $query = $this->db->query($sql);
         return $query->result();
+    }
+
+    /**
+    *   Deletes a casualty
+    */
+    public function restoreCasualty($id) {
+        $sql = "UPDATE casualty SET deleted=0 WHERE id = ?;";
+        $result = $this->db->query($sql, array($id));
     }
 }

@@ -11,7 +11,7 @@ $(document).on("click", ".btn-delete", function(e) {
 	bootbox.confirm({ 
 		size: "large",
 		title: "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Warning!",
-		message: "This will delete the current Relation Type.<br>All Casualties with relations of this type will have them removed.<br>This CANNOT be undone",
+		message: "This will delete the current Relation Type.<br>All Casualties with relations of this type will have those relations removed.<br>Deletions can be restored",
 		buttons: {
 			confirm: {
 				label: '<i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete',
