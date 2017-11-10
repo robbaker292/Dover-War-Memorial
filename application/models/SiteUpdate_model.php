@@ -146,4 +146,14 @@ class SiteUpdate_model extends CI_Model {
         return $query->result();
     }
 
+    /*
+    * Returns basic data about deleted items
+    */
+    public function getDeleted() {
+        $sql = "SELECT * FROM site_update WHERE deleted=1
+        ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
 }

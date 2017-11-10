@@ -150,4 +150,11 @@ $Parsedown = new ParsedownExtra();
 		?>
 </div>
 
+<div class="panel panel-primary">
+	<div class="panel-heading"><h4 class="panel-title"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Deleted Items</h4></div>
+	<div class="panel-body">
+	<a href="<?php echo base_url() ?>meta/deleted" class="btn btn-danger btn-md" role="button"><i class="fa fa-trash" aria-hidden="true"></i> View All</a>
+	</div>
+</div>
+
 

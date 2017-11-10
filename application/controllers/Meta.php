@@ -256,4 +256,42 @@ class Meta extends CI_Controller {
     		die(json_encode(array('area' => 'main', 'type'=>'failure', 'message'=>'User is not logged in')));
 		}
 	}
+
+		/**
+	*	Lists all meta pages
+	*/
+	public function deleted() {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+
+			$this->load->model('casualty_model');
+			$casualty_data = $this->casualty_model->getDeleted();
+
+			$this->load->model('article_model');
+			$article_data = $this->article_model->getDeleted();
+
+			$this->load->model('siteUpdate_model');
+			$update_data = $this->siteUpdate_model->getDeleted();
+
+			$this->load->model('memorial_model');
+			$memorial_data = $this->memorial_model->getDeleted();
+
+			$data = array(
+				'loggedIn' => $loggedIn,
+				'casualty_data' => $casualty_data,
+				'article_data' => $article_data,
+				'update_data' => $update_data,
+				'memorial_data' => $memorial_data
+			);
+
+			$this->load->view('header', array(
+				"title" => "List of Deleted Items - Dover War Memorial Project"));
+			$this->load->view('meta_deleted_view', $data);
+			$this->load->view('footer');
+
+		} else {
+			redirect(base_url());
+		}
+	}
 }

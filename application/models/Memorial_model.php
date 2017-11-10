@@ -170,4 +170,14 @@ class Memorial_model extends CI_Model {
         $result = $this->db->query($sql, array($id));
     }
 
+    /*
+    * Returns basic data about deleted items
+    */
+    public function getDeleted() {
+        $sql = "SELECT * FROM commemoration_location WHERE deleted=1
+        ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
 }

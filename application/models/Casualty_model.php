@@ -318,4 +318,13 @@ class Casualty_model extends CI_Model {
         $sql = "UPDATE casualty SET deleted=0 WHERE id = ?;";
         $result = $this->db->query($sql, array($id));
     }
+
+    /*
+    * Returns basic data about deleted items
+    */
+    public function getDeleted() {
+        $sql = "SELECT * FROM casualty c WHERE deleted=1";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }
