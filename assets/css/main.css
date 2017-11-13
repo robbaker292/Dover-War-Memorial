@@ -134,6 +134,7 @@ tr.clickableRow {
 
 #narrative {
   overflow: auto;
+  text-align: justify;
 }
 
 .error-block {
@@ -158,6 +159,7 @@ a.toggler .fa:after {
 }
 
 .snippet {
+    text-align: justify;
     position:relative;
     max-height:8em;
     overflow:hidden;

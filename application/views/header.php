@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<header class="container">
 		<div class="col-md-12">
-			<h1>Dover War Memorial Project</h1>
+			<h1>The Dover War Memorial Project</h1>
 			<div class="hidden-xs">
 				<table id="patrons">
 					<tr><td colspan="2"><small>Patrons:</small></td></tr>
