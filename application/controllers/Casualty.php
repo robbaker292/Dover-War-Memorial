@@ -28,6 +28,9 @@ class Casualty extends CI_Controller {
 		//rewrite url to be nicer
 		if($name == null) {
 			$name = urlencode($casualty_data[0]->given_name."-".$casualty_data[0]->family_name);
+			if(strlen($name) > 151) {
+				$name = substr($name,0,150);
+			}			
 			redirect(site_url(uri_string()."/".$name));
 		}
 
