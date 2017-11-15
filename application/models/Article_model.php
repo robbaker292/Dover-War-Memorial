@@ -53,7 +53,7 @@ class Article_model extends CI_Model {
         $result = $this->db->query($sql, array($basicForm['title'], $basicForm['content'], $basicForm['posted_date'], $basicForm['category_id'], $basicForm['id']));
 
         if($result) {
-            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+            return array('area' => 'main', 'type'=>'success', 'id'=>$basicForm['id'], 'message'=>'Save completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
@@ -68,7 +68,7 @@ class Article_model extends CI_Model {
         $result = $this->db->query($sql, array($basicForm['title'], $basicForm['content'], $basicForm['posted_date'], $basicForm['category_id']));
 
         if($result) {
-            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+            return array('area' => 'main', 'type'=>'success', 'id'=>$this->db->insert_id(), 'message'=>'Save completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }

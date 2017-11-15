@@ -127,7 +127,7 @@ class Memorial_model extends CI_Model {
             $basicForm['lat'], $basicForm['lon'], $basicForm['mainOrder'], $basicForm['id']));
 
         if($result) {
-            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+            return array('area' => 'main', 'type'=>'success', 'id'=>$basicForm['id'], 'message'=>'Save completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
@@ -143,7 +143,7 @@ class Memorial_model extends CI_Model {
             $basicForm['lat'], $basicForm['lon'], $basicForm['mainOrder']));
 
         if($result) {
-            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+            return array('area' => 'main', 'type'=>'success', 'id'=>$this->db->insert_id(), 'message'=>'Save completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }

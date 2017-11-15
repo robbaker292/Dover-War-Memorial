@@ -140,6 +140,17 @@ class SiteUpdate extends CI_Controller {
 				$result = $this->siteUpdate_model->editSiteUpdate($basicForm);
 			}
 
+			if($basicForm["changed_details"]!="") {
+				$this->load->model('general_model');
+				$this->general_model->addToChangeLog(
+					array(
+							'type' => 3,
+							'id' => $result["id"],
+							'reason' => $basicForm["changed_details"]
+						)
+					);
+			}
+
 			//if the update worked
 			if($result["type"] == "success") {
 				//store the result data

@@ -146,7 +146,7 @@ class Memorial extends CI_Controller {
 
 			$basicForm = $this->input->post();
 
-			var_dump($basicForm);
+			//var_dump($basicForm);
 
 			$this->load->model('memorial_model');
 
@@ -162,6 +162,16 @@ class Memorial extends CI_Controller {
 				$basicForm['mainOrder'] = null;
 			}
 
+			if($basicForm["changed_details"]!="") {
+				$this->load->model('general_model');
+				$this->general_model->addToChangeLog(
+					array(
+							'type' => 5,
+							'id' => $result["id"],
+							'reason' => $basicForm["changed_details"]
+						)
+					);
+			}
 
 			//if the update worked
 			if($result["type"] == "success") {

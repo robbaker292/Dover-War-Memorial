@@ -131,8 +131,7 @@ class Article extends CI_Controller {
 			if($basicForm["category_id"]=="null") {
 				$basicForm["category_id"] = null;
 			}
-			var_dump($basicForm);
-
+			//var_dump($basicForm);
 
 			$this->load->model('article_model');
 
@@ -142,6 +141,17 @@ class Article extends CI_Controller {
 			} else {
 				//edit update
 				$result = $this->article_model->editArticle($basicForm);
+			}
+
+			if($basicForm["changed_details"]!="") {
+				$this->load->model('general_model');
+				$this->general_model->addToChangeLog(
+					array(
+							'type' => 2,
+							'id' => $result["id"],
+							'reason' => $basicForm["changed_details"]
+						)
+					);
 			}
 
 			//if the update worked

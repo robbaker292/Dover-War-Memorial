@@ -57,26 +57,8 @@ $(document).ready( function() {
         var result = $("#basicForm").valid();
         if(result) {
             submitForm();
-            saveChangedDetails();
         }
     });
 
-    /**
-    *   Saves the reason for this change
-    */
-    function saveChangedDetails() {
-        var id = $("#id").val();
-        var basicForm = $("#changed_details").val();
-        $.ajax({
-            type: "POST",
-            url: "../../meta/doAddChange",
-            data: {
-                reason : basicForm,
-                id : id,
-                type : 4,
-            },
-            dataType: "json"
-        });
-    }
 
 });

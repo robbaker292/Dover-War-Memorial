@@ -37,7 +37,7 @@ class Meta_model extends CI_Model {
         $result = $this->db->query($sql, array($basicForm['id'], $basicForm['title'], $basicForm['content'], $basicForm['whereUsed'],$basicForm['title'], $basicForm['content'], $basicForm['whereUsed']));
 
         if($result) {
-            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+            return array('area' => 'main', 'type'=>'success', 'id'=>$basicForm['id'], 'message'=>'Save completed');
         } else {
             return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
         }
@@ -50,19 +50,6 @@ class Meta_model extends CI_Model {
         $sql = "SELECT * FROM meta m";
         $query = $this->db->query($sql);
         return $query->result();
-    }
-
-    /**
-    *   Adds to change log
-    */
-    public function addToChangeLog($data) {
-        $sql = "INSERT INTO change_log (change_type, item_id, description, date) VALUES(?,?,?, NOW())";
-        $result = $this->db->query($sql, array($data["type"],$data["id"],$data["reason"]));
-        if($result) {
-            return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
-        } else {
-            return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
-        }
     }
 
 }

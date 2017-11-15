@@ -45,7 +45,7 @@ class SiteUpdate_model extends CI_Model {
             $result = $this->db->query($sql, array($basicForm['title'], $basicForm['content'], $basicForm['date'], $basicForm['family'], $basicForm['id']));
 
             if($result) {
-                return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+                return array('area' => 'main', 'type'=>'success', 'id'=>$basicForm['id'], 'message'=>'Save completed');
             } else {
                 return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
             }
@@ -60,7 +60,7 @@ class SiteUpdate_model extends CI_Model {
             $result = $this->db->query($sql, array($basicForm['title'], $basicForm['content'], $basicForm['date'], $basicForm['family']));
 
             if($result) {
-                return array('area' => 'main', 'type'=>'success', 'message'=>'Save completed');
+                return array('area' => 'main', 'type'=>'success', 'id'=>$this->db->insert_id(), 'message'=>'Save completed');
             } else {
                 return array('area' => 'main', 'type'=>'failure', 'message'=>'Database error');     
             }
