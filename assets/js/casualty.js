@@ -224,7 +224,7 @@ $(document).ready( function() {
         var basicForm = $("#changed_details").val();
         $.ajax({
             type: "POST",
-            url: "../../meta/doAddChange",
+            url: "../../casualty/doAddChange",
             data: {
                 reason : basicForm,
                 id : id,
@@ -237,7 +237,8 @@ $(document).ready( function() {
                 }  
             },
             error: function(data) {
-                $("#saveResultServiceNumber").text(data);
+                console.log(data);
+                $("#saveResultChangedDetails").text(data);
             }
         });
     }

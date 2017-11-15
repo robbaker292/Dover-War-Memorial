@@ -10,9 +10,10 @@ $(document).ready( function() {
             type: "POST",
             url: "../doUpdate",
             data: basicForm,
+            dataType: 'json',
             success: function(data) {
-                console.log(data);
-                window.location.href = "../";
+                //console.log(data, data.id);
+                window.location.href = "../view/"+data.id; //put back
             	//location.reload();
             },
             error: function(data) {

@@ -454,4 +454,26 @@ echo "
 		}
 	}
 
+	/**
+	*	Saves a change log item for this casualty
+	*/
+	public function doAddChange() {
+		//is the user logged in
+		$loggedIn = $this->user_model->isLoggedIn($this->session->token);
+		if($loggedIn) {
+			$basicForm = $this->input->post();
+
+			if($basicForm["reason"]!="") {
+				$this->load->model('general_model');
+				$this->general_model->addToChangeLog(
+					array(
+							'type' => 1,
+							'id' => $basicForm['id'],
+							'reason' => $basicForm["reason"]
+						)
+					);
+			}
+		}
+	}
+
 }
