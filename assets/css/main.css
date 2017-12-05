@@ -179,3 +179,15 @@ a.toggler .fa:after {
     text-decoration: line-through;
     color: gray;
 }
+
+
+
+@media (max-width: 991px) { /* small */
+    .main-nav-bar h4{font-size: 0.8em;}
+    .login-nav-bar h4{font-size: 0.8em;}
+}
+
+@media (max-width: 1199px) { /* large */
+    .main-nav-bar h4{font-size: 1em;}
+    .login-nav-bar h4{font-size: 1em;}
+}

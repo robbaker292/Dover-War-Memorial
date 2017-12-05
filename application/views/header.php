@@ -95,20 +95,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td></tr>
 				</table>
 			</div>
-			<div class="btn-group btn-group-justified">
+			<div class="btn-group btn-group-justified main-nav-bar">
                 <a href="<?php echo base_url(); ?>" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Home</span></h4></a>
-                <a href="<?php echo base_url(); ?>siteUpdate" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Latest News</span></h4></a>
-                <a href="<?php echo base_url(); ?>memorial/listMain" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Casualty Index</span></h4></a>
+                <a href="<?php echo base_url(); ?>siteUpdate" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Latest&nbsp;<span class="visible-sm-inline"><br>&nbsp;&nbsp;</span>News</span></h4></a>
+                <a href="<?php echo base_url(); ?>memorial/listMain" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Casualty&nbsp;<span class="visible-sm-inline"><br></span>Index</span></h4></a>
                 <a href="<?php echo base_url(); ?>article" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Articles</span></h4></a>
                 <a href="<?php echo base_url(); ?>search" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-search" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Search</span></h4></a>
-                <a href="<?php echo base_url(); ?>meta/view/contactUs" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;About &amp; Contact</span></h4></a>
+                <a href="<?php echo base_url(); ?>meta/view/contactUs" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;About</span></h4></a>
             </div>
             <?php
 			if(isset($_SESSION['user'])) {
             ?>
-			<div class="btn-group btn-group-justified">
+			<div class="btn-group btn-group-justified login-nav-bar">
                 <a href="<?php echo base_url(); ?>" class="btn btn-primary disabled"><h4 class="panel-title"><i class="fa fa-key" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logged in as:</span> <?php echo $_SESSION['user']; ?></h4></a>
-                <a href="<?php echo base_url(); ?>meta/listAll" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Config &amp; Meta Pages</span></h4></a>
+                <a href="<?php echo base_url(); ?>meta/listAll" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Config &amp;&nbsp;<span class="visible-sm-inline"><br></span>Meta Pages</span></h4></a>
                 <a href="<?php echo base_url(); ?>meta/view/admin" class="btn btn-primary"><h4 class="panel-title"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Admin Help</span></h4></a>
                 <a href="<?php echo base_url(); ?>user/logout" class="btn btn-danger"><h4 class="panel-title"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="hidden-xs">&nbsp;&nbsp;Logout</span></h4></a>
             </div>
