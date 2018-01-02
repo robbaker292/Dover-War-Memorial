@@ -174,6 +174,8 @@ class Search extends CI_Controller {
 			$options = implode("-", $basicForm["options"]);
 			$term = $basicForm["term"];
 
+			$term = str_replace('/','',$term);
+
 			if($basicForm["termOptions"] == "allTerms") {
 				$term = "+".implode(" +",explode(" ", $term));
 			}
