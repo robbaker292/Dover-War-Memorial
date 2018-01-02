@@ -83,7 +83,7 @@ class Search_model extends CI_Model {
         //var_dump($data);
     
         //list of valid keys
-        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded", "unsure_details", "commemoration_location.id", "regiment_service.id", "service_number.service_number");
+        $validKeys = array("id", "given_name", "middle_names", "family_name", "narrative", "war", "civilian", "gender", "final_resting_place", "date_of_birth", "date_of_death", "commemoration_photo", "rank_at_death", "service_country", "place_of_birth", "last_known_address", "last_known_address_year", "recently_uploaded", "unsure_details", "cm.id", "rs.id", "service_number.service_number");
 
         $query = array();
         $params = array();
